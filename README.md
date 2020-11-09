@@ -1,7 +1,8 @@
 # LittleAI
-> Little AI is a pedagogical game aimed at presenting the founding concepts of **constructivist learning** and **developmental Artificial Intelligence**. It primarily targets students in computer science and cognitive science but it can also interest the general public curious about these topics. It requires no particular scientific background; even children can find it entertaining. Professors can use it as a pedagogical resource in class or in online courses (e.g., MOOCs). The player presses buttons to control a simulated “baby robot” from the robot’s perspective; she cannot see the robot from the outside. The only information she receives from the environment is feedback from her actions; she cannot directly see the environment. She must learn, at the same time, the functioning of the robot’s body and the structure of the environment from regularities in the stream of commands and feedback. We argue that this situation is analogous to how infants engage in early-stage developmental learning (e.g., Piaget 1937).
-
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+> Little AI is a pedagogical game aimed at presenting the founding concepts of **constructivist learning** and **developmental Artificial Intelligence**. It primarily targets students in computer science and cognitive science but it can also interest the general public curious about these topics. It requires no particular scientific background; even children can find it entertaining. Professors can use it as a pedagogical resource in class or in online courses (e.g., MOOCs). The player presses buttons to control a simulated “baby robot” from the robot’s perspective; she cannot see the robot from the outside. The only information she receives from the environment is feedback from her actions; she cannot directly see the environment. She must learn, at the same time, the functioning of the robot’s body and the structure of the environment from regularities in the stream of commands and feedback. *We argue that this situation is analogous to how infants engage in early-stage developmental learning (e.g., Piaget 1937)*.
+
 
 ## Prerequisites
 
@@ -138,6 +139,8 @@ Change 8000 to whatever you want.
 [parcel-plugin-clean-easy](https://github.com/lifuzhao100/parcel-plugin-clean-easy) is used to ensure only the latest files are in the `dist` folder. You can modify this behavior by changing `parcelCleanPaths` in `package.json`.
 
 [parcel-plugin-static-files](https://github.com/elwin013/parcel-plugin-static-files-copy#readme) is used to copy static files from `public` into the output directory and serve it. You can add additional paths by modifying `staticFiles` in `package.json`.
+
+[phaser3 tutorial](https://blog.ourcade.co/posts/2020/make-first-phaser-3-game-modern-javascript-part1/) is used to ensure modern javascript coding best practices
 
 ## License
 
