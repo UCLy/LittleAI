@@ -4,8 +4,8 @@ import HelloWorldScene from './scenes/HelloWorldScene'
 
 const config = {
 	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
+	width: 1265,
+	height: 567,
 	physics: {
 		default: 'arcade',
 		arcade: {
