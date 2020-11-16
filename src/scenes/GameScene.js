@@ -29,6 +29,7 @@ export default class GameScene extends Phaser.Scene
     {
         var score = 0;
         this.add.image(80, 50, 'score');
+        var Losange2Triche = this.add.image(1000, 1000, 'losange');
         this.btnCarre = this.add.sprite(357.5, 480, 'carre').setInteractive();
         this.btnCircle = this.add.sprite(540.5, 480, 'circle').setInteractive();
         this.btnLosange = this.add.sprite(723.5, 480, 'losange').setInteractive();
@@ -90,7 +91,12 @@ export default class GameScene extends Phaser.Scene
             this.clearTint();
         });
         this.btnLosange.on('pointerdown', function (event) {
+
+
             this.setTint(0x444444);
+            console.log("salut");
+            Losange2Triche.x = 630;
+            Losange2Triche.y = 400;
         });
 
 
