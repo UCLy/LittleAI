@@ -28,6 +28,8 @@ export default class GameScene extends Phaser.Scene
     create()
     {
         var score = 0;
+        let chaine_reponse_niveau_1 = "TTLC";
+        let chaine_joueur = "";
         this.add.image(80, 50, 'score');
         var Losange2Triche = this.add.image(1000, 1000, 'losange');
         this.btnCarre = this.add.sprite(357.5, 480, 'carre').setInteractive();
@@ -62,8 +64,10 @@ export default class GameScene extends Phaser.Scene
         this.btnCarre.on('pointerdown', function (event) {
             this.setTint(0x444444);
             console.log('blabla ta mere');
-            score += 1;
-            return this.printScore;
+            //score += 1;
+            //return this.printScore;
+            chaine_joueur += "C";
+            console.log(chaine_joueur);
         });
 
         //create button circle
@@ -79,6 +83,8 @@ export default class GameScene extends Phaser.Scene
             this.setTint(0x444444);
             //console.log('down circle');
             //score += 1;
+            chaine_joueur += "R";
+            console.log(chaine_joueur);
         });
 
         //create button losange
@@ -95,8 +101,10 @@ export default class GameScene extends Phaser.Scene
 
             this.setTint(0x444444);
             console.log("salut");
-            Losange2Triche.x = 630;
-            Losange2Triche.y = 400;
+            //Losange2Triche.x = 630;
+            //Losange2Triche.y = 400;
+            chaine_joueur += "L";
+            console.log(chaine_joueur);
         });
 
 
@@ -111,6 +119,8 @@ export default class GameScene extends Phaser.Scene
         });
         this.btnTriangle.on('pointerdown', function (event) {
             this.setTint(0x444444);
+            chaine_joueur += "T";
+            console.log(chaine_joueur);
         });
 
 
