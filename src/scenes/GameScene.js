@@ -63,11 +63,17 @@ export default class GameScene extends Phaser.Scene
         });
         this.btnCarre.on('pointerdown', function (event) {
             this.setTint(0x444444);
-            console.log('blabla ta mere');
             //score += 1;
             //return this.printScore;
             chaine_joueur += "C";
             console.log(chaine_joueur);
+            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
+            if( position !== -1){
+                alert("C'est gagné !!")
+            }
+            else{
+                console.log("pas encore win")
+            }
         });
 
         //create button circle
@@ -85,6 +91,13 @@ export default class GameScene extends Phaser.Scene
             //score += 1;
             chaine_joueur += "R";
             console.log(chaine_joueur);
+            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
+            if( position !== -1){
+                alert("C'est gagné !!")
+            }
+            else{
+                console.log("pas encore win")
+            }
         });
 
         //create button losange
@@ -105,6 +118,13 @@ export default class GameScene extends Phaser.Scene
             //Losange2Triche.y = 400;
             chaine_joueur += "L";
             console.log(chaine_joueur);
+            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
+            if( position !== -1){
+                alert("C'est gagné !!")
+            }
+            else{
+                console.log("pas encore win")
+            }
         });
 
 
@@ -121,6 +141,14 @@ export default class GameScene extends Phaser.Scene
             this.setTint(0x444444);
             chaine_joueur += "T";
             console.log(chaine_joueur);
+            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
+            if( position !== -1){
+                alert("C'est gagné !!")
+            }
+            else{
+                console.log("pas encore win")
+            }
+
         });
 
 
