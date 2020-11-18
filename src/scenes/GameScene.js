@@ -15,10 +15,10 @@ export default class GameScene extends Phaser.Scene
     {
         this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
 
-        this.load.image('carre', './game-icons/carre.png');
-        this.load.image('circle', './game-icons/circle.png');
-        this.load.image('losange', './game-icons/losange.png');
-        this.load.image('triangle', './game-icons/triangle.png');
+        this.load.image('carre', './Whiteform/carre.png');
+        this.load.image('circle', './Whiteform/circle.png');
+        this.load.image('losange', './Whiteform/losange.png');
+        this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
         this.load.image('score', './assets/score.png')
 
@@ -28,15 +28,15 @@ export default class GameScene extends Phaser.Scene
     create()
     {
         var score = 0;
-        let chaine_reponse_niveau_1 = "TTLC";
+        let chaine_reponse_niveau_1 = "RRRRRRRRRR";
         let chaine_joueur = "";
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         var Losange2Triche = this.add.image(1000, 1000, 'losange');
-        this.btnCarre = this.add.sprite(357.5, 480, 'carre').setInteractive();
-        this.btnCircle = this.add.sprite(540.5, 480, 'circle').setInteractive();
-        this.btnLosange = this.add.sprite(723.5, 480, 'losange').setInteractive();
-        this.btnTriangle = this.add.sprite(906.5, 480, 'triangle').setInteractive();
+        this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive();
+        this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive();
+        //this.btnLosange = this.add.sprite(723.5, 480, 'losange').setInteractive();
+        //this.btnTriangle = this.add.sprite(906.5, 480, 'triangle').setInteractive();
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive();
         this.printScore = this.add.text(80, 80, score, {  });
 
@@ -92,6 +92,7 @@ export default class GameScene extends Phaser.Scene
             //score += 1;
             chaine_joueur += "R";
             console.log(chaine_joueur);
+
             var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
             if( position !== -1){
                 alert("C'est gagné !!")
@@ -103,7 +104,7 @@ export default class GameScene extends Phaser.Scene
 
         //create button losange
 
-
+/*
         this.btnLosange.on('pointerover', function (event) {
             this.setTint(0x999999);
         });
@@ -128,10 +129,10 @@ export default class GameScene extends Phaser.Scene
             }
         });
 
-
+*/
         //create button triangle
 
-
+/*
         this.btnTriangle.on('pointerover', function (event) {
             this.setTint(0x999999);
         });
@@ -151,7 +152,7 @@ export default class GameScene extends Phaser.Scene
             }
 
         });
-
+*/
 
 
 
@@ -166,3 +167,4 @@ export default class GameScene extends Phaser.Scene
 
 
 }
+
