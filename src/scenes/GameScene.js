@@ -30,6 +30,7 @@ export default class GameScene extends Phaser.Scene
         var score = 0;
         let chaine_reponse_niveau_1 = "TTLC";
         let chaine_joueur = "";
+        this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         var Losange2Triche = this.add.image(1000, 1000, 'losange');
         this.btnCarre = this.add.sprite(357.5, 480, 'carre').setInteractive();
