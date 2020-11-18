@@ -5,8 +5,8 @@ import MenuScene from './scenes/MenuScene'
 
 const config = {
 	type: Phaser.AUTO,
-	width: 1850,
-	height: 1080,
+	width: 1250,
+	height: 550,
 	physics: {
 		default: 'arcade',
 		arcade: {
