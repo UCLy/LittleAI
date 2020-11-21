@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import GameScene from './scenes/GameScene'
 import MenuScene from './scenes/MenuScene'
 
+
 const config = {
 	type: Phaser.AUTO,
 	width: 1250,
@@ -13,7 +14,7 @@ const config = {
 			gravity: { y: 200 }
 		}
 	},
-	scene: [GameScene, MenuScene],
+	scene: [MenuScene,GameScene],
 };
 
 export default new Phaser.Game(config)
