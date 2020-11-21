@@ -23,19 +23,8 @@ export default class MenuScene extends Phaser.Scene
 
 
 
-
+        //passer de la scéne menu a scéne game-scene
         var start = this.add.image(600, 300, 'menu');
-        //this.input.once('pointerdown', function () {
-
-          //  console.log('From SceneA to SceneB');
-
-            //this.scene.start('./scenes/GameScene');
-
-        //}, this);
-
-
-
-
         start.setInteractive ({useHandCursor: true});
         start.on ('pointerdown', () => this.scene.start("game-scene"));
 
