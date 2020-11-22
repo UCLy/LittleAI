@@ -30,7 +30,11 @@ export default class GameScene extends Phaser.Scene
         let chaine_reponse_niveau_1 = "RRRRRRRRRR";
         let chaine_joueur = "";
 
+
         var color = new Phaser.Display.Color();
+
+        this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
+
 
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
 
