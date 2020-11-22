@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 
 
 export default class GameScene extends Phaser.Scene
-
 {
 	constructor()
 	{
@@ -30,6 +29,7 @@ export default class GameScene extends Phaser.Scene
         var score = 0;
         let chaine_reponse_niveau_1 = "TTLC";
         let chaine_joueur = "";
+        var color = new Phaser.Display.Color();
         this.add.image(80, 50, 'score');
         var Losange2Triche = this.add.image(1000, 1000, 'losange');
         this.btnCarre = this.add.sprite(357.5, 480, 'carre').setInteractive();
@@ -49,6 +49,7 @@ export default class GameScene extends Phaser.Scene
         });
         this.button_menu.on('pointerdown', function (event) {
             this.setTint(0x444444); // ajoute un gris plus foncé pour marquer la diff qd on le clique
+
         });
 
 
@@ -63,6 +64,8 @@ export default class GameScene extends Phaser.Scene
         });
         this.btnCarre.on('pointerdown', function (event) {
             this.setTint(0x444444);
+
+
             //score += 1;
             //return this.printScore;
             chaine_joueur += "C";
