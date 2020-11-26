@@ -6,31 +6,63 @@
 
 ## Prerequisites
 
-You'll need [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/), and [Parcel](https://parceljs.org/) installed.
+Installer Node.js et `npm` avec `nvm` sur windows:
 
-It is highly recommended to use [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) to install Node.js and npm.
+##Télécharger Node.js
 
-For Windows users there is [Node Version Manager for Windows](https://github.com/coreybutler/nvm-windows).
+Pour télécharger `Node.js` cliquez sur le lien ci-dessous: 
+ 
+[Download Node.js](https://nodejs.org/en/)  
+Choisissez la dernière version disponible (15.2.1)
 
-Install Node.js and `npm` with `nvm`:
+Une fois node.js installer, il faut ensuite installer `nvm`.
 
+##Télécharger nvm
+
+Cliquez sur le lien suivant pour accéder au dépôt git contenant `nvm`:  
+
+[Download nvm](https://github.com/coreybutler/nvm-windows/releases)
+
+Cliquer sur  le fichier dans le dépôt github: nvm-setup.zip
+Ouvrer le fichier et lancer `nvm-setup.ex` et l'installation de nvm commence
+
+##Vérifier si l'on utilise bien la bonne version de Node.js
+
+Une fois `nvm` installer il faut vérifiez si vous utilisez bien la dernière version de `Node.js`
+
+Aller dans votre barre de recherche windows, écrivez : `cmd`
+Lancez l'invite de commande en faisant :
+ 
+ `clique-droit`  
+ `executer en tant qu'administrateur`
+ 
+ Pour voir la version utiliser
 ```bash
-nvm install node
+nvm ls
+```
+Si le cmd n'affiche pas que vous utlisez la version `15.2.1`
+faite :
+```bash
+npm install -g yarn
 
-nvm use node
+nvm use 15.2.1
 ```
 
-Replace 'node' with 'latest' for `nvm-windows`.
-
-Then install Parcel:
+Puis installer Parcel:
 
 ```bash
 npm install -g parcel-bundler
 ```
 
+##Télécharger Git
+
+Installer git en cliquer sur le lien suivant:
+  
+[Download Git](https://git-scm.com/downloads)
+
 ## Getting Started
 
-Clone this repository to your local machine:
+Cloner ce dépôt sur votre machine local en utlisant `Git Bash`:
 
 ```bash
 git clone https://github.com/UCLy/LittleAI.git
