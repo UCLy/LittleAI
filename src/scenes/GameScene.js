@@ -28,6 +28,7 @@ export default class GameScene extends Phaser.Scene
     {
 
         var score = 0;
+        let conteur = 0;
         let chaine_reponse_niveau_1 = "RRRRRRRRRR";
         let chaine_joueur = "";
 
@@ -39,7 +40,7 @@ export default class GameScene extends Phaser.Scene
 
 
         this.add.image(80, 50, 'score');
-        var Losange2Triche = this.add.image(1000, 1000, 'losange');
+       var Losange2Triche = this.add.image(1000, 1000, 'losange');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
         //this.btnLosange = this.add.sprite(723.5, 480, 'losange').setInteractive({useHandCursor: true});
@@ -47,6 +48,15 @@ export default class GameScene extends Phaser.Scene
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
         this.printScore = this.add.text(80, 80, score, {  });
 
+        var color1 = new Phaser.Display.Color(250, 0, 0);
+        var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
+        var rect2 = this.add.rectangle(0, 0, 0, 0, color1.color);
+        rectLevel.setInteractive ({useHandCursor: true});
+        rectLevel.on('pointerdown', () => {rect2.x = 550,rect2.y = 300, rect2.height = 100, rect2.width = 100});
+        rectLevel.on('pointerdown',() =>  {++conteur});
+        if( conteur === 1){
+            console.log("egale 1 !!")
+        }
         //create button menu
 
 
