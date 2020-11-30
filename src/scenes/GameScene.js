@@ -119,6 +119,37 @@ export default class GameScene extends Phaser.Scene
             }
         });
 
+        //create a the other forms with a rightclick
+
+        /*this.btnCarre.on('pointerdown', function (pointer) {
+
+            this.add.image(pointer.x, pointer.y, 'losange');
+            console.log("ajoute un losange")
+
+    });*/
+        this.input.mouse.disableContextMenu();
+
+        this.input.on('pointerdown', function (pointer) {
+
+            if (pointer.getDuration() > 1000)
+            {
+
+                if (pointer.rightButtonDown())
+                {
+                    if (pointer.x >= 300 && pointer.x <= 520) {
+                        this.add.image(300, 250, 'circle');
+                        this.add.image(500, 250, 'losange');
+                        console.log("formes différentes du carrée")
+                    }
+                    if (pointer.x >= 715 && pointer.x <= 915) {
+                        this.add.image(715, 250, 'carre');
+                        this.add.image(915, 250, 'losange');
+                        console.log("formes différentes du cercle")
+                    }
+                }
+            }
+        }, this);
+
         //create button losange
 
 /*
