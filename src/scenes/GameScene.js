@@ -1,4 +1,12 @@
 import Phaser from 'phaser'
+import Width from "phaser3-rex-plugins/plugins/geom/hexagon/Width";
+import Height from "phaser3-rex-plugins/plugins/geom/hexagon/Height";
+
+
+
+                             //////////////////////////////////////////   LEVEL 0   ///////////////////////////////////////////
+
+
 
 
 export default class GameScene extends Phaser.Scene
@@ -26,26 +34,25 @@ export default class GameScene extends Phaser.Scene
 
     create()
     {
-
-        var score = 0;
         let chaine_reponse_niveau_1 = "RRRRRRRRRR";
         let chaine_joueur = "";
 
-        var colorPrintRect = new Phaser.Display.Color(250, 0, 0); // la couleur du rectangle affiché
-        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0); // la couleur du cercle affiché
+        let colorPrintRectPrincipal = new Phaser.Display.Color(250, 250, 250);
+        let colorPrintRect = new Phaser.Display.Color(250, 0, 0); // la couleur du rectangle affiché
+        let colorPrintCircle = new Phaser.Display.Color(0, 250, 0); // la couleur du cercle affiché
 
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
 
 
         this.add.image(80, 50, 'score');
-        var Losange2Triche = this.add.image(1000, 1000, 'losange');
+        let Losange2Triche = this.add.image(1000, 1000, 'losange');
+
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
         //this.btnLosange = this.add.sprite(723.5, 480, 'losange').setInteractive({useHandCursor: true});
         //this.btnTriangle = this.add.sprite(906.5, 480, 'triangle').setInteractive({useHandCursor: true});
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
-        this.printScore = this.add.text(80, 80, score, {  });
 
         //create button menu
 
@@ -84,6 +91,27 @@ export default class GameScene extends Phaser.Scene
             }
         });
 
+
+        for (let i = 370; i > 0;)
+        {
+            if (this.btnCarre.emit('pointerdown'))
+            {
+                this.btnCarre.on('pointerdown', () => this.add.rectangle(660, i, 100, 100, colorPrintRect.color));
+            }
+            i -= 100;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         //create button circle
 
 
@@ -95,8 +123,6 @@ export default class GameScene extends Phaser.Scene
         });
         this.btnCircle.on('pointerdown', function () {
             this.setTint(0x444444);
-            //console.log('down circle');
-            //score += 1;
             chaine_joueur += "R";
             console.log(chaine_joueur);
 
@@ -171,7 +197,6 @@ export default class GameScene extends Phaser.Scene
     {
 
     }
-
 
 }
 
