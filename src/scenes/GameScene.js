@@ -27,7 +27,7 @@ export default class GameScene extends Phaser.Scene
     create()
     {
 
-        var score = 0;
+        var score = 1;
         let conteur = 0;
         let chaine_reponse_niveau_1 = "RRRRRRRRRR";
         let chaine_joueur = "";
@@ -50,13 +50,28 @@ export default class GameScene extends Phaser.Scene
 
         var color1 = new Phaser.Display.Color(250, 0, 0);
         var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
+        var rect1 = this.add.rectangle(0, 0, 0, 0, color1.color);
         var rect2 = this.add.rectangle(0, 0, 0, 0, color1.color);
+        var rect3 = this.add.rectangle(0, 0, 0, 0, color1.color);
         rectLevel.setInteractive ({useHandCursor: true});
-        rectLevel.on('pointerdown', () => {rect2.x = 550,rect2.y = 300, rect2.height = 100, rect2.width = 100});
-        rectLevel.on('pointerdown',() =>  {++conteur});
-        if( conteur === 1){
-            console.log("egale 1 !!")
+        rectLevel.on('pointerdown', () => conteur += 1);
+        if( conteur === 0){
+            rectLevel.on('pointerdown', () => {rect2.x = 550,rect2.y = 430, rect2.height = 100, rect2.width = 100});
+
+
+        }else if (conteur === 1){
+            rectLevel.on('pointerdown', () => {rect2.x = 550,rect2.y = 300, rect2.height = 100, rect2.width = 100});
+            rectLevel.on('pointerdown', () => {rect1.x = 550,rect1.y = 430, rect1.height = 100, rect1.width = 100});
+        }else if (conteur === 2){
+            rectLevel.on('pointerdown', () => {rect2.x = 550,rect2.y = 170, rect2.height = 100, rect2.width = 100});
+            rectLevel.on('pointerdown', () => {rect1.x = 550,rect1.y = 300, rect1.height = 100, rect1.width = 100});
+            rectLevel.on('pointerdown', () => {rect3.x = 550,rect3.y = 430, rect3.height = 100, rect3.width = 100});
         }
+
+
+
+
+
         //create button menu
 
 
