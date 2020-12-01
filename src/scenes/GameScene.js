@@ -1,7 +1,6 @@
 import Phaser from 'phaser'
 
-let cursors;
-var rouge = new Phaser.Display.Color(250, 0, 0);
+
 
 export default class GameScene extends Phaser.Scene
 {
@@ -47,7 +46,6 @@ export default class GameScene extends Phaser.Scene
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
 
 
-        var color1 = new Phaser.Display.Color(250, 0, 0);
 
 
         //create button menu
@@ -121,18 +119,40 @@ export default class GameScene extends Phaser.Scene
 
     update(time, delta)
     {
-        if(cursors.left.isDown){
-            this.add.circle(622, 300, 25, 0xFFFF33);
-            console.log("salut");
-        }
 
-        if(cursors.right.isDown){
-            this.add.rectangle(622, 200, 50, 50, 0xFFFF33);
-            console.log("skkk");
+        while(i < 10) {
+            if (cursors.left.isDown) {
+                this.add.circle(622, positions[i], 12.5, 0xFFFF33);
+                console.log("salut");
+                i++;
+            }
+
+            if (cursors.right.isDown) {
+                this.add.rectangle(622, positions[i], 25, 25, 0xFFFF33);
+                console.log("skkk");
+                i++;
+            }
+
+
         }
 
     }
 
 
 }
+let i = 0;
+let cursors;
+let position1 = 300;
+let position2 = 270;
+let position3 = 240;
+let position4 = 210;
+let position5 = 180;
+let position6 = 150;
+let position7 = 120;
+let position8 = 90;
+let position9 = 60;
+let position10 = 30;
 
+let positions = [
+    position1, position2, position3, position4, position5, position6, position7, position8, position9, position10
+];
