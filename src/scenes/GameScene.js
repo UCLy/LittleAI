@@ -51,7 +51,9 @@ export default class GameScene extends Phaser.Scene
         this.buttonCircle();
         this.win();
         this.nScore();
+        this.choiceFormsPrinc();
     }
+
 
 
     createButtons()
@@ -59,6 +61,28 @@ export default class GameScene extends Phaser.Scene
 
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
+
+       // var color1 = new Phaser.Display.Color(250, 0, 0);
+       // //var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
+       // var rect1 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // var rect2 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // var rect3 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // //rectLevel.setInteractive ({useHandCursor: true});
+       // //rectLevel.on('pointerdown', () => conteur += 1);
+       // if( conteur === 0){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 430, rect2.height = 100, rect2.width = 100});
+//
+//
+       // }else if (conteur === 1){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 300, rect2.height = 100, rect2.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect1.x = 550,rect1.y = 430, rect1.height = 100, rect1.width = 100});
+       // }else if (conteur === 2){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 170, rect2.height = 100, rect2.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect1.x = 550,rect1.y = 300, rect1.height = 100, rect1.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect3.x = 550,rect3.y = 430, rect3.height = 100, rect3.width = 100});
+       // }
+
+
 
     }
 
@@ -111,6 +135,7 @@ export default class GameScene extends Phaser.Scene
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
     }
 
+
     displayForms()
     {
         //for (let i = 370; i >= 0;)
@@ -122,7 +147,14 @@ export default class GameScene extends Phaser.Scene
         //    i -= 100
         //}
 
+        //create a the other forms with a rightclick
 
+        /*this.btnCarre.on('pointerdown', function (pointer) {
+
+            this.add.image(pointer.x, pointer.y, 'losange');
+            console.log("ajoute un losange")
+
+    });*/
 
     }
 
@@ -162,6 +194,32 @@ export default class GameScene extends Phaser.Scene
             }
         });
 
+    }
+
+    choiceFormsPrinc()
+    {
+        this.input.mouse.disableContextMenu();
+
+        this.input.on('pointerdown', function (pointer) {
+
+            if (pointer.getDuration() > 1000)
+            {
+
+                if (pointer.rightButtonDown())
+                {
+                    if (pointer.x >= 300 && pointer.x <= 520) {
+                        this.add.image(300, 250, 'circle');
+                        this.add.image(500, 250, 'losange');
+                        console.log("formes différentes du carrée")
+                    }
+                    if (pointer.x >= 715 && pointer.x <= 915) {
+                        this.add.image(715, 250, 'carre');
+                        this.add.image(915, 250, 'losange');
+                        console.log("formes différentes du cercle")
+                    }
+                }
+            }
+        }, this);
     }
 
     nScore()
