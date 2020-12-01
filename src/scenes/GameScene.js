@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 
+let cursors;
+var rouge = new Phaser.Display.Color(250, 0, 0);
 
 export default class GameScene extends Phaser.Scene
 {
@@ -23,22 +25,27 @@ export default class GameScene extends Phaser.Scene
 
     }
 
+
+
+
     create()
     {
-        let chaine_reponse_niveau_1 = "RRRRRRRRRR";
-        let chaine_joueur = "";
 
-        var colorPrintRect = new Phaser.Display.Color(250, 0, 0); // la couleur du rectangle affiché
-        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0); // la couleur du cercle affiché
+
+
+        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0);
 
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
 
+
+        cursors = this.input.keyboard.createCursorKeys();
 
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
+
 
         var color1 = new Phaser.Display.Color(250, 0, 0);
 
@@ -53,7 +60,7 @@ export default class GameScene extends Phaser.Scene
             this.clearTint(); // ajoute aucune couleur qd on ne le survole pas ou ne le clique pas
         });
         this.button_menu.on('pointerdown', function () {
-            this.setTint(0x444444); // ajoute un gris plus foncé pour marquer la diff qd on le clique
+
         });
 
 
@@ -67,16 +74,7 @@ export default class GameScene extends Phaser.Scene
             this.clearTint();
         });
         this.btnCarre.on('pointerdown', function () {
-            this.setTint(0x444444);
-            chaine_joueur += "C";
-            console.log(chaine_joueur);
-            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
-            if( position !== -1){
-                alert("C'est gagné !!")
-            }
-            else{
-                console.log("pas encore win")
-            }
+
         });
 
         //create button circle
@@ -89,19 +87,7 @@ export default class GameScene extends Phaser.Scene
             this.clearTint();
         });
         this.btnCircle.on('pointerdown', function () {
-            this.setTint(0x444444);
-            //console.log('down circle');
-            //score += 1;
-            chaine_joueur += "R";
-            console.log(chaine_joueur);
 
-            var position = chaine_joueur.indexOf(chaine_reponse_niveau_1);
-            if( position !== -1){
-                alert("C'est gagné !!")
-            }
-            else{
-                console.log("pas encore win")
-            }
         });
 
 
@@ -135,6 +121,15 @@ export default class GameScene extends Phaser.Scene
 
     update(time, delta)
     {
+        if(cursors.left.isDown){
+            this.add.circle(622, 300, 25, 0xFFFF33);
+            console.log("salut");
+        }
+
+        if(cursors.right.isDown){
+            this.add.rectangle(622, 200, 50, 50, 0xFFFF33);
+            console.log("skkk");
+        }
 
     }
 
