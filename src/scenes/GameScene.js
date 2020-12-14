@@ -120,7 +120,6 @@ export default class GameScene extends Phaser.Scene
     update(time, delta)
     {
 
-         while(i < 10) {
             if (cursors.left.isDown) { // PISTE DU JUSTDOWN
                 this.add.circle(622, positions[i], 12.5, 0xFFFF33);
                 console.log("salut");
@@ -133,7 +132,9 @@ export default class GameScene extends Phaser.Scene
                 i++;
             }
 
-        }
+
+
+
 
     }
 
