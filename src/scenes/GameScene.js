@@ -202,14 +202,24 @@ export default class GameScene extends Phaser.Scene
 
         this.input.on('pointerdown', function (pointer) {
 
-            if (pointer.getDuration() > 1000)
-            {
+
 
                 if (pointer.rightButtonDown())
                 {
                     if (pointer.x >= 300 && pointer.x <= 520) {
-                        this.add.image(300, 250, 'circle');
-                        this.add.image(500, 250, 'losange');
+                        const circle = this.add.image(300, 250, 'circle');
+                        circle.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            circle.destroy();
+                        });
+                        const losange = this.add.image(500, 250, 'losange');
+                        losange.setInteractive().on('pointerdown', function() {
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            circle.destroy();
+                            this.btnCarre.remove();
+                        });
                         console.log("formes différentes du carrée")
                     }
                     if (pointer.x >= 715 && pointer.x <= 915) {
@@ -218,7 +228,7 @@ export default class GameScene extends Phaser.Scene
                         console.log("formes différentes du cercle")
                     }
                 }
-            }
+
         }, this);
     }
 
