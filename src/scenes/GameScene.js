@@ -17,6 +17,9 @@ const POINTER_OUT = 'pointerout';
 const POINTER_DOWN = 'pointerdown';
 
 
+
+
+
 export default class GameScene extends Phaser.Scene
 {
 
@@ -43,7 +46,8 @@ export default class GameScene extends Phaser.Scene
 
     create()
     {
-        this.createButtons();
+        this.createButtonCarre();
+        this.createButtonCircle();
         this.createButtonMenu();
         this.displayTitle();
         this.displayForms();
@@ -52,15 +56,15 @@ export default class GameScene extends Phaser.Scene
         this.win();
         this.nScore();
         this.choiceFormsPrinc();
+        this.choiceFormsPrinc();
     }
 
 
 
-    createButtons()
+    createButtonCarre()
     {
 
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
-        this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
 
        // var color1 = new Phaser.Display.Color(250, 0, 0);
        // //var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
@@ -85,7 +89,10 @@ export default class GameScene extends Phaser.Scene
 
 
     }
-
+    createButtonCircle()
+    {
+        this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
+    }
 
     createButtonMenu()
     {
@@ -199,32 +206,38 @@ export default class GameScene extends Phaser.Scene
     choiceFormsPrinc()
     {
         this.input.mouse.disableContextMenu();
-
         this.input.on('pointerdown', function (pointer) {
-
-
-
                 if (pointer.rightButtonDown())
                 {
+
                     if (pointer.x >= 300 && pointer.x <= 520) {
-                        const circle = this.add.image(300, 250, 'circle');
+                        const circle = this.add.sprite(300, 250, 'circle');
                         circle.setInteractive().on('pointerdown', function(){
                             this.setTint(0x999999);
                             losange.destroy();
                             circle.destroy();
                         });
-                        const losange = this.add.image(500, 250, 'losange');
+                        const losange = this.add.sprite(500, 250, 'losange');
                         losange.setInteractive().on('pointerdown', function() {
                             this.setTint(0x999999);
                             losange.destroy();
                             circle.destroy();
-                            this.btnCarre.remove();
                         });
                         console.log("formes différentes du carrée")
                     }
                     if (pointer.x >= 715 && pointer.x <= 915) {
-                        this.add.image(715, 250, 'carre');
-                        this.add.image(915, 250, 'losange');
+                        const carre = this.add.sprite(715, 250, 'carre');
+                        carre.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            carre.destroy();
+                        });
+                        const losange = this.add.sprite(915, 250, 'losange');
+                        losange.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            carre.destroy();
+                        });
                         console.log("formes différentes du cercle")
                     }
                 }
