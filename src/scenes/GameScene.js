@@ -116,13 +116,13 @@ export default class GameScene extends Phaser.Scene
 
 
         this.btnCarre.on(POINTER_DOWN, () => {
-            this.add.rectangle(622, positions[i], 25, 25, 0xFFFF33);
+            this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
             i++;
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            this.add.circle(622, positions[i], 12.5, 0x7E0);
+            this.add.circle(622, positions[i], 12.5, 0x32CD32);
             i++;
         });
 
