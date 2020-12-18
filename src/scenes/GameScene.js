@@ -124,9 +124,10 @@ export default class GameScene extends Phaser.Scene
         this.btnCircle.on(POINTER_DOWN, () => {
             this.add.circle(622, positions[i], 12.5, 0x32CD32);
             i++;
+            compteur += 1;
+
+
         });
-
-
 
     }
 
@@ -135,12 +136,15 @@ export default class GameScene extends Phaser.Scene
     update(time, delta)
     {
 
+        this.add.text(100, 100, "score =" + compteur );
+
 
 
     }
 
 
 }
+let compteur = 0;
 
 
 let i = 0;
