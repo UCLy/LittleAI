@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-
+const POINTER_DOWN = "pointerdown";
 
 export default class GameScene extends Phaser.Scene
 {
@@ -78,6 +78,8 @@ export default class GameScene extends Phaser.Scene
         //create button circle
 
 
+
+
         this.btnCircle.on('pointerover', function () {
             this.setTint(0x999999);
         });
@@ -113,6 +115,19 @@ export default class GameScene extends Phaser.Scene
         }, this);
 
 
+        this.btnCarre.on(POINTER_DOWN, () => {
+            this.add.rectangle(622, positions[i], 25, 25, 0xFFFF33);
+            i++;
+
+        });
+
+        this.btnCircle.on(POINTER_DOWN, () => {
+            this.add.circle(622, positions[i], 12.5, 0x7E0);
+            i++;
+        });
+
+
+
     }
 
 
@@ -120,38 +135,26 @@ export default class GameScene extends Phaser.Scene
     update(time, delta)
     {
 
-            if (cursors.left.isDown) { // PISTE DU JUSTDOWN
-                this.add.circle(622, positions[i], 12.5, 0xFFFF33);
-                console.log("salut");
-                i++;
-            }
-
-            if (cursors.right.isDown) {
-                this.add.rectangle(622, positions[i], 25, 25, 0xFFFF33);
-                console.log("skkk");
-                i++;
-            }
-
-
-
 
 
     }
 
 
 }
+
+
 let i = 0;
 let cursors;
-let position1 = 300;
-let position2 = 270;
-let position3 = 240;
-let position4 = 210;
-let position5 = 180;
-let position6 = 150;
-let position7 = 120;
-let position8 = 90;
-let position9 = 60;
-let position10 = 30;
+let position1 = 400;
+let position2 = 370;
+let position3 = 340;
+let position4 = 310;
+let position5 = 280;
+let position6 = 250;
+let position7 = 220;
+let position8 = 190;
+let position9 = 160;
+let position10 = 130;
 
 let positions = [
     position1, position2, position3, position4, position5, position6, position7, position8, position9, position10
