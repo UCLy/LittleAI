@@ -20,6 +20,8 @@ export default class GameScene extends Phaser.Scene
         this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
         this.load.image('score', './assets/score.png');
+        this.load.image('carre_feedback', './game-icons/carre.png');
+        this.load.image('circle_feedback', './game-icons/circle.png');
 
 
 
@@ -104,12 +106,12 @@ export default class GameScene extends Phaser.Scene
                     if (pointer.x >= 300 && pointer.x <= 520) {
                         this.add.image(300, 250, 'circle');
                         this.add.image(500, 250, 'losange');
-                        console.log("formes différentes du carrée")
+                        console.log("formes différentes du carré")
                     }
                     if (pointer.x >= 715 && pointer.x <= 915) {
                         this.add.image(715, 250, 'carre');
                         this.add.image(915, 250, 'losange');
-                        console.log("formes différentes du cercle")
+                        console.log("formes différentes du cercle");
                     }
                 }
             }
@@ -117,7 +119,8 @@ export default class GameScene extends Phaser.Scene
 
 
         this.btnCarre.on(POINTER_DOWN, () => {
-            this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
+            //this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
+            this.add.image(622, positions[i], 'carre_feedback');
             i++;
             plus1compteur += 1;
             compteur.setText([
@@ -127,7 +130,8 @@ export default class GameScene extends Phaser.Scene
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            this.add.circle(622, positions[i], 12.5, 0x32CD32);
+            //this.add.circle(622, positions[i], 12.5, 0x32CD32);
+            this.add.image(622, positions[i], 'circle_feedback');
             i++;
             plus1compteur += 1;
             compteur.setText([
@@ -155,7 +159,6 @@ export default class GameScene extends Phaser.Scene
 
 }
 let plus1compteur = 0;
-//let compteur = this.add.text(100, 100, "score =" + compteur_de_base);
 
 
 
