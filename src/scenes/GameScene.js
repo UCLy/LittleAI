@@ -19,7 +19,8 @@ export default class GameScene extends Phaser.Scene
         this.load.image('losange', './Whiteform/losange.png');
         this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
-        this.load.image('score', './assets/score.png')
+        this.load.image('score', './assets/score.png');
+
 
 
     }
@@ -118,16 +119,26 @@ export default class GameScene extends Phaser.Scene
         this.btnCarre.on(POINTER_DOWN, () => {
             this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
             i++;
+            plus1compteur += 1;
+            compteur.setText([
+                'Nombre de coups = ' + plus1compteur
+            ]);
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
             this.add.circle(622, positions[i], 12.5, 0x32CD32);
             i++;
-            compteur += 1;
+            plus1compteur += 1;
+            compteur.setText([
+                'Nombre de coups = ' + plus1compteur
+            ]);
 
 
         });
+
+        let compteur = this.add.text(100, 100, "Nombre de coups =");
+
 
     }
 
@@ -136,7 +147,6 @@ export default class GameScene extends Phaser.Scene
     update(time, delta)
     {
 
-        this.add.text(100, 100, "score =" + compteur );
 
 
 
@@ -144,7 +154,9 @@ export default class GameScene extends Phaser.Scene
 
 
 }
-let compteur = 0;
+let plus1compteur = 0;
+//let compteur = this.add.text(100, 100, "score =" + compteur_de_base);
+
 
 
 let i = 0;
