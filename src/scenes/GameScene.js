@@ -16,6 +16,13 @@ const POINTER_OVER = 'pointerover';
 const POINTER_OUT = 'pointerout';
 const POINTER_DOWN = 'pointerdown';
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 4a20c6f0fc21da6d5f3d59b631d7e2b1ead49b51
 export default class GameScene extends Phaser.Scene
 {
 
@@ -44,7 +51,8 @@ export default class GameScene extends Phaser.Scene
 
     create()
     {
-        this.createButtons();
+        this.createButtonCarre();
+        this.createButtonCircle();
         this.createButtonMenu();
         this.displayTitle();
         this.displayForms();
@@ -53,16 +61,46 @@ export default class GameScene extends Phaser.Scene
         this.win();
         this.calculScore();
         this.choiceFormsPrinc();
+        this.choiceFormsPrinc();
     }
 
 
 
-    createButtons()
+    createButtonCarre()
     {
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
+<<<<<<< HEAD
+        this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
+=======
+
+       // var color1 = new Phaser.Display.Color(250, 0, 0);
+       // //var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
+       // var rect1 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // var rect2 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // var rect3 = this.add.rectangle(0, 0, 0, 0, color1.color);
+       // //rectLevel.setInteractive ({useHandCursor: true});
+       // //rectLevel.on('pointerdown', () => conteur += 1);
+       // if( conteur === 0){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 430, rect2.height = 100, rect2.width = 100});
+//
+//
+       // }else if (conteur === 1){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 300, rect2.height = 100, rect2.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect1.x = 550,rect1.y = 430, rect1.height = 100, rect1.width = 100});
+       // }else if (conteur === 2){
+       //     this.btnCarre.on('pointerdown', () => {rect2.x = 550,rect2.y = 170, rect2.height = 100, rect2.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect1.x = 550,rect1.y = 300, rect1.height = 100, rect1.width = 100});
+       //     this.btnCarre.on('pointerdown', () => {rect3.x = 550,rect3.y = 430, rect3.height = 100, rect3.width = 100});
+       // }
+
+
+
+>>>>>>> 4a20c6f0fc21da6d5f3d59b631d7e2b1ead49b51
+    }
+    createButtonCircle()
+    {
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
     }
-
 
     createButtonMenu()
     {
@@ -179,26 +217,42 @@ export default class GameScene extends Phaser.Scene
     choiceFormsPrinc()
     {
         this.input.mouse.disableContextMenu();
-
         this.input.on('pointerdown', function (pointer) {
-
-            if (pointer.getDuration() > 1000)
-            {
-
                 if (pointer.rightButtonDown())
                 {
+
                     if (pointer.x >= 300 && pointer.x <= 520) {
-                        this.add.image(300, 250, 'circle');
-                        this.add.image(500, 250, 'losange');
+                        const circle = this.add.sprite(300, 250, 'circle');
+                        circle.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            circle.destroy();
+                        });
+                        const losange = this.add.sprite(500, 250, 'losange');
+                        losange.setInteractive().on('pointerdown', function() {
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            circle.destroy();
+                        });
                         console.log("formes différentes du carrée")
                     }
                     if (pointer.x >= 715 && pointer.x <= 915) {
-                        this.add.image(715, 250, 'carre');
-                        this.add.image(915, 250, 'losange');
+                        const carre = this.add.sprite(715, 250, 'carre');
+                        carre.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            carre.destroy();
+                        });
+                        const losange = this.add.sprite(915, 250, 'losange');
+                        losange.setInteractive().on('pointerdown', function(){
+                            this.setTint(0x999999);
+                            losange.destroy();
+                            carre.destroy();
+                        });
                         console.log("formes différentes du cercle")
                     }
                 }
-            }
+
         }, this);
     }
 
