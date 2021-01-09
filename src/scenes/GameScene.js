@@ -118,31 +118,36 @@ export default class GameScene extends Phaser.Scene
         }, this);
 
 
+        function Increment(){
+            compteur.setText([
+                'Nombre de coups = ' + plus1compteur
+            ]);
+        }
+
         this.btnCarre.on(POINTER_DOWN, () => {
             //this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
             this.add.image(622, positions[i], 'carre_feedback');
             i++;
             plus1compteur += 1;
-            compteur.setText([
-                'Nombre de coups = ' + plus1compteur
-            ]);
+            Increment();
+            if(pos1){
+
+            }
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
             //this.add.circle(622, positions[i], 12.5, 0x32CD32);
-            this.add.image(622, positions[i], 'circle_feedback');
+            let spritedubas = this.add.image(622, positions[i], 'circle_feedback');
+            posSprites += spritedubas.y + ", ";
+            console.log(posSprites);
             i++;
             plus1compteur += 1;
-            compteur.setText([
-                'Nombre de coups = ' + plus1compteur
-            ]);
-
+            Increment();
 
         });
 
         let compteur = this.add.text(100, 100, "Nombre de coups =");
-
 
     }
 
@@ -159,22 +164,21 @@ export default class GameScene extends Phaser.Scene
 
 }
 let plus1compteur = 0;
-
-
+let posSprites = [];
 
 let i = 0;
 let cursors;
-let position1 = 400;
-let position2 = 370;
-let position3 = 340;
-let position4 = 310;
-let position5 = 280;
-let position6 = 250;
-let position7 = 220;
-let position8 = 190;
-let position9 = 160;
-let position10 = 130;
+let pos1 = 400;
+let pos2 = 370;
+let pos3 = 340;
+let pos4 = 310;
+let pos5 = 280;
+let pos6 = 250;
+let pos7 = 220;
+let pos8 = 190;
+let pos9 = 160;
+let pos10 = 130;
 
 let positions = [
-    position1, position2, position3, position4, position5, position6, position7, position8, position9, position10
+    pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10
 ];
