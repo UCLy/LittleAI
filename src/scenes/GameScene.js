@@ -18,9 +18,6 @@ const POINTER_DOWN = 'pointerdown';
 
 
 
-
-const POINTER_DOWN = "pointerdown";
-
 export default class GameScene extends Phaser.Scene
 {
 
@@ -39,7 +36,7 @@ export default class GameScene extends Phaser.Scene
         this.load.image('losange', './Whiteform/losange.png');
         this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
-        this.load.image('score', './assets/score.png')
+        this.load.image('score', './assets/score.png');
 
 
     }
@@ -63,10 +60,6 @@ export default class GameScene extends Phaser.Scene
     }
 
 
-
-        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0);
-
-
     createButtonCarre()
     {
 
@@ -81,6 +74,7 @@ export default class GameScene extends Phaser.Scene
     }
     createButtonCircle()
     {
+			  var colorPrintCircle = new Phaser.Display.Color(0, 250, 0);
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
     }
 
@@ -221,23 +215,4 @@ export default class GameScene extends Phaser.Scene
 
 
     }
-
-
-
-
-let i = 0;
-let cursors;
-let position1 = 400;
-let position2 = 370;
-let position3 = 340;
-let position4 = 310;
-let position5 = 280;
-let position6 = 250;
-let position7 = 220;
-let position8 = 190;
-let position9 = 160;
-let position10 = 130;
-
-let positions = [
-    position1, position2, position3, position4, position5, position6, position7, position8, position9, position10
-];
+}
