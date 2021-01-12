@@ -16,13 +16,7 @@ const POINTER_OVER = 'pointerover';
 const POINTER_OUT = 'pointerout';
 const POINTER_DOWN = 'pointerdown';
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> 4a20c6f0fc21da6d5f3d59b631d7e2b1ead49b51
 export default class GameScene extends Phaser.Scene
 {
 
@@ -69,9 +63,9 @@ export default class GameScene extends Phaser.Scene
     createButtonCarre()
     {
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
-<<<<<<< HEAD
+
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
-=======
+
 
        // var color1 = new Phaser.Display.Color(250, 0, 0);
        // //var rectLevel = this.add.rectangle(417, 480, 100, 100, color1.color);
@@ -95,7 +89,6 @@ export default class GameScene extends Phaser.Scene
 
 
 
->>>>>>> 4a20c6f0fc21da6d5f3d59b631d7e2b1ead49b51
     }
     createButtonCircle()
     {
