@@ -124,28 +124,45 @@ export default class GameScene extends Phaser.Scene
             ]);
         }
 
+
+
         this.btnCarre.on(POINTER_DOWN, () => {
             //this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
-            this.add.image(622, positions[i], 'carre_feedback');
+            if(posSprites.length > 0){
+                for(let i=0; i < posSprites.length; i++){
+                    let toto = posSprites[i];
+                    toto.y -= 30;
+                }
+            }
+
+            let sprite = this.add.image(622, 400, 'carre_feedback');
+            //posSprites += sprite;
+            posSprites.push(sprite);
             i++;
             plus1compteur += 1;
             Increment();
-            if(pos1){
-
-            }
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
             //this.add.circle(622, positions[i], 12.5, 0x32CD32);
-            let spritedubas = this.add.image(622, positions[i], 'circle_feedback');
-            posSprites += spritedubas.y + ", ";
+
+            if(posSprites.length > 0){
+                for(let i=0; i < posSprites.length; i++){
+                    let toto = posSprites[i];
+                    toto.y -= 30;
+                }
+            }
             console.log(posSprites);
+            let sprite = this.add.image(622, 400, 'circle_feedback');
+
+            posSprites.push(sprite);
+
             i++;
             plus1compteur += 1;
             Increment();
-
         });
+
 
         let compteur = this.add.text(100, 100, "Nombre de coups =");
 
@@ -163,6 +180,7 @@ export default class GameScene extends Phaser.Scene
 
 
 }
+
 let plus1compteur = 0;
 let posSprites = [];
 
