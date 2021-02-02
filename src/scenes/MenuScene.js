@@ -14,7 +14,7 @@ export default class MenuScene extends Phaser.Scene
     preload()
     {
         this.load.image('menu', './assets/play.png')
-
+        this.load.image('background', '/assets/bg-bgs/bg.jpg')
 
 
     }
@@ -22,7 +22,8 @@ export default class MenuScene extends Phaser.Scene
     create()
     {
 
-
+        // Background 
+        this.add.image(1250, 550, 'background')
         //titre du jeux
         var titrejeux = this.add.text(450, 10, 'LittleAI', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',fontSize:100});
         //crée le rectangle rouge qui englobe le play
