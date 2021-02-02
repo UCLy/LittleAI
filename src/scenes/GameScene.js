@@ -20,8 +20,14 @@ export default class GameScene extends Phaser.Scene
         this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
         this.load.image('score', './assets/score.png');
-        this.load.image('carre_feedback', './game-icons/carre.png');
-        this.load.image('circle_feedback', './game-icons/circle.png');
+
+        this.load.image('carre_vert', './game-icons/carre_vert.png');
+        this.load.image('carre_jaune', './game-icons/carre_jaune.png');
+        this.load.image('carre_rouge', './game-icons/carre_rouge.png');
+
+        this.load.image('circle_vert', './game-icons/circle_vert.png');
+        this.load.image('circle_jaune', './game-icons/circle_jaune.png');
+        this.load.image('circle_rouge', './game-icons/circle_rouge.png');
 
 
 
@@ -34,15 +40,8 @@ export default class GameScene extends Phaser.Scene
     {
 
 
-
-        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0);
-
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
-
-
-        cursors = this.input.keyboard.createCursorKeys();
-
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
@@ -55,10 +54,10 @@ export default class GameScene extends Phaser.Scene
 
 
         this.button_menu.on('pointerover', function () {
-            this.setTint(0x999999); // ajoute un gris pour foncer un peu le bouton qd on le survole avec la souris
+            this.setTint(0x999999);
         });
         this.button_menu.on('pointerout', function () {
-            this.clearTint(); // ajoute aucune couleur qd on ne le survole pas ou ne le clique pas
+            this.clearTint();
         });
         this.button_menu.on('pointerdown', function () {
 
@@ -74,9 +73,6 @@ export default class GameScene extends Phaser.Scene
         this.btnCarre.on('pointerout', function () {
             this.clearTint();
         });
-        this.btnCarre.on('pointerdown', function () {
-
-        });
 
         //create button circle
 
@@ -89,9 +85,9 @@ export default class GameScene extends Phaser.Scene
         this.btnCircle.on('pointerout', function () {
             this.clearTint();
         });
-        this.btnCircle.on('pointerdown', function () {
 
-        });
+
+        //truc de gaétan
 
 
         this.input.mouse.disableContextMenu();
@@ -117,56 +113,67 @@ export default class GameScene extends Phaser.Scene
             }
         }, this);
 
+        //compteur de coup
 
         function Increment(){
             compteur.setText([
-                'Nombre de coups = ' + plus1compteur
+                'Nombre de coups = ' + nombreCompteur
             ]);
         }
 
 
 
         this.btnCarre.on(POINTER_DOWN, () => {
-            //this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
+
             if(posSprites.length > 0){
                 for(let i=0; i < posSprites.length; i++){
-                    let toto = posSprites[i];
-                    toto.y -= 30;
+                    let sprite2posSprites = posSprites[i];
+                    sprite2posSprites.y -= 40;
                 }
             }
 
-            let sprite = this.add.image(622, 400, 'carre_feedback');
-            //posSprites += sprite;
+            let sprite = this.add.image(622, 400, 'carre_vert');
             posSprites.push(sprite);
-            i++;
-            plus1compteur += 1;
+            nombreCompteur += 1;
             Increment();
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            //this.add.circle(622, positions[i], 12.5, 0x32CD32);
 
             if(posSprites.length > 0){
                 for(let i=0; i < posSprites.length; i++){
-                    let toto = posSprites[i];
-                    toto.y -= 30;
+                    let sprite2posSprites = posSprites[i];
+                    sprite2posSprites.y -= 40;
                 }
             }
-            console.log(posSprites);
-            let sprite = this.add.image(622, 400, 'circle_feedback');
+            if(nombreCompteur  < 5){
+                let sprite = this.add.image(622, 400, 'circle_vert');
+                posSprites.push(sprite);
+            }
+            if(4 < nombreCompteur && nombreCompteur < 10){
+                let sprite = this.add.image(622, 400, 'circle_jaune');
+                posSprites.push(sprite);
+            }
+            if(nombreCompteur > 9){
+                let sprite = this.add.image(622, 400, 'circle_rouge');
+                posSprites.push(sprite);
+            }
 
-            posSprites.push(sprite);
 
-            i++;
-            plus1compteur += 1;
+            nombreCompteur += 1;
             Increment();
         });
 
-
         let compteur = this.add.text(100, 100, "Nombre de coups =");
 
+        function CompareChaine(chaine_reponse){
+
+        }
+
     }
+
+
 
 
 
@@ -181,22 +188,7 @@ export default class GameScene extends Phaser.Scene
 
 }
 
-let plus1compteur = 0;
+let nombreCompteur = 0;
 let posSprites = [];
-
-let i = 0;
-let cursors;
-let pos1 = 400;
-let pos2 = 370;
-let pos3 = 340;
-let pos4 = 310;
-let pos5 = 280;
-let pos6 = 250;
-let pos7 = 220;
-let pos8 = 190;
-let pos9 = 160;
-let pos10 = 130;
-
-let positions = [
-    pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10
-];
+let chaine_reponse = ["CCCCCCCCCC"];
+let chaine_joueur = [];
