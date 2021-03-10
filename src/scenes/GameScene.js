@@ -121,7 +121,16 @@ export default class GameScene extends Phaser.Scene
             ]);
         }
 
+        function feedback(parametre){
+            for(let i=0; i < tableau_feedback.length; i++){
+                if(i >= 9){
+                    tableau_feedback.shift();
+                }
+            }
+            tableau_feedback.push(parametre);
+            console.log(tableau_feedback);
 
+        }
 
         this.btnCarre.on(POINTER_DOWN, () => {
 
@@ -135,6 +144,8 @@ export default class GameScene extends Phaser.Scene
             let sprite = this.add.image(622, 400, 'carre_vert');
             posSprites.push(sprite);
             nombreCompteur += 1;
+            let feed = "carrée";
+            feedback(feed);
             Increment();
 
         });
@@ -162,6 +173,8 @@ export default class GameScene extends Phaser.Scene
 
 
             nombreCompteur += 1;
+            let feed = "rond";
+            feedback(feed);
             Increment();
         });
 
@@ -192,3 +205,4 @@ let nombreCompteur = 0;
 let posSprites = [];
 let chaine_reponse = ["CCCCCCCCCC"];
 let chaine_joueur = [];
+let tableau_feedback = [];
