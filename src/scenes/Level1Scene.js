@@ -44,6 +44,11 @@ export default class Level1Scene extends Phaser.Scene
     create()
     {
 
+        //engrenage boutton
+        var engrenage = this.button_menu = this.add.sprite(1170, 80, 'button_menu');
+        engrenage.setInteractive ({useHandCursor: true});
+        engrenage.on ('pointerdown', () => this.scene.start("menu-scene"));
+
         this.varwin = this.functwin();
 
 
@@ -52,7 +57,7 @@ export default class Level1Scene extends Phaser.Scene
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
-        this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
+
 
         const POINTER_DOWN = "pointerdown";
 
