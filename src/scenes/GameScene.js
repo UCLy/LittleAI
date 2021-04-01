@@ -20,8 +20,19 @@ export default class GameScene extends Phaser.Scene
         this.load.image('triangle', './Whiteform/triangle.png');
         this.load.image('button_menu', './assets/engrenage.png');
         this.load.image('score', './assets/score.png');
+<<<<<<< HEAD
         this.load.image('carre_feedback', './Whiteform/carre.png');
         this.load.image('circle_feedback', './Whiteform/circle.png');
+=======
+
+        this.load.image('carre_vert', './game-icons/carre_vert.png');
+        this.load.image('carre_jaune', './game-icons/carre_jaune.png');
+        this.load.image('carre_rouge', './game-icons/carre_rouge.png');
+
+        this.load.image('circle_vert', './game-icons/circle_vert.png');
+        this.load.image('circle_jaune', './game-icons/circle_jaune.png');
+        this.load.image('circle_rouge', './game-icons/circle_rouge.png');
+>>>>>>> branchepierre
 
 
 
@@ -33,9 +44,6 @@ export default class GameScene extends Phaser.Scene
     create()
     {
 
-
-
-        var colorPrintCircle = new Phaser.Display.Color(0, 250, 0);
 
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
@@ -51,10 +59,10 @@ export default class GameScene extends Phaser.Scene
 
 
         this.button_menu.on('pointerover', function () {
-            this.setTint(0x999999); // ajoute un gris pour foncer un peu le bouton qd on le survole avec la souris
+            this.setTint(0x999999);
         });
         this.button_menu.on('pointerout', function () {
-            this.clearTint(); // ajoute aucune couleur qd on ne le survole pas ou ne le clique pas
+            this.clearTint();
         });
         this.button_menu.on('pointerdown', function () {
 
@@ -110,6 +118,24 @@ export default class GameScene extends Phaser.Scene
             }
         }, this);
 
+        //compteur de coup
+
+        function Increment(){
+            compteur.setText([
+                'Nombre de coups = ' + nombreCompteur
+            ]);
+        }
+
+        function feedback(parametre){
+            for(let i=0; i < tableau_feedback.length; i++){
+                if(i >= 9){
+                    tableau_feedback.shift();
+                }
+            }
+            tableau_feedback.push(parametre);
+            console.log(tableau_feedback);
+
+        }
 
         function Increment(){
             compteur.setText([
@@ -120,6 +146,7 @@ export default class GameScene extends Phaser.Scene
 
 
         this.btnCarre.on(POINTER_DOWN, () => {
+<<<<<<< HEAD
             //this.add.rectangle(622, positions[i], 25, 25, 0xDC143C);
             if(posSprites.length > 0){
                 for(let i=0; i < posSprites.length; i++){
@@ -131,11 +158,27 @@ export default class GameScene extends Phaser.Scene
             let sprite = this.add.image(622, 400, 'carre_feedback');
             posSprites.push(sprite);
             plus1compteur += 1;
+=======
+
+            if(posSprites.length > 0){
+                for(let i=0; i < posSprites.length; i++){
+                    let sprite2posSprites = posSprites[i];
+                    sprite2posSprites.y -= 40;
+                }
+            }
+
+            let sprite = this.add.image(622, 400, 'carre_vert');
+            posSprites.push(sprite);
+            nombreCompteur += 1;
+            let feed = "carrée";
+            feedback(feed);
+>>>>>>> branchepierre
             Increment();
 
         });
 
         this.btnCircle.on(POINTER_DOWN, () => {
+<<<<<<< HEAD
 
             if(posSprites.length > 0){
                 for(let i=0; i < posSprites.length; i++){
@@ -151,8 +194,44 @@ export default class GameScene extends Phaser.Scene
         });
 
         let compteur = this.add.text(100, 100, "Nombre de coups =");
+=======
+
+            if(posSprites.length > 0){
+                for(let i=0; i < posSprites.length; i++){
+                    let sprite2posSprites = posSprites[i];
+                    sprite2posSprites.y -= 40;
+                }
+            }
+            if(nombreCompteur  < 5){
+                let sprite = this.add.image(622, 400, 'circle_vert');
+                posSprites.push(sprite);
+            }
+            if(4 < nombreCompteur && nombreCompteur < 10){
+                let sprite = this.add.image(622, 400, 'circle_jaune');
+                posSprites.push(sprite);
+            }
+            if(nombreCompteur > 9){
+                let sprite = this.add.image(622, 400, 'circle_rouge');
+                posSprites.push(sprite);
+            }
+
+
+            nombreCompteur += 1;
+            let feed = "rond";
+            feedback(feed);
+            Increment();
+        });
+
+        let compteur = this.add.text(100, 100, "Nombre de coups =");
+
+        function CompareChaine(chaine_reponse){
+
+        }
+>>>>>>> branchepierre
 
     }
+
+
 
 
 
@@ -167,5 +246,13 @@ export default class GameScene extends Phaser.Scene
 
 }
 
+<<<<<<< HEAD
 let plus1compteur = 0;
 let posSprites = [];
+=======
+let nombreCompteur = 0;
+let posSprites = [];
+let chaine_reponse = ["CCCCCCCCCC"];
+let chaine_joueur = [];
+let tableau_feedback = [];
+>>>>>>> branchepierre
