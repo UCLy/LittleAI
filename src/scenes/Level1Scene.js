@@ -1,21 +1,16 @@
 import Phaser from 'phaser'
 
 
-const carreNiv1 = 1;
-const cercleNiv1 = 0;
 
 let score = 0;
 let nombreCompteur = 0;
 let posSprites = [];
-let chaine_reponse = ["CCCCCCCCCC"];
-let chaine_joueur = [];
 let tableau_feedback = [];
-export default class GameScene extends Phaser.Scene
+export default class Level1Scene extends Phaser.Scene
 {
     constructor()
     {
-        super('game-scene');
-        this.score = 0;
+        super('level1-scene');
     }
 
 
@@ -250,4 +245,3 @@ export default class GameScene extends Phaser.Scene
 
     }
 }
-
