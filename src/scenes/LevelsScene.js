@@ -55,10 +55,10 @@ export default class Levelscene extends Phaser.Scene
 
         level0.on ('pointerdown', () => this.scene.start("game-scene"));
         level1.on ('pointerdown', () => this.scene.start("level1-scene"));
-        level2.on ('pointerdown', () => this.scene.start("level1-scene"));
-        level3.on ('pointerdown', () => this.scene.start("level1-scene"));
-        level4.on ('pointerdown', () => this.scene.start("level1-scene"));
-        level5.on ('pointerdown', () => this.scene.start("level1-scene"));
+        level2.on ('pointerdown', () => this.scene.start("level2-scene"));
+        level3.on ('pointerdown', () => this.scene.start("level3-scene"));
+        level4.on ('pointerdown', () => this.scene.start("level4-scene"));
+        level5.on ('pointerdown', () => this.scene.start("level5-scene"));
 
 
 
