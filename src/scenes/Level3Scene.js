@@ -40,7 +40,6 @@ export default class Level3Scene extends Phaser.Scene {
     create() {
 
 
-
         this.add.text(500, 0, 'LEVEL 2', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
@@ -50,7 +49,7 @@ export default class Level3Scene extends Phaser.Scene {
 
         const POINTER_DOWN = "pointerdown";
 
-        const hedonist = [[2, -1], [2, -1]];
+        const hedonist = [[3, -1], [3, -1], [0]];
 
 
         let nombreCompteur = 0;
@@ -139,7 +138,7 @@ export default class Level3Scene extends Phaser.Scene {
 
         let compteur = this.add.text(100, 100, "Nombre de coups =");
         let afficheScore = this.add.text(100, 120, "Score =");
-        let textWin = this.add.text(100, 140, "", { font: "60px calibri", fill: "orange"});
+        let textWin = this.add.text(100, 140, "", {font: "60px calibri", fill: "orange"});
 
 
         function Increment() {
@@ -149,7 +148,7 @@ export default class Level3Scene extends Phaser.Scene {
             afficheScore.setText([
                 'Score = ' + score
             ]);
-            if(score === 5){
+            if (score >= 10) {
                 afficheScore.setFill(['lime']);
                 textWin.setText([
                     'Victoire !!'
@@ -192,18 +191,15 @@ export default class Level3Scene extends Phaser.Scene {
             let sprite;
             let valeurInterraction;
 
-            if(tableau_interaction[tableau_interaction.length - 2] === 'Rond' && tableau_interaction[tableau_interaction.length - 1] === 'Carré'){
+            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Rond') {
                 feedback(hedonist[0][0]);
                 sprite = this.add.image(622, 400, 'carre_vert');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][0]);
-            }
-            else{
+            } else {
                 feedback(hedonist[0][1]);
                 sprite = this.add.image(622, 400, 'carre_rouge');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
             }
-
-
 
 
             posSprites.push(sprite);
@@ -217,6 +213,7 @@ export default class Level3Scene extends Phaser.Scene {
             Increment();
 
         });
+
 
         this.btnCircle.on(POINTER_DOWN, () => {
 
@@ -234,18 +231,15 @@ export default class Level3Scene extends Phaser.Scene {
             let valeurInterraction;
 
 
-            if(tableau_interaction[tableau_interaction.length - 2] === 'Carré' && tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
+            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Carré') {
                 feedback(hedonist[1][0]);
                 sprite = this.add.image(622, 400, 'circle_vert');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[1][0]);
-            }
-            else{
+            } else {
                 feedback(hedonist[1][1]);
                 sprite = this.add.image(622, 400, 'circle_rouge');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
             }
-
-
 
 
             posSprites.push(sprite);
@@ -255,10 +249,10 @@ export default class Level3Scene extends Phaser.Scene {
             console.log(tableau_interaction);
 
 
-
             calculScore();
             Increment();
         });
+
 
         this.btnTriangle.on(POINTER_DOWN, () => {
 
@@ -276,18 +270,9 @@ export default class Level3Scene extends Phaser.Scene {
             let valeurInterraction;
 
 
-            if(tableau_interaction[tableau_interaction.length - 2] === 'Carré' && tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
-                feedback(hedonist[1][0]);
-                sprite = this.add.image(622, 400, 'triangle_vert');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[1][0]);
-            }
-            else{
-                feedback(hedonist[1][1]);
-                sprite = this.add.image(622, 400, 'triangle_rouge');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
-            }
-
-
+            feedback(hedonist[2][0]);
+            sprite = this.add.image(622, 400, 'triangle_jaune');
+            valeurInterraction = this.add.text(645, 390, "" + hedonist[2][0]);
 
 
             posSprites.push(sprite);
@@ -295,7 +280,6 @@ export default class Level3Scene extends Phaser.Scene {
             nombreCompteur += 1;
             tableau_interaction.push('Triangle');
             console.log(tableau_interaction);
-
 
 
             calculScore();
