@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 
 
 let score = 0;
-let pierre;
+
 
 export default class Level1Scene extends Phaser.Scene {
     constructor() {
@@ -58,8 +58,8 @@ export default class Level1Scene extends Phaser.Scene {
         let posValeurInterraction = [];
         let tableau_feedback = [];
         let tableau_interaction = [];
-        let nos_noms = ['Pierre Zelnio', 'Gaétan Congiu', 'Emmanuel Lattier', 'Rami Johnstone', 'Valentin Favre', 'Théotime Clément'];
-        pierre = this.add.text(500, 520, 'Pierre', {fontFamily: 'OCR A Std, monospace', fontSize: 16});
+
+
 
         let rouge = new Phaser.Display.Color(250, 0, 0);
 
@@ -258,8 +258,6 @@ export default class Level1Scene extends Phaser.Scene {
 
     update(time, delta) {
 
-
-        pierre.x += 1;
 
     }
 
