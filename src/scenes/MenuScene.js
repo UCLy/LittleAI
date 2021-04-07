@@ -1,6 +1,8 @@
 import Phaser from 'phaser'
 import GameScene from "./GameScene";
 
+let nos_noms;
+
 export default class MenuScene extends Phaser.Scene
 {
     constructor()
@@ -42,6 +44,29 @@ export default class MenuScene extends Phaser.Scene
         level.on('pointerdown', () => this.scene.start("levels-scene"));
         level.on ('pointerover', () =>  {rectLevel.width = 210});
         level.on ('pointerout', () => {rectLevel.width = 10});
+
+        nos_noms = [
+            this.add.text(0, 520, 'Pierre Zelnio', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'lime'}),
+            this.add.text(208, 520, 'Valentin Favre', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'red'}),
+            this.add.text(416, 520, 'Gaétan Congiu', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'cyan'}),
+            this.add.text(624, 520, 'Emmanuel Lattier', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'magenta'}),
+            this.add.text(832, 520, 'Rami Johnstone', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'orange'}),
+            this.add.text(1040, 520, 'Théotime Clément', {fontFamily: 'OCR A Std, monospace', fontSize: 16}),
+        ];
+
+    }
+    update(time, delta) {
+
+
+
+        for(let i = 0; i < nos_noms.length; i++){
+            nos_noms[i].x += 1;
+            if(nos_noms[i].x === 1250){
+                nos_noms[i].x = 0;
+            }
+        }
+
+
 
     }
 
