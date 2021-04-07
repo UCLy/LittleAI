@@ -47,13 +47,15 @@ export default class Level5Scene extends Phaser.Scene
         //engrenage boutton
         var engrenage = this.button_menu = this.add.sprite(1170, 80, 'button_menu');
         engrenage.setInteractive ({useHandCursor: true});
-        engrenage.on ('pointerdown', () => this.scene.start("menu-scene"));
+        engrenage.on ('pointerdown', () => this.scene.start("levels-scene"));
 
 
         this.add.text(500, 0, 'LEVEL 5', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
+
+
 
         const POINTER_DOWN = "pointerdown";
 

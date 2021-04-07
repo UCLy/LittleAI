@@ -47,6 +47,11 @@ export default class Level4Scene extends Phaser.Scene {
         this.btnTriangle = this.add.sprite(625, 480, 'triangle').setInteractive({useHandCursor: true});
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
 
+        //engrenage boutton
+        var engrenage = this.button_menu = this.add.sprite(1170, 80, 'button_menu');
+        engrenage.setInteractive ({useHandCursor: true});
+        engrenage.on ('pointerdown', () => this.scene.start("levels-scene"));
+
         const POINTER_DOWN = "pointerdown";
 
         const hedonist = [[1, -5], [0, 0], [0, 0]];
