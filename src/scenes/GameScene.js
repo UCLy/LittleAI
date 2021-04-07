@@ -55,8 +55,10 @@ export default class GameScene extends Phaser.Scene
         //engrenage boutton
         var engrenage = this.button_menu = this.add.sprite(1170, 80, 'button_menu');
         engrenage.setInteractive ({useHandCursor: true});
-        engrenage.on ('pointerdown', () => this.scene.start("menu-scene"));
+        engrenage.on ('pointerdown', () => this.scene.start("levels-scene"));
 
+
+        //
 
         this.varwin = this.functwin();
 

@@ -43,6 +43,11 @@ export default class Level1Scene extends Phaser.Scene {
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
         this.button_menu = this.add.sprite(1170, 80, 'button_menu').setInteractive({useHandCursor: true});
 
+        //engrenage boutton
+        var engrenage = this.button_menu = this.add.sprite(1170, 80, 'button_menu');
+        engrenage.setInteractive ({useHandCursor: true});
+        engrenage.on ('pointerdown', () => this.scene.start("levels-scene"));
+
 
 
 
