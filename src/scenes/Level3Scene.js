@@ -54,7 +54,7 @@ export default class Level3Scene extends Phaser.Scene {
 
         const POINTER_DOWN = "pointerdown";
 
-        const hedonist = [[3, -1], [3, -1], [0]];
+        const hedonist = [[3, -2], [3, -2], [0]];
 
 
         let nombreCompteur = 0;
