@@ -40,7 +40,7 @@ export default class Level4Scene extends Phaser.Scene {
     create() {
 
 
-        this.add.text(500, 0, 'LEVEL 3', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+        this.add.text(500, 0, 'LEVEL 4', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
@@ -54,7 +54,7 @@ export default class Level4Scene extends Phaser.Scene {
 
         const POINTER_DOWN = "pointerdown";
 
-        const hedonist = [[1, -5], [0, 0], [0, 0]];
+        const hedonist = [[2, 0, -1], [2, 0, -1], [2, 0, -1]];
 
 
         let nombreCompteur = 0;
@@ -196,14 +196,20 @@ export default class Level4Scene extends Phaser.Scene {
             let sprite;
             let valeurInterraction;
 
-            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Rond') {
+            if (tableau_interaction[tableau_interaction.length - 1] === 'Rond' && tableau_interaction[tableau_interaction.length - 2] === 'Rond') {
                 feedback(hedonist[0][0]);
                 sprite = this.add.image(622, 400, 'carre_vert');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][0]);
-            } else {
+            }
+            else if (tableau_interaction[tableau_interaction.length - 1] === 'Carré') {
+                feedback(hedonist[0][0]);
+                sprite = this.add.image(622, 400, 'carre_jaune');
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+            }
+            else {
                 feedback(hedonist[0][1]);
                 sprite = this.add.image(622, 400, 'carre_rouge');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][2]);
             }
 
 
@@ -236,13 +242,19 @@ export default class Level4Scene extends Phaser.Scene {
             let valeurInterraction;
 
 
-            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Carré') {
+            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Triangle') {
                 feedback(hedonist[1][0]);
                 sprite = this.add.image(622, 400, 'circle_vert');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[1][0]);
-            } else {
+            }
+            else if (tableau_interaction[tableau_interaction.length - 1] === 'Rond') {
                 feedback(hedonist[1][1]);
                 sprite = this.add.image(622, 400, 'circle_jaune');
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+            }
+            else {
+                feedback(hedonist[1][2]);
+                sprite = this.add.image(622, 400, 'circle_rouge');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
             }
 
@@ -274,13 +286,19 @@ export default class Level4Scene extends Phaser.Scene {
             let sprite;
             let valeurInterraction;
 
-            if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle' && tableau_interaction[tableau_interaction.length - 2] === 'Rond') {
+            if (tableau_interaction[tableau_interaction.length - 1] === 'Carré' && tableau_interaction[tableau_interaction.length - 2] === 'Carré') {
                 feedback(hedonist[2][0]);
                 sprite = this.add.image(622, 400, 'triangle_vert');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[2][0]);
-            } else {
+            }
+            else if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle') {
                 feedback(hedonist[2][1]);
                 sprite = this.add.image(622, 400, 'triangle_jaune');
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+            }
+            else {
+                feedback(hedonist[2][2]);
+                sprite = this.add.image(622, 400, 'triangle_rouge');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[2][1]);
             }
 
