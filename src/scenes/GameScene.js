@@ -151,6 +151,7 @@ export default class GameScene extends Phaser.Scene
 
         let compteur = this.add.text(100, 100, "Nombre de coups =");
         let afficheScore = this.add.text(100, 120, "Score =");
+        let textWin = this.add.text(100, 140, "", { font: "60px calibri", fill: "orange"});
 
 
 
@@ -161,6 +162,12 @@ export default class GameScene extends Phaser.Scene
             afficheScore.setText([
                 'Score = ' + score
             ]);
+            if(score === 10){
+                afficheScore.setFill(['lime']);
+                textWin.setText([
+                    'Victoire !!'
+                ]);
+            }
         }
 
         function feedback(parametre){
