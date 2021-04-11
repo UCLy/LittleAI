@@ -202,12 +202,12 @@ export default class Level4Scene extends Phaser.Scene {
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][0]);
             }
             else if (tableau_interaction[tableau_interaction.length - 1] === 'Carré') {
-                feedback(hedonist[0][0]);
+                feedback(hedonist[0][1]);
                 sprite = this.add.image(622, 400, 'carre_jaune');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
             }
             else {
-                feedback(hedonist[0][1]);
+                feedback(hedonist[0][2]);
                 sprite = this.add.image(622, 400, 'carre_rouge');
                 valeurInterraction = this.add.text(645, 390, "" + hedonist[0][2]);
             }
@@ -250,12 +250,12 @@ export default class Level4Scene extends Phaser.Scene {
             else if (tableau_interaction[tableau_interaction.length - 1] === 'Rond') {
                 feedback(hedonist[1][1]);
                 sprite = this.add.image(622, 400, 'circle_jaune');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
             }
             else {
                 feedback(hedonist[1][2]);
                 sprite = this.add.image(622, 400, 'circle_rouge');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[1][2]);
             }
 
 
@@ -294,12 +294,12 @@ export default class Level4Scene extends Phaser.Scene {
             else if (tableau_interaction[tableau_interaction.length - 1] === 'Triangle') {
                 feedback(hedonist[2][1]);
                 sprite = this.add.image(622, 400, 'triangle_jaune');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[2][1]);
             }
             else {
                 feedback(hedonist[2][2]);
                 sprite = this.add.image(622, 400, 'triangle_rouge');
-                valeurInterraction = this.add.text(645, 390, "" + hedonist[2][1]);
+                valeurInterraction = this.add.text(645, 390, "" + hedonist[2][2]);
             }
 
 
