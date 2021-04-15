@@ -40,7 +40,7 @@ export default class Level5Scene extends Phaser.Scene {
     create() {
 
 
-        this.add.text(500, 0, 'LEVEL 4', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+        this.add.text(500, 0, 'LEVEL 5', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
         this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
         this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});

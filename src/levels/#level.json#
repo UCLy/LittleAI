@@ -1,0 +1,22 @@
+{
+©∂©≈©≈©    "niveau":"level1",
+    "ligne1":"XXXXX",
+    "ligne2":"X-R-X",
+    "ligne3":"XXXXX"
+}
+{
+    "niveau":"level2",
+    "ligne1":"XXXXX",
+    "ligne2":"X---X",
+    "ligne3":"XRX-X",
+    "Ligne4":"X---X",
+    "ligne5":"XXXXX"
+}
+
+{
+    "niveau":"level3",
+    "ligne1":"XXXXX",
+    "ligne2":"X-R-X",
+    "ligne3":"X---X",
+    "ligne4":"XXXXX"
+}
