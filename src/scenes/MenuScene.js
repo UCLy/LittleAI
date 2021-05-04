@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import GameScene from "./GameScene";
+import videobg from '../assetsweb/bluelittle.mp4'
 
 let nos_noms;
 
@@ -16,7 +17,7 @@ export default class MenuScene extends Phaser.Scene
     preload()
     {
         this.load.image('menu', './assets/play.png')
-
+        this.load.video('bgv', videobg, 'loadeddata', false, true);
 
 
     }
@@ -24,7 +25,10 @@ export default class MenuScene extends Phaser.Scene
     create()
     {
 
-
+        // Background video
+        var video = this.add.video(600,400,'bgv');
+        video.play = (true);
+        video.setPaused(false);
         //titre du jeux
         var titrejeux = this.add.text(450, 10, 'LittleAI', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',fontSize:100});
         //crée le rectangle rouge qui englobe le play
@@ -44,6 +48,7 @@ export default class MenuScene extends Phaser.Scene
         level.on('pointerdown', () => this.scene.start("levels-scene"));
         level.on ('pointerover', () =>  {rectLevel.width = 210});
         level.on ('pointerout', () => {rectLevel.width = 10});
+
 
         nos_noms = [
             this.add.text(0, 520, 'Pierre Zelnio', {fontFamily: 'OCR A Std, monospace', fontSize: 16, color: 'lime'}),

@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-
+import videobg from '../assetsweb/bluelittle.mp4'
 
 let score = 0;
 
@@ -269,4 +269,3 @@ export default class Level1Scene extends Phaser.Scene {
 
 
 }
-

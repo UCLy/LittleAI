@@ -1,17 +1,17 @@
 {
-	"name": "phaser3-parcel-template",
-	"version": "1.0.0",
-	"description": "A template project for Phaser3 using Parceljs",
+	"name": "LittleIA",
+	"version": "0.0.A",
+	"description": "Remake of the current game LittleIA",
 	"scripts": {
 		"start": "parcel src/index.html -p 8000",
 		"build": "parcel build src/index.html --out-dir dist",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "supertommy",
+	"author": "Valentin Favre",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ourcade/phaser3-parcel-template.git"
+		"url": ""
 	},
 	"homepage": "https://github.com/ourcade/phaser3-parcel-template",
 	"devDependencies": {
@@ -25,10 +25,12 @@
 		"parcel-plugin-static-files-copy": "^2.4.3"
 	},
 	"dependencies": {
+		"assets": "^3.0.1",
 		"deasync": "^0.1.21",
 		"flexbox": "^0.0.3",
 		"html": "^1.0.0",
 		"node": "^15.0.1",
+		"package.json": "^2.0.1",
 		"phaser": "^3.24.1",
 		"phaser3-rex-plugins": "^1.1.39"
 	},

@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-
+import videobg from '../assetsweb/bluelittle.mp4'
 
 const carreNiv1 = 1;
 const cercleNiv1 = 0;
@@ -66,8 +66,8 @@ export default class GameScene extends Phaser.Scene
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.text(500, 0, 'LEVEL 0', { fontFamily: 'OCR A Std, monospace', fontSize: 64});
         this.add.image(80, 50, 'score');
-        this.btnCarre = this.add.sprite(417, 480, 'carre').setInteractive({useHandCursor: true});
-        this.btnCircle = this.add.sprite(833, 480, 'circle').setInteractive({useHandCursor: true});
+        this.btnCarre = this.add.sprite(300, 480, 'carre').setInteractive({useHandCursor: true});
+        this.btnCircle = this.add.sprite(633, 480, 'circle').setInteractive({useHandCursor: true});
 
 
         const POINTER_DOWN = "pointerdown";
@@ -149,9 +149,9 @@ export default class GameScene extends Phaser.Scene
 
         //Affiche le compteur et le score
 
-        let compteur = this.add.text(100, 100, "Nombre de coups =");
-        let afficheScore = this.add.text(100, 120, "Score =");
-        let textWin = this.add.text(100, 140, "", { font: "60px calibri", fill: "orange"});
+        let compteur = this.add.text(150, 30, "Nombre de coups =");
+        let afficheScore = this.add.text(150, 50, "Score =");
+        let textWin = this.add.text(150, 70, "", { font: "60px calibri", fill: "orange"});
 
 
 
@@ -268,4 +268,3 @@ export default class GameScene extends Phaser.Scene
 
     }
 }
-
