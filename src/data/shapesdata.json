@@ -1,0 +1,50 @@
+{
+"formes": {
+    "carre": [
+        {
+            "positionone": [936,412],
+            "positiontwo": [1145,412]
+
+        }
+    ],
+    "cercle": [
+        {
+            "positionone": [936,412],
+            "positiontwo": [1040,412],
+            "positionthree":[1179,412]
+
+        }
+    ],
+    "losange": [
+        {
+            "positionone": [936,343],
+            "positiontwo": [1145,343],
+            "positionthree":[936,480],
+            "positionfour": [1145,480]
+
+        }
+    ],
+    "triangle": [
+        {
+            "positionone": [936,343],
+            "positiontwo": [1145,343],
+            "positionthree":[901,481],
+            "positionfour": [1039,481],
+            "positionfive":[1178,481]
+
+        }
+    ],
+    "trapéze": [
+        {
+            "positionone": [901,343],
+            "positiontwo": [1039,343],
+            "positionthree":[1178,343],
+            "positionfour":[901,481],
+            "positionfive": [1039,481],
+            "positionsix":[1178,481]
+
+
+        }
+    ]
+}
+}
