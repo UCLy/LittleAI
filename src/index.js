@@ -2,14 +2,16 @@ import Phaser from 'phaser';
 import {scenes} from 'phaser'
 import LevelsScene from "./scenes/LevelsScene";
 import GameScene from "./scenes/GameScene";
-import Levels from './data/levels.json';
+import Levels from './data/levels';
+import SetupScene from './data/posform'
 
 import backgroundimage from './assets/background.png';
-import levels from './assets/icons/levels.png';
-import settings from './assets/icons/settings.png';
-import play from './assets/icons/play.png';
+import levels from './assets/icons/levels.svg';
+import settings from './assets/icons/settings.svg';
+import play from './assets/icons/play.svg';
 import robot from './assets/littleAI.png';
 import loop from './assets/loopsong.mp3';
+import info from './assets/icons/infomenu.png';
 
 
 class MyGame extends Phaser.Scene
@@ -27,6 +29,7 @@ class MyGame extends Phaser.Scene
     this.load.image ('levels', levels);
     this.load.image ('robot', robot)
     this.load.audio('music',loop,loop);
+    this.load.image('credits', info)
 
     }
 
@@ -37,13 +40,16 @@ class MyGame extends Phaser.Scene
     var little1 = this.add.image(150, 250, 'robot')
 
     var jouer =this.add.image(460, 290, 'play');
-    jouer.setScale(0.05);
+    jouer.setScale(0.1);
 
     var param = this.add.image(460, 410, 'settings');
     param.setScale(0.05);
 
     var niveau = this.add.image(460, 350, 'levels');
-    niveau.setScale(0.08);
+    niveau.setScale(0.3);
+
+    var credits = this.add.image(460, 390, 'credits');
+    credits.setScale(0.2);
 
     //Mise en place du player audio (Non visible)
     var music = this.sound.add('music');
@@ -62,6 +68,7 @@ class MyGame extends Phaser.Scene
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
 
     this.add.text(500, 380, 'Paramètres', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+    this.add.text(500, 440, 'Crédits', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     }
 }
 
