@@ -70,10 +70,7 @@ Go into your new project folder and install dependencies:
 ```bash
 cd LittleAI 
 npm install package.json
-npm audit fix --force
 ```
-
-On force l'installatin d'une version antérieure de certains packages
 
 Start the development server:
 
