@@ -8,7 +8,7 @@
 
 Installer Node.js et `npm` avec `nvm` sur windows:
 
-##Télécharger Node.js
+### Télécharger Node.js
 
 Pour télécharger `Node.js` cliquez sur le lien ci-dessous: 
  
@@ -17,7 +17,7 @@ Choisissez la dernière version disponible (15.2.1)
 
 Une fois node.js installer, il faut ensuite installer `nvm`.
 
-##Télécharger nvm
+### Télécharger nvm
 
 Cliquez sur le lien suivant pour accéder au dépôt git contenant `nvm`:  
 
