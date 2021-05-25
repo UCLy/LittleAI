@@ -49,13 +49,7 @@ npm install -g yarn
 nvm use 15.2.1
 ```
 
-Puis installer Parcel:
-
-```bash
-npm install -g parcel-bundler
-```
-
-##Télécharger Git
+### Télécharger Git
 
 Installer git en cliquer sur le lien suivant:
   
