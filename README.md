@@ -19,16 +19,17 @@ Une fois node.js installer, il faut ensuite installer `nvm`. Répertoire par dé
 
 ### Télécharger nvm
 
-Cliquez sur le lien suivant pour accéder au dépôt git contenant `nvm`:  
+Cliquez sur le lien suivant pour accéder au dépôt github contenant `nvm`:  
 
 [Download nvm](https://github.com/coreybutler/nvm-windows/releases)
 
-Cliquer sur  le fichier dans le dépôt github: nvm-setup.zip
-Ouvrer le fichier et lancer `nvm-setup.ex` et l'installation de nvm commence
+Depuis cette page, télécharger le fichier `nvm-setup.zip`.
 
-##Vérifier si l'on utilise bien la bonne version de Node.js
+Ouvrer le fichier et lancer `nvm-setup.exe` et l'installation de nvm commence. Garder les paramètres par défaut. 
 
-Une fois `nvm` installer il faut vérifiez si vous utilisez bien la dernière version de `Node.js`
+### Vérifier si l'on utilise bien la bonne version de Node.js
+
+Une fois `nvm` installé il faut vérifiez si vous utilisez bien la dernière version de `Node.js`
 
 Aller dans votre barre de recherche windows, écrivez : `cmd`
 Lancez l'invite de commande en faisant :
