@@ -1,6 +1,6 @@
 import phaser from 'phaser';
 import MyGame from '../index.js';
-import SetupScene from '../data/posform'
+
 
 
 import backgroundimage from '../assets/background.png';
@@ -12,7 +12,7 @@ import Hexagon from '../assets/icons/hexagon.png';
 
 import Levels from '../data/levels'
 import { Shapesform } from '../data/shapesdata'
-import Virtualgamepad from '../data/posform';
+
 
 
 export default class GameScene extends Phaser.Scene {
@@ -47,7 +47,7 @@ create()
 {
 
     //load Variables use on game 
-    var winscore = 0;
+    var totalscore = 10;
     let posSprites = [];
     let posValeurInterraction = [];
     let tableau_feedback = [];
@@ -117,7 +117,7 @@ create()
     //function for game use 
     function Increment() {
 
-        afficheScore.setText(winscore);
+        afficheScore.setText(totalscore);
     
      }
     Increment();
