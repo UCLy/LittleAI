@@ -49,13 +49,7 @@ npm install -g yarn
 nvm use 15.2.1
 ```
 
-Puis installer Parcel:
-
-```bash
-npm install -g parcel-bundler
-```
-
-##Télécharger Git
+### Télécharger Git
 
 Installer git en cliquer sur le lien suivant:
   
@@ -69,20 +63,19 @@ Cloner ce dépôt sur votre machine local en utlisant `Git Bash`:
 git clone https://github.com/UCLy/LittleAI.git
 ```
 
-This will create a folder named `LittleAI`. You can specify a different folder name like this:
-
-```bash
-git clone https://github.com/UCLy/LittleAI.git my-folder-name
-```
+This will create a folder named `LittleAI`.
 
 Go into your new project folder and install dependencies:
 
 ```bash
-cd LittleAI # or 'my-folder-name'
-npm install
+cd LittleAI 
+npm install package.json
+npm audit fix --force
 ```
 
-Start development server:
+On force l'installatin d'une version antérieure de certains packages
+
+Start the development server:
 
 ```
 npm run start
