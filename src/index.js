@@ -94,6 +94,7 @@ const configmusic = {
         seek: 0,
         loop: true,
         delay: 0
+        
     }
     
 
