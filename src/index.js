@@ -2,8 +2,7 @@ import Phaser from 'phaser';
 import {scenes} from 'phaser'
 import LevelsScene from "./scenes/LevelsScene";
 import GameScene from "./scenes/GameScene";
-import Levels from './data/levels';
-import SetupScene from './data/posform'
+import CreditScene from "./scenes/credits"
 
 import backgroundimage from './assets/background.png';
 import levels from './assets/icons/levels.svg';
@@ -48,7 +47,7 @@ class MyGame extends Phaser.Scene
     var niveau = this.add.image(460, 350, 'levels');
     niveau.setScale(0.3);
 
-    var credits = this.add.image(460, 390, 'credits');
+    var credits = this.add.image(460, 470, 'credits');
     credits.setScale(0.2);
 
     //Mise en place du player audio (Non visible)
@@ -68,7 +67,9 @@ class MyGame extends Phaser.Scene
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
 
     this.add.text(500, 380, 'Paramètres', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
-    this.add.text(500, 440, 'Crédits', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+    var credits = this.add.text(500, 440, 'Crédits', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+    credits.setInteractive({useHandCursor: true});
+    credits.on('pointerdown', () => this.scene.start("CreditsScene"));
     }
 }
 
@@ -81,12 +82,12 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT ,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [MyGame,LevelsScene,GameScene]
+    scene: [MyGame,LevelsScene,GameScene,CreditScene]
 };
 
 const configmusic = {
     //a utilisé pour modifiée le volume ou le son
-        mute: true,
+        mute: false,
         volume: 1,
         rate: 1,
         detune: 0,
