@@ -57,7 +57,7 @@ create()
     level5.setInteractive ({useHandCursor: true});
 
 
-    level0.on ('pointerdown', () => this.scene.start("GameScene", {levelused : 1}));
+    level0.on ('pointerdown', () => this.scene.start("Level1", {levelused : 1}));
     level1.on ('pointerdown', () => this.scene.start("GameScene", {levelused : 2}));
     level2.on ('pointerdown', () => this.scene.start("GameScene", {levelused : 3}));
     level3.on ('pointerdown', () => this.scene.start("GameScene", {levelused : 4}));

@@ -7,11 +7,14 @@ import Info from '../assets/icons/info.png';
 import Ranking from '../assets/icons/ranking.png';
 import Replay from '../assets/icons/replay.png';
 import Hexagon from '../assets/icons/hexagon.png';
-import Pause from '../assets/icons/pause.png' 
-
+import Pause from '../assets/icons/pause.png';
+import Whitesquare from'../assets/Whiteform/carre.png';
+import Wcircle from '../assets/Whiteform/circle.png';
+import Redsquare from '../assets/game-icons/carre_rouge.png';
+import RedCircle from '../assets/game-icons/circle_rouge.png';
+import Greensquare from'../assets/game-icons/carre_vert.png';
+import Greencircle from'../assets/game-icons/circle_vert.png';
 import Levelselector from '../data/levels'
-import { Shapesform } from '../data/shapesdata'
-import GameFunction from '../Gameengine/polygon'
 
 
 export default class Level1 extends Phaser.Scene {
@@ -34,6 +37,21 @@ preload()
     this.load.image('replay', Replay);
     this.load.image('score', Hexagon);
     this.load.image('pause', Pause);
+
+    this.load.image('carre', Whitesquare);
+    this.load.image('circle', Wcircle);
+    this.load.image('losange', '../assets/Whiteform/losange.png');
+    this.load.image('triangle', '../assets/Whiteform/triangle.png');
+
+
+    this.load.image('carre_vert', Greensquare);
+    this.load.image('carre_jaune', '../assets/game-icons/carre_jaune.png');
+    this.load.image('carre_rouge', Redsquare);
+
+    this.load.image('circle_vert', Greencircle );
+    this.load.image('circle_jaune', '../assets/game-icons/circle_jaune.png');
+    this.load.image('circle_rouge', RedCircle);
+    this.load.image("win", "../assets/game-icons/win.jpg");
 }
 
 create()
@@ -92,33 +110,28 @@ create()
     this.add.text(0, 0, 'Little IA Level 1 ', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
     let afficheScore = this.add.text(45, 257,totalscore,{fontFamily: 'OCR A Std, monospace', fontSize: 40});
 
+
     //Draw Game form/
-    console.log('Test Square')
-    this.CircleBtn = this.add.graphics();
-    this.CircleBtn.setInteractive(console.log('yes'));
-    this.CircleBtn.fillStyle(0xffffff, 1);
-    this.CircleBtn.fillCircle(936, 412, 30);
-    this.squareBtn = this.add.graphics();
-    this.squareBtn.setInteractive(console.log('yes'));
-    this.squareBtn.fillStyle(0xffffff, 1);
-    this.squareBtn.fillRect(1145, 412, 30,30);
+    this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
+    this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
+    
             //create button square
 
 
-            this.CircleBtn.on(POINTER_OVER, function () {
+            this.btnCircle.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.CircleBtn.on('pointerout', function () {
+            this.btnCircle.on('pointerout', function () {
                 this.clearTint();
             });
     
             //create button circle
     
     
-            this.squareBtn.on(POINTER_OVER, function () {
+            this.btnCarre.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.squareBtn.on('pointerout', function () {
+            this.btnCarre.on('pointerout', function () {
                 this.clearTint();
             });
     
@@ -152,14 +165,14 @@ create()
         console.log(score);
 
     }
-    this.CircleBtn.on(POINTER_DOWN, () => {
+    this.btnCircle.on(POINTER_DOWN, () => {
 
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.y -= 40;
+                sprite2posSprites.x -= 40;
                 let toto = posValeurInterraction[i];
-                toto.y -= 40;
+                toto.x -= 40;
             }
         }
         let sprite;
@@ -191,14 +204,14 @@ create()
 
     });
 
-    this.squareBtn.on(POINTER_DOWN, () => {
+    this.btnCarre.on(POINTER_DOWN, () => {
 
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.y -= 40;
+                sprite2posSprites.x -= 40;
                 let toto = posValeurInterraction[i];
-                toto.y -= 40;
+                toto.x -= 40;
             }
         }
 
@@ -209,7 +222,7 @@ create()
 
         if(tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
             feedback(hedonist[1][1]);
-            sprite = this.add.image(622, 400, 'circle_rouge');
+            sprite = this.add.graphics(622, 400, 'circle_rouge');
             valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
         }
         else{
