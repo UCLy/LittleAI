@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import {scenes} from 'phaser'
 import LevelsScene from "./scenes/LevelsScene";
 import GameScene from "./scenes/GameScene";
-import CreditScene from "./scenes/credits"
+import CreditScene from "./scenes/credits";
+import Level1 from "./levels/level1";
 
 import backgroundimage from './assets/background.png';
 import levels from './assets/icons/levels.svg';
@@ -60,7 +60,7 @@ class MyGame extends Phaser.Scene
 
     var game = this.add.text(500, 260, 'Jouez', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     game.setInteractive({useHandCursor: true});
-    game.on('pointerdown', () => this.scene.start("GameScene"));
+    game.on('pointerdown', () => this.scene.start("Level1"));
 
     var levelslist = this.add.text(500, 320, 'Niveaux', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         levelslist.setInteractive({useHandCursor: true});
@@ -82,12 +82,12 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT ,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [MyGame,LevelsScene,GameScene,CreditScene]
+    scene: [MyGame,LevelsScene,GameScene,CreditScene,Level1]
 };
 
 const configmusic = {
     //a utilisé pour modifiée le volume ou le son
-        mute: false,
+        mute: true,
         volume: 1,
         rate: 1,
         detune: 0,
