@@ -6,12 +6,12 @@ import backgroundimage from '../assets/background.png';
 import Info from '../assets/icons/info.png';
 import Ranking from '../assets/icons/ranking.png';
 import Replay from '../assets/icons/replay.png';
-import Hexagon from '../assets/icons/hexagon.png';
+
 import Pause from '../assets/icons/pause.png';
 import Whitesquare from'../assets/Whiteform/carre.png';
 import Wcircle from '../assets/Whiteform/circle.png';
 import Redsquare from '../assets/game-icons/carre_rouge.png';
-import RedCircle from '../assets/game-icons/circle_rouge.png';
+import Cerclerouge from '../assets/game-icons/rougecercle.png';
 import Greensquare from'../assets/game-icons/carre_vert.png';
 import Greencircle from'../assets/game-icons/circle_vert.png';
 import Levelselector from '../data/levels'
@@ -35,23 +35,24 @@ preload()
     this.load.image('info', Info);
     this.load.image('ranking', Ranking);
     this.load.image('replay', Replay);
-    this.load.image('score', Hexagon);
+
     this.load.image('pause', Pause);
 
     this.load.image('carre', Whitesquare);
     this.load.image('circle', Wcircle);
-    this.load.image('losange', '../assets/Whiteform/losange.png');
-    this.load.image('triangle', '../assets/Whiteform/triangle.png');
+    //this.load.image('losange', '../assets/Whiteform/losange.png');
+    //this.load.image('triangle', '../assets/Whiteform/triangle.png');
 
 
     this.load.image('carre_vert', Greensquare);
-    this.load.image('carre_jaune', '../assets/game-icons/carre_jaune.png');
+    //this.load.image('carre_jaune', '../assets/game-icons/carre_jaune.png');
     this.load.image('carre_rouge', Redsquare);
 
-    this.load.image('circle_vert', Greencircle );
-    this.load.image('circle_jaune', '../assets/game-icons/circle_jaune.png');
-    this.load.image('circle_rouge', RedCircle);
-    this.load.image("win", "../assets/game-icons/win.jpg");
+    this.load.image('cercle_vert', Greencircle );
+    this.load.image('cercle_rouge', Cerclerouge );
+    //this.load.image('circle_jaune', '../assets/game-icons/circle_jaune.png');
+
+    //this.load.image("win", "../assets/game-icons/win.jpg");
 }
 
 create()
@@ -67,8 +68,9 @@ create()
     }
     
     //load Variables use on game 
-    var totalscore = 10;
-    var hedonist = [[1, -1], [1, -1]];
+    var totalscore = 0;
+    let nombreCompteur = 0;
+    const hedonist = [[1, -1], [1, -1]];
     const POINTER_DOWN = "pointerdown";
     const POINTER_OVER = 'pointerover'
     let posSprites = [];
@@ -138,7 +140,7 @@ create()
 
     function Increment() {
         afficheScore.setText([
-            'Score = ' + score
+            'Score :' + score
         ]);
         if(score === 10){
             afficheScore.setFill(['lime']);
@@ -165,14 +167,14 @@ create()
         console.log(score);
 
     }
-    this.btnCircle.on(POINTER_DOWN, () => {
+    this.btnCarre.on(POINTER_DOWN, () => {
 
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.x -= 40;
+                sprite2posSprites.x -= 45;
                 let toto = posValeurInterraction[i];
-                toto.x -= 40;
+                toto.x -= 45;
             }
         }
         let sprite;
@@ -181,12 +183,12 @@ create()
         if(tableau_interaction[tableau_interaction.length - 1] === 'Carré'){
             feedback(hedonist[0][1]);
             sprite = this.add.image(622, 400, 'carre_rouge');
-            valeurInterraction = this.add.text(645, 390, "" + hedonist[0][1]);
+            valeurInterraction = this.add.text(615, 420, "" + hedonist[0][1]);
         }
         else{
             feedback(hedonist[0][0]);
             sprite = this.add.image(622, 400, 'carre_vert');
-            valeurInterraction = this.add.text(645, 390, "" + hedonist[0][0]);
+            valeurInterraction = this.add.text(615, 420, "" + hedonist[0][0]);
         }
 
 
@@ -204,14 +206,14 @@ create()
 
     });
 
-    this.btnCarre.on(POINTER_DOWN, () => {
+    this.btnCircle.on(POINTER_DOWN, () => {
 
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.x -= 40;
+                sprite2posSprites.x -= 50;
                 let toto = posValeurInterraction[i];
-                toto.x -= 40;
+                toto.x -= 50;
             }
         }
 
@@ -222,13 +224,13 @@ create()
 
         if(tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
             feedback(hedonist[1][1]);
-            sprite = this.add.graphics(622, 400, 'circle_rouge');
-            valeurInterraction = this.add.text(645, 390, "" + hedonist[1][1]);
+            sprite = this.add.graphics(622, 400, 'cercle_rouge');
+            valeurInterraction = this.add.text(615, 420, "" + hedonist[1][1]);
         }
         else{
             feedback(hedonist[1][0]);
-            sprite = this.add.image(622, 400, 'circle_vert');
-            valeurInterraction = this.add.text(645, 390, "" + hedonist[1][0]);
+            sprite = this.add.image(622, 400, 'cercle_vert');
+            valeurInterraction = this.add.text(615, 420, "" + hedonist[1][0]);
         }
 
 
