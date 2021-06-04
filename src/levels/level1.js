@@ -10,8 +10,8 @@ import Replay from '../assets/icons/replay.png';
 import Pause from '../assets/icons/pause.png';
 import Whitesquare from'../assets/Whiteform/carre.png';
 import Wcircle from '../assets/Whiteform/circle.png';
+import Circlered from '../assets/game-icons/circle_red.png';
 import Redsquare from '../assets/game-icons/carre_rouge.png';
-import Cerclerouge from '../assets/game-icons/rougecercle.png';
 import Greensquare from'../assets/game-icons/carre_vert.png';
 import Greencircle from'../assets/game-icons/circle_vert.png';
 import Levelselector from '../data/levels'
@@ -40,19 +40,10 @@ preload()
 
     this.load.image('carre', Whitesquare);
     this.load.image('circle', Wcircle);
-    //this.load.image('losange', '../assets/Whiteform/losange.png');
-    //this.load.image('triangle', '../assets/Whiteform/triangle.png');
-
-
-    this.load.image('carre_vert', Greensquare);
-    //this.load.image('carre_jaune', '../assets/game-icons/carre_jaune.png');
-    this.load.image('carre_rouge', Redsquare);
-
+    this.load.image('cercle_rouge', Circlered );
     this.load.image('cercle_vert', Greencircle );
-    this.load.image('cercle_rouge', Cerclerouge );
-    //this.load.image('circle_jaune', '../assets/game-icons/circle_jaune.png');
-
-    //this.load.image("win", "../assets/game-icons/win.jpg");
+    this.load.image('carre_vert', Greensquare);
+    this.load.image('carre_rouge', Redsquare);
 }
 
 create()
@@ -70,7 +61,7 @@ create()
     //load Variables use on game 
     var totalscore = 0;
     let nombreCompteur = 0;
-    const hedonist = [[1, -1], [1, -1]];
+    const hedonist = [[1, -1],[1, -1]];
     const POINTER_DOWN = "pointerdown";
     const POINTER_OVER = 'pointerover'
     let posSprites = [];
@@ -110,7 +101,7 @@ create()
 
     //text and other things
     this.add.text(0, 0, 'Little IA Level 1 ', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-    let afficheScore = this.add.text(45, 257,totalscore,{fontFamily: 'OCR A Std, monospace', fontSize: 40});
+    let afficheScore = this.add.text(600, 257,"",{fontFamily: 'OCR A Std, monospace', fontSize: 40});
 
 
     //Draw Game form/
@@ -172,9 +163,9 @@ create()
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.x -= 45;
+                sprite2posSprites.x -= 65;
                 let toto = posValeurInterraction[i];
-                toto.x -= 45;
+                toto.x -= 65;
             }
         }
         let sprite;
@@ -211,9 +202,9 @@ create()
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
                 let sprite2posSprites = posSprites[i];
-                sprite2posSprites.x -= 50;
+                sprite2posSprites.x -= 65;
                 let toto = posValeurInterraction[i];
-                toto.x -= 50;
+                toto.x -= 65;
             }
         }
 
@@ -224,7 +215,7 @@ create()
 
         if(tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
             feedback(hedonist[1][1]);
-            sprite = this.add.graphics(622, 400, 'cercle_rouge');
+            sprite = this.add.image(622, 400, 'cercle_rouge');
             valeurInterraction = this.add.text(615, 420, "" + hedonist[1][1]);
         }
         else{
@@ -248,7 +239,26 @@ create()
         Increment();
     });
 
+    this.tweens.add({
 
+        targets: this.btnCarre,
+        scaleX: 0.8,
+        scaleY: 0.80,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+
+    });
+    this.tweens.add({
+
+        targets: this.btnCircle,
+        scaleX: 0.80,
+        scaleY: 0.80,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+
+    });
 }
     
 
