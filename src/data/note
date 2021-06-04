@@ -1,0 +1,84 @@
+{
+    const virtualgamepad ={
+        twoform:{
+                positionone = [936,412],
+                positiontwo = [1145,412]
+        }
+
+
+    
+        threeform:
+            {
+                "positionone": [936,412],
+                "positiontwo": [1040,412],
+                "positionthree":[1179,412]
+
+            }
+
+        fourform:
+            {
+                "positionone": [936,343],
+                "positiontwo": [1145,343],
+                "positionthree":[936,480],
+                "positionfour": [1145,480]
+
+            }
+
+        fiveform: 
+            {
+                "positionone": [936,343],
+                "positiontwo": [1145,343],
+                "positionthree":[901,481],
+                "positionfour": [1039,481],
+                "positionfive":[1178,481]
+
+            }
+
+        sixform: 
+            {
+                "positionone": [901,343],
+                "positiontwo": [1039,343],
+                "positionthree":[1178,343],
+                "positionfour":[901,481],
+                "positionfive": [1039,481],
+                "positionsix":[1178,481]
+
+
+            }
+        
+    }
+    }function Buttons(numbers)  {
+            var slots = numbers;
+            if (slots = 2){
+        
+                var slot1 = GameScene.add.polygon(Virtualgamepad.twoone, Shapesform.carre , 0xffffff);
+                var slot2 = GameScene.add.polygon(Virtualgamepad.twotwo, Shapesform.carre , 0xffffff);
+            }
+            if (slots = 3){
+                var slot1 = GameScene.add.polygon(Virtualgamepad.threeone, Shapesform.carre , 0xffffff);
+                var slot2 = GameScene.add.polygon(Virtualgamepad.threetwo, Shapesform.carre , 0xffffff);
+                var slot3 = GameScene.add.polygon(Virtualgamepad.threethree, Shapesform.carre , 0xffffff);
+            }
+            if (slots = 4){
+                var slot1 = GameScene.add.polygon(Virtualgamepad.fourone, Shapesform.carre , 0xffffff);
+                var slot2 = GameScene.add.polygon(Virtualgamepad.fourtwo, Shapesform.carre , 0xffffff);
+                var slot3 = GameScene.add.polygon(Virtualgamepad.fourthree, Shapesform.carre , 0xffffff);
+                var slot4 = GameScene.add.polygon(Virtualgamepad.fourfour, Shapesform.carre , 0xffffff);
+            }
+            if (slots = 5){
+                var slot1 = GameScene.add.polygon(Virtualgamepad.fiveone, Shapesform.carre , 0xffffff);
+                var slot2 = GameScene.add.polygon(Virtualgamepad.fivetwo, Shapesform.carre , 0xffffff);
+                var slot3 = GameScene.add.polygon(Virtualgamepad.fivetree, Shapesform.carre , 0xffffff);
+                var slot4 = GameScene.add.polygon(Virtualgamepad.fivefour, Shapesform.carre , 0xffffff);
+                var slot5 = GameScene.add.polygon(Virtualgamepad.fivefive, Shapesform.carre , 0xffffff);
+            }
+            if (slots = 6){
+                var slot1 = GameScene.add.polygon(Virtualgamepad.sixone, Shapesform.carre , 0xffffff);
+                var slot2 = GameScene.add.polygon(Virtualgamepad.sixtwo, Shapesform.carre , 0xffffff);
+                var slot3 = GameScene.add.polygon(Virtualgamepad.sixthree, Shapesform.carre , 0xffffff);
+                var slot4 = GameScene.add.polygon(Virtualgamepad.sixfour, Shapesform.carre , 0xffffff);
+                var slot5 = GameScene.add.polygon(Virtualgamepad.sixfive, Shapesform.carre , 0xffffff);
+                var slot6 = GameScene.add.polygon(Virtualgamepad.sixsix, Shapesform.carre , 0xffffff);
+            }
+        }
+ 
