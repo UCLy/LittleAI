@@ -9,6 +9,8 @@ import Replay from '../assets/icons/replay.png';
 import Backarrow from '../assets/back-arrow.png';
 import Pause from '../assets/icons/pause.png';
 
+import Robot from '../assets/simulation/rob.png';
+
 import Whitesquare from'../assets/Whiteform/carre.png';
 import Wcircle from '../assets/Whiteform/circle.png';
 import Circlered from '../assets/game-icons/circle_red.png';
@@ -46,6 +48,8 @@ preload()
     this.load.image('cercle_vert', Greencircle );
     this.load.image('carre_vert', Greensquare);
     this.load.image('carre_rouge', Redsquare);
+
+    this.load.image('robot', Robot);
 }
 
 create()
@@ -71,6 +75,10 @@ create()
     let tableau_feedback = [];
     let tableau_interaction = [];
     let borringcount = [];
+
+    //Keyboard Toutch
+    var Squaretouch =this.input.keyboard.addKey('f');
+    var Circletouch =this.input.keyboard.addKey('g');
 
     // background & pictures
     this.add.image(600, 400,'bgi');
@@ -103,15 +111,23 @@ create()
     ChaintoSimulation.lineBetween(0, 275, 1250,275);
 
     //text and other things
-    this.add.text(0, 0, 'Little IA Level 1 ', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-    let afficheScore = this.add.text(600, 257,"",{fontFamily: 'OCR A Std, monospace', fontSize: 40});
-
+    this.add.text(500, 0, 'Little IA Level 1 ', {fontFamily: 'OCR A Std, monospace', fontSize: 50});
+    let TexteScore = this.add.text(700, 300,"Score \n" ,{fontFamily: 'OCR A Std, monospace', fontSize: 40});
+    let afficheScore =this.add.text(745, 440, "",{fontFamily: 'OCR A Std, monospace', fontSize: 40});
+    let textWin = this.add.text(330,300,"",{fontFamily: 'OCR A Std, monospace', fontSize: 20})
+        textWin.setInteractive({useHandCursor:true});
+        textWin.on('pointerdown',() => this.scene.start("LevelsScene"));
 
     //Draw Game form/
     this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
     this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
 
-    //Draw Simulation form
+    //Draw Simulation
+    let robotsim = this.add.sprite(700, 150, 'robot');
+    robotsim.setScale(0.3);
+
+    let Wallred = this.add.rectangle(600, 150,10,100, 0xff0000);
+    let Wallgreen = this.add.rectangle(800, 150,10,100, 0x00ff00);
 
     
             //create button square
@@ -137,12 +153,12 @@ create()
 
     function Increment() {
         afficheScore.setText([
-            'Score :' + score
+            score
         ]);
         if(score === 10){
             afficheScore.setFill(['lime']);
             textWin.setText([
-                'Victoire !!'
+                'Victoire ! press for next level'
             ]);
         }
     }
@@ -161,10 +177,10 @@ create()
         for (let i = 0; i < tableau_feedback.length; i++) {
             score += tableau_feedback[i];
         }
-        console.log(score);
+        console.log(score); 
 
     }
-    this.btnCarre.on(POINTER_DOWN, () => {
+    this.btnCarre.on(POINTER_DOWN || Squaretouch.on , () => {
 
         if (posSprites.length > 0) {
             for (let i = 0; i < posSprites.length; i++) {
@@ -180,12 +196,12 @@ create()
         if(tableau_interaction[tableau_interaction.length - 1] === 'Carré'){
             feedback(hedonist[0][1]);
             sprite = this.add.image(622, 400, 'carre_rouge');
-            valeurInterraction = this.add.text(615, 420, "" + hedonist[0][1]);
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[0][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
         else{
             feedback(hedonist[0][0]);
             sprite = this.add.image(622, 400, 'carre_vert');
-            valeurInterraction = this.add.text(615, 420, "" + hedonist[0][0]);
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[0][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
 
@@ -222,12 +238,12 @@ create()
         if(tableau_interaction[tableau_interaction.length - 1] === 'Rond'){
             feedback(hedonist[1][1]);
             sprite = this.add.image(622, 400, 'cercle_rouge');
-            valeurInterraction = this.add.text(615, 420, "" + hedonist[1][1]);
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[1][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
         else{
             feedback(hedonist[1][0]);
             sprite = this.add.image(622, 400, 'cercle_vert');
-            valeurInterraction = this.add.text(615, 420, "" + hedonist[1][0]);
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[1][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
 
@@ -265,7 +281,19 @@ create()
         ease: 'Sine.easeInOut'
 
     });
-    this.tweens.add
+
+this.tweens.add({
+
+    targets: this.sprite,
+    X: -65,
+    Y: 0,
+    yoyo: false,
+    repeat: 0,
+    ease: 'Linear'
+
+});
+
+
 }
     
 
