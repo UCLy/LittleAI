@@ -4,6 +4,7 @@ import GameScene from './GameScene.js'
 
 
 import backgroundimage from '../assets/background.png';
+import Backarrow from '../assets/back-arrow.png';
 
 export default class Levelscene extends Phaser.Scene {
 
@@ -16,6 +17,7 @@ constructor()
 preload()
 {
     this.load.image ('bgi', backgroundimage);
+    this.load.image('backto', Backarrow)
 }
 
 create()
@@ -25,6 +27,10 @@ create()
     //titre de la page & background
     this.add.image(600, 400,'bgi');
     var titrejeux = this.add.text(450, 10, 'LEVEL', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',fontSize:100});
+    var back = this.add.image(50,50, 'backto');
+        back.setInteractive({useHandCursor: true});
+        back.setScale(0.3);
+        back.on('pointerdown', () => this.scene.start("Menu"));
 
     //pour la couleur
     var color1 = new Phaser.Display.Color(250, 0, 0);

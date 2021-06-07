@@ -4,6 +4,7 @@ import Ucly from '../assets/credits/ucly.png';
 import URconflu from '../assets/credits/URconfluences.png';
 import Ucbl from '../assets/credits/ucbl.png';
 import Esqese from '../assets/credits/esqese.png';
+import Backarrow from '../assets/back-arrow.png';
 import backgroundimage from '../assets/background.png';
 
 
@@ -22,11 +23,17 @@ export default class CreditScene extends Phaser.Scene {
         this.load.image('Ucbl', Ucbl);
         this.load.image('URconf', URconflu);
         this.load.image('Esqese', Esqese);
+        this.load.image('backto', Backarrow);
     }
 
 
     create() {
         this.add.image(500,400,'bgi');
+        var back = this.add.image(50,50, 'backto');
+        back.setInteractive({useHandCursor: true});
+        back.on('pointerdown', () => this.scene.start("Menu"));
+        back.setScale(0.3);
+
         var credits = this.add.text(560, 0, 'Crédits ', {fontFamily: 'OCR A Std, monospace', fontSize: 35});
         credits.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 

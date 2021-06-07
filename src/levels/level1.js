@@ -6,8 +6,9 @@ import backgroundimage from '../assets/background.png';
 import Info from '../assets/icons/info.png';
 import Ranking from '../assets/icons/ranking.png';
 import Replay from '../assets/icons/replay.png';
-
+import Backarrow from '../assets/back-arrow.png';
 import Pause from '../assets/icons/pause.png';
+
 import Whitesquare from'../assets/Whiteform/carre.png';
 import Wcircle from '../assets/Whiteform/circle.png';
 import Circlered from '../assets/game-icons/circle_red.png';
@@ -37,6 +38,7 @@ preload()
     this.load.image('replay', Replay);
 
     this.load.image('pause', Pause);
+    this.load.image('backto', Backarrow);
 
     this.load.image('carre', Whitesquare);
     this.load.image('circle', Wcircle);
@@ -81,10 +83,11 @@ create()
     var score = this.add.image(58,275,'score');
     score.setScale(0.15);
 
-    var pause = this.add.image(1170, 80, 'pause');
-    pause.setScale(0.10);
-    pause.setInteractive ({useHandCursor: true});
-    pause.on ('pointerdown', () => clickpause());
+
+    var back = this.add.image(1200,50, 'backto');
+        back.setInteractive({useHandCursor: true});
+        back.setScale(0.3);
+        back.on('pointerdown', () => this.scene.start("Menu"));
 
     //lignes de Découpage de la scenes 
     var MenutoForm = this.add.graphics();
@@ -107,6 +110,9 @@ create()
     //Draw Game form/
     this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
     this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
+
+    //Draw Simulation form
+
     
             //create button square
 
@@ -259,6 +265,7 @@ create()
         ease: 'Sine.easeInOut'
 
     });
+    this.tweens.add
 }
     
 

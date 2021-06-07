@@ -13,11 +13,11 @@ import loop from './assets/loopsong.mp3';
 import info from './assets/icons/infomenu.png';
 
 
-class MyGame extends Phaser.Scene
+class Menu extends Phaser.Scene
 {
     constructor ()
     {
-        super();
+        super('Menu');
     }
 
     preload ()
@@ -82,7 +82,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT ,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [MyGame,LevelsScene,GameScene,CreditScene,Level1]
+    scene: [Menu,LevelsScene,GameScene,CreditScene,Level1]
 };
 
 const configmusic = {
