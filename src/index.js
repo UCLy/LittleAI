@@ -34,6 +34,8 @@ class Menu extends Phaser.Scene
 
     create ()
     {
+    //params games
+    
     //Mise en place des Images affiché dans le navigateur
     this.add.image(600, 400,'bgi');
     var little1 = this.add.image(150, 250, 'robot')
