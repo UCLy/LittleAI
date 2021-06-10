@@ -49,7 +49,7 @@ preload()
     this.load.image('carre_vert', Greensquare);
     this.load.image('carre_rouge', Redsquare);
 
-    this.load.image('robot', Robot);
+
 }
 
 create()
@@ -74,7 +74,6 @@ create()
     let posValeurInterraction = [];
     let tableau_feedback = [];
     let tableau_interaction = [];
-    let borringcount = [];
 
     //Keyboard Toutch
     var Squaretouch =this.input.keyboard.addKey('f');
@@ -84,10 +83,11 @@ create()
     this.add.image(600, 400,'bgi');
     var info = this.add.image(50, 130, 'info');
     info.setScale(1.50)
-    var ranking =this.add.image(140, 130, 'ranking');
-    ranking.setScale(1.50)
+
     var replay = this.add.image(250, 130, 'replay');
     replay.setScale(1.50)
+    replay.setInteractive({useHandCursor: true});
+    replay.on('pointerdown', () => this.scene.start("Level1"));
     var score = this.add.image(58,275,'score');
     score.setScale(0.15);
 
@@ -126,8 +126,8 @@ create()
     let robotsim = this.add.sprite(700, 150, 'robot');
     robotsim.setScale(0.3);
 
-    let Wallone = this.add.rectangle(600, 150,10,100, 0x00ff00);
-    let Walltwo = this.add.rectangle(800, 150,10,100, 0x00ff00);
+    let Wallone = this.add.rectangle(580, 150,10,100, 0x00ff00);
+    let Walltwo = this.add.rectangle(850, 150,10,100, 0x00ff00);
 
     
             //create button square
@@ -161,7 +161,7 @@ create()
             textWin.setText([
                 'Victoire ! press for next level'
             ]);
-        }
+        } 
     }
     function feedback(parametre) {
         for (let i = 0; i < tableau_feedback.length; i++) {
@@ -205,6 +205,7 @@ create()
                 duration: 500,
                 ease: 'Power2'
             });
+            this.tweens.add({ targets: robotsim, x: 630, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[0][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
@@ -218,6 +219,7 @@ create()
                 duration: 500,
                 ease: 'Power2',
             });
+            this.tweens.add({ targets: robotsim, x: 630, duration: 500, yoyo: true ,ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[0][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
@@ -236,6 +238,7 @@ create()
         Increment();
 
     });
+
 
     this.btnCircle.on(POINTER_DOWN, () => {
 
@@ -263,6 +266,7 @@ create()
                 duration: 400,
                 ease: 'Power2',
             });
+            this.tweens.add({ targets: robotsim, x: 825, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[1][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
@@ -276,6 +280,7 @@ create()
                 duration: 400,
                 ease: 'Linear',
             });
+            this.tweens.add({ targets: robotsim, x: 825, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[1][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }

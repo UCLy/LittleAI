@@ -72,7 +72,31 @@ class Menu extends Phaser.Scene
     var credits = this.add.text(500, 440, 'Crédits', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     credits.setInteractive({useHandCursor: true});
     credits.on('pointerdown', () => this.scene.start("CreditsScene"));
+
+    this.tweens.add({
+
+        targets: game ,
+
+        scaleX: 0.8,
+        scaleY: 0.80,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+
+    });
+    this.tweens.add({
+
+        targets: levelslist ,
+        
+        scaleX: 0.8,
+        scaleY: 0.80,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+
+    });
     }
+    
 }
 
 const config = {
