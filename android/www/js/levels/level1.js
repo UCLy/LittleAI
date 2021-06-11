@@ -191,7 +191,7 @@ create()
                 toto.x -= 65;
             }
         }
-        let sprite ;
+        let sprite;
         let Formpush = null;
         let valeurInterraction;
 
@@ -202,10 +202,10 @@ create()
                 targets: Formpush,
                 x: 622,
                 y: 412,
-                duration: 300,
+                duration: 500,
                 ease: 'Power2'
             });
-            this.tweens.add({ targets: robotsim, x: 630, duration: 300, yoyo: true, ease:'Power2'})
+            this.tweens.add({ targets: robotsim, x: 630, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[0][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
@@ -216,14 +216,12 @@ create()
                 targets: Formpush,
                 x: 622,
                 y: 412,
-                duration: 300,
+                duration: 500,
                 ease: 'Power2',
             });
-            Wallone.fillColor(0xff0000);
-            Walltwo.fillColor(0x00ff00);
-            this.tweens.add({ targets: robotsim, x: 630, duration: 300, yoyo: true ,ease:'Power2'})
+            this.tweens.add({ targets: robotsim, x: 630, duration: 500, yoyo: true ,ease:'Power2'})
             sprite = Formpush;
-            valeurInterraction = this.add.text(615, 440, "+" + hedonist[0][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[0][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
 
@@ -265,10 +263,10 @@ create()
                 targets: Formpush,
                 x: 622,
                 y: 412,
-                duration: 300,
+                duration: 400,
                 ease: 'Power2',
             });
-            this.tweens.add({ targets: robotsim, x: 825, duration: 300, yoyo: true, ease:'Power2'})
+            this.tweens.add({ targets: robotsim, x: 825, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
             valeurInterraction = this.add.text(615, 440, "" + hedonist[1][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
@@ -279,14 +277,12 @@ create()
                 targets: Formpush,
                 x: 622,
                 y: 412,
-                duration: 300,
+                duration: 400,
                 ease: 'Linear',
             });
-            Wallone.fillColor(0x00ff00);
-            Walltwo.fillColor(0xff0000);
             this.tweens.add({ targets: robotsim, x: 825, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
-            valeurInterraction = this.add.text(615, 440, "+" + hedonist[1][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
+            valeurInterraction = this.add.text(615, 440, "" + hedonist[1][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
 
