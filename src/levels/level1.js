@@ -207,6 +207,7 @@ create()
             });
             this.tweens.add({ targets: robotsim, x: 630, duration: 300, yoyo: true, ease:'Power2'})
             sprite = Formpush;
+            robotsim.setPosition(700, 150);
             valeurInterraction = this.add.text(615, 440, "" + hedonist[0][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
         else{
@@ -223,6 +224,7 @@ create()
             Walltwo.setFillStyle(0x00ff00);
             this.tweens.add({ targets: robotsim, x: 630, duration: 300, yoyo: true ,ease:'Power2'})
             sprite = Formpush;
+            robotsim.setPosition(700, 150);
             valeurInterraction = this.add.text(615, 440, "+" + hedonist[0][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
@@ -270,6 +272,7 @@ create()
             });
             this.tweens.add({ targets: robotsim, x: 825, duration: 300, yoyo: true, ease:'Power2'})
             sprite = Formpush;
+            robotsim.setPosition(700, 150);
             valeurInterraction = this.add.text(615, 440, "" + hedonist[1][1],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
         else{
@@ -286,6 +289,7 @@ create()
             Walltwo.setFillStyle(0xff0000);
             this.tweens.add({ targets: robotsim, x: 825, duration: 500, yoyo: true, ease:'Power2'})
             sprite = Formpush;
+            robotsim.setPosition(700, 150);
             valeurInterraction = this.add.text(615, 440, "+" + hedonist[1][0],{fontFamily: 'OCR A Std, monospace', fontSize: 30});
         }
 
