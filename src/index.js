@@ -3,10 +3,11 @@ import LevelsScene from "./scenes/LevelsScene";
 import GameScene from "./scenes/GameScene";
 import CreditScene from "./scenes/credits";
 import Level1 from "./levels/level1";
+import Settings from './scenes/params';
 
 import backgroundimage from './assets/background.png';
 import levels from './assets/icons/levels.svg';
-import settings from './assets/icons/settings.svg';
+import roux from './assets/icons/settings.svg';
 import play from './assets/icons/play.svg';
 import robot from './assets/littleAI.png';
 import loop from './assets/loopsong.mp3';
@@ -24,7 +25,7 @@ class Menu extends Phaser.Scene
     {
     this.load.image ('bgi', backgroundimage);
     this.load.image ('play', play);
-    this.load.image ('settings', settings);
+    this.load.image ('settings', roux);
     this.load.image ('levels', levels);
     this.load.image ('robot', robot)
     this.load.audio('music',loop,loop);
@@ -68,10 +69,14 @@ class Menu extends Phaser.Scene
         levelslist.setInteractive({useHandCursor: true});
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
 
-    this.add.text(500, 380, 'Paramètres', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+   var parametres = this.add.text(500, 380, 'Paramètres', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+   parametres.setInteractive({useHandCursor: true});
+   parametres.on('pointerdown', () => this.scene.start("Settings"));
+
     var credits = this.add.text(500, 440, 'Crédits', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     credits.setInteractive({useHandCursor: true});
     credits.on('pointerdown', () => this.scene.start("CreditsScene"));
+
 
     this.tweens.add({
 
@@ -108,7 +113,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT ,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu,LevelsScene,GameScene,CreditScene,Level1]
+    scene: [Menu,LevelsScene,GameScene,CreditScene,Level1,Settings]
 };
 
 const configmusic = {

@@ -54,31 +54,14 @@ preload()
 
 create()
 {
-    const database = Levelselector(this.testname);
-    console.log('info load data', database)
-    //Initialise Vallues
-    const CONFIG ={
-        width : 1250,
-        height : 550,
-        CenterX : 675,
-        CenterY : 275
-    }
     
     //load Variables use on game 
-    var totalscore = 0;
-    let nombreCompteur = 0;
     const hedonist = [[1, -1],[1, -1]];
     const POINTER_DOWN = "pointerdown";
     const POINTER_OVER = 'pointerover'
-    let posSprites = [];
-    let posValeurInterraction = [];
-    let tableau_feedback = [];
-    let tableau_interaction = [];
-    let toto;
-
-    //Keyboard Toutch
-    var Squaretouch =this.input.keyboard.addKey('f');
-    var Circletouch =this.input.keyboard.addKey('g');
+    let traceform = [];
+    let tracevalues = [];
+    let states= [1,0];
 
     // background & pictures
     var backgroundimg = this.add.image(600, 400,'bgi');
@@ -122,8 +105,8 @@ create()
         textWin.on('pointerdown',() => this.scene.start("LevelsScene"));
 
     //Draw Game form/
-    this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
-    this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
+    this.btnone = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
+    this.btntwo = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
 
     //Draw Simulation
     let robotsim = this.add.sprite(700, 150, 'robot');
@@ -136,25 +119,66 @@ create()
             //create button square
 
 
-            this.btnCircle.on(POINTER_OVER, function () {
+            this.hedonist[0].on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.btnCircle.on('pointerout', function () {
+            this.hedonist[0].on('pointerout', function () {
                 this.clearTint();
             });
     
             //create button circle
     
     
-            this.btnCarre.on(POINTER_OVER, function () {
+            this.hedonist[1].on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.btnCarre.on('pointerout', function () {
+            this.hedonist[1].on('pointerout', function () {
                 this.clearTint();
             });
+        
     
+    function envstate(action,state) {
+        
+        var outcome;
+        if (action == 0) {
+            if (state[0] == 1){
+                states[0] = 0;
+                states[1] = 1;
+                return 1
+            }
+            else if(state[1] == 1){
+                states[1] = 0;
+                states[0] = 1;
+                return 1;
+            }
+        }
+        else{
+            return 0
+        }
 
-    function Increment() {
+        }
+    function factory(outcome, action){
+        if (outcome = 1){
+            if(action = 0){
+
+            }
+           if(action = 1){
+
+           }
+        }
+        if (outcome = 0){
+            if(action = 0){
+
+            }
+            if(action = 1){
+               
+            }
+            
+        }
+    }
+
+            
+      /*function Increment() {
         afficheScore.setText([
             score
         ]);
@@ -166,7 +190,7 @@ create()
             ]);
         } 
     }
-    function feedback(parametre) {
+        function feedback(parametre) {
         for (let i = 0; i < tableau_feedback.length; i++) {
             if (i >= 9) {
                 tableau_feedback.shift();
@@ -345,7 +369,7 @@ create()
 
 
 
-}
+*/}
     
 
  update()
