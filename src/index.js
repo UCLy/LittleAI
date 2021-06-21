@@ -4,6 +4,7 @@ import GameScene from "./scenes/GameScene";
 import CreditScene from "./scenes/credits";
 import Level1 from "./levels/level1";
 import Settings from './scenes/params';
+import Level1beta from './levels/levelbeta';
 
 import backgroundimage from './assets/background.png';
 import levels from './assets/icons/levels.svg';
@@ -64,7 +65,10 @@ class Menu extends Phaser.Scene
     var game = this.add.text(500, 260, 'Jouez', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     game.setInteractive({useHandCursor: true});
     game.on('pointerdown', () => this.scene.start("Level1"));
-
+    //beta test
+    var beta = this.add.text(800, 260, 'Beta level', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
+    beta.setInteractive({useHandCursor: true});
+    beta.on('pointerdown', () => this.scene.start("Level1beta"));
     var levelslist = this.add.text(500, 320, 'Niveaux', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         levelslist.setInteractive({useHandCursor: true});
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
@@ -113,7 +117,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT ,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu,LevelsScene,GameScene,CreditScene,Level1,Settings]
+    scene: [Menu,LevelsScene,GameScene,CreditScene,Level1,Level1beta,Settings]
 };
 
 const configmusic = {

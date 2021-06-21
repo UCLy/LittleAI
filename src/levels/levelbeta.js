@@ -18,14 +18,15 @@ import Redsquare from '../assets/game-icons/carre_rouge.png';
 import Greensquare from'../assets/game-icons/carre_vert.png';
 import Greencircle from'../assets/game-icons/circle_vert.png';
 import Levelselector from '../data/levels'
+import { length } from 'file-loader';
 
 
-export default class Level1 extends Phaser.Scene {
+export default class Level1beta extends Phaser.Scene {
 
 
 constructor()
 {
-    super('Level1')
+    super('Level1beta')
 
 }
 
@@ -61,8 +62,12 @@ create()
     const POINTER_OVER = 'pointerover'
     let traceform = [];
     let tracevalues = [];
-    let states= [1,0];
-
+    var states= [1,1];
+    //init Buttons 
+    let btnone;
+    let btntwo;
+    //init sprites gen.
+    var Formpush = this.add.sprite(null, null, null);
     // background & pictures
     var backgroundimg = this.add.image(600, 400,'bgi');
     backgroundimg.alpha = 0.7;
@@ -105,8 +110,8 @@ create()
         textWin.on('pointerdown',() => this.scene.start("LevelsScene"));
 
     //Draw Game form/
-    this.btnone = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
-    this.btntwo = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
+    btnone = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
+    btntwo = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
 
     //Draw Simulation
     let robotsim = this.add.sprite(700, 150, 'robot');
@@ -115,67 +120,85 @@ create()
     let Wallone = this.add.rectangle(580, 150,10,100, 0x00ff00);
     let Walltwo = this.add.rectangle(850, 150,10,100, 0x00ff00);
 
-    
-            //create button square
+    let outcome;
+    let action = null;
+            //Square
+                btnone.on(POINTER_DOWN, function () {
+                this.setTint(0xff00ff);
+                let action = 0;
+                console.log(action);
+                outcome = env(action, states);
 
+            });
 
-            this.hedonist[0].on(POINTER_OVER, function () {
+                btnone.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.hedonist[0].on('pointerout', function () {
+                btnone.on('pointerout', function () {
                 this.clearTint();
             });
     
-            //create button circle
+            //Circle button
+                btntwo.on(POINTER_DOWN, function () {
+                this.setTint(0xff00ff);
+                
+                let action = 1;
+                console.log(action);
+                outcome = env(action,states);
+
+
+            });    
     
-    
-            this.hedonist[1].on(POINTER_OVER, function () {
+                btntwo.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
-            this.hedonist[1].on('pointerout', function () {
+                btntwo.on('pointerout', function () {
                 this.clearTint();
             });
         
-    
-    function envstate(action,state) {
+    function env(action,states){
         
-        var outcome;
-        if (action == 0) {
-            if (state[0] == 1){
-                states[0] = 0;
-                states[1] = 1;
-                return 1
+        var outcome = states[action]
+            if (action == 0) {
+                if(states[0] == 1){
+                    states[0] = 0; states[1] = 1;
+                }
+                
             }
-            else if(state[1] == 1){
-                states[1] = 0;
-                states[0] = 1;
-                return 1;
+            if (action == 1) {
+                if (states[1] == 1) {
+                    states[0] = 1; states[1] = 0;
+                } 
             }
-        }
-        else{
-            return 0
-        }
+        console.log(states)
+        console.log(outcome + "Outcome test");
+        return outcome;
+    }
+    
 
-        }
-    function factory(outcome, action){
+
         if (outcome = 1){
             if(action = 0){
-
+                Formpush = this.add.sprite(622, 412, 'carre_vert');
             }
            if(action = 1){
-
+                Formpush = this.add.sprite(622, 412, 'cercle_vert');
            }
         }
         if (outcome = 0){
             if(action = 0){
-
+                Formpush = this.add.sprite(622, 412, 'carre_rouge');
             }
             if(action = 1){
-               
+                Formpush = this.add.sprite(622, 412, 'cercle_rouge');
             }
             
         }
-    }
+
+
+    }//end create section
+    
+
 
             
       /*function Increment() {
@@ -369,7 +392,7 @@ create()
 
 
 
-*/}
+*/
     
 
  update()
@@ -378,4 +401,5 @@ create()
 
 
 }
+
 }
