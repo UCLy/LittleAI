@@ -1,4 +1,4 @@
-import phaser from 'phaser';
+import Phaser from 'phaser';
 import MyGame from '../index.js';
 
 import backgroundimage from '../assets/background.png';
@@ -11,12 +11,12 @@ import Pause from '../assets/icons/pause.png';
 
 import Robot from '../assets/littleAI.png';
 
-import Whitesquare from'../assets/Whiteform/carre.png';
+import Whitesquare from '../assets/Whiteform/carre.png';
 import Wcircle from '../assets/Whiteform/circle.png';
 import Circlered from '../assets/game-icons/circle_red.png';
 import Redsquare from '../assets/game-icons/carre_rouge.png';
-import Greensquare from'../assets/game-icons/carre_vert.png';
-import Greencircle from'../assets/game-icons/circle_vert.png';
+import Greensquare from '../assets/game-icons/carre_vert.png';
+import Greencircle from '../assets/game-icons/circle_vert.png';
 import Levelselector from '../data/levels'
 import { length } from 'file-loader';
 
@@ -24,176 +24,176 @@ import { length } from 'file-loader';
 export default class Level1beta extends Phaser.Scene {
 
 
-constructor()
-{
-    super('Level1beta')
+    constructor() {
+        super('Level1beta')
 
-}
-
+    }
 
 
-preload()
-{
-    
-    this.load.image ('bgi', backgroundimage);
-    this.load.image('info', Info);
-    this.load.image('ranking', Ranking);
-    this.load.image('replay', Replay);
 
-    this.load.image('pause', Pause);
-    this.load.image('backto', Backarrow);
+    preload() {
 
-    this.load.image('carre', Whitesquare);
-    this.load.image('circle', Wcircle);
-    this.load.image('cercle_rouge', Circlered );
-    this.load.image('cercle_vert', Greencircle );
-    this.load.image('carre_vert', Greensquare);
-    this.load.image('carre_rouge', Redsquare);
+        this.load.image('bgi', backgroundimage);
+        this.load.image('info', Info);
+        this.load.image('ranking', Ranking);
+        this.load.image('replay', Replay);
 
+        this.load.image('pause', Pause);
+        this.load.image('backto', Backarrow);
 
-}
-
-create()
-{
-    
-    //load Variables use on game 
-    const hedonist = [[1, -1],[1, -1]];
-    const POINTER_DOWN = "pointerdown";
-    const POINTER_OVER = 'pointerover'
-    let traceform = [];
-    let tracevalues = [];
-    var states= [1,1];
-    //init Buttons 
-    let btnone;
-    let btntwo;
-    //init sprites gen.
-    let Formpush = null;
-    // background & pictures
-    var backgroundimg = this.add.image(600, 400,'bgi');
-    backgroundimg.alpha = 0.7;
-
-    var info = this.add.image(50, 130, 'info');
-    info.setScale(1.50)
-
-    var replay = this.add.image(250, 130, 'replay');
-    replay.setScale(1.50)
-    replay.setInteractive({useHandCursor: true});
-    replay.on('pointerdown', () => this.scene.start("Level1"));
-    var score = this.add.image(58,275,'score');
-    score.setScale(0.15);
+        this.load.image('carre', Whitesquare);
+        this.load.image('circle', Wcircle);
+        this.load.image('cercle_rouge', Circlered);
+        this.load.image('cercle_vert', Greencircle);
+        this.load.image('carre_vert', Greensquare);
+        this.load.image('carre_rouge', Redsquare);
 
 
-    var back = this.add.image(1200,50, 'backto');
-        back.setInteractive({useHandCursor: true});
-        back.setScale(0.3);
-        back.on('pointerdown', () => this.scene.start("Menu"));
+    }
 
-    //lignes de Découpage de la scenes 
-    var MenutoForm = this.add.graphics();
-    MenutoForm.lineStyle(1, 0xd3d3d3, 1);
-    MenutoForm.lineBetween(300,0,300,275);
+    create() {
 
-    var Formtochain = this.add.graphics();
-    Formtochain.lineStyle(1, 0xd3d3d3, 1);
-    Formtochain.lineBetween(832, 275, 832, 550);
+            //load Variables use on game 
+            const POINTER_DOWN = "pointerdown";
+            const POINTER_OVER = 'pointerover'
+            let traceform = [];
+            let tracevalues = [];
+            var states = [1, 1];
+            var possprite = 622;
+            //init Buttons 
+            let btnone;
+            let btntwo;
+            //init sprites gen.
+            var red = 0xff0000;
+            var green = 0x00ff00;
+            // background & pictures
+            var backgroundimg = this.add.image(600, 400, 'bgi');
+            backgroundimg.alpha = 0.7;
 
-    var ChaintoSimulation = this.add.graphics();
-    ChaintoSimulation.lineStyle(1, 0xd3d3d3, 1);
-    ChaintoSimulation.lineBetween(0, 275, 1250,275);
+            var info = this.add.image(50, 130, 'info');
+            info.setScale(1.50)
 
-    //text and other things
-    this.add.text(500, 0, 'Little IA Level 1 ', {fontFamily: 'OCR A Std, monospace', fontSize: 50});
-    let TexteScore = this.add.text(700, 300,"Score \n" ,{fontFamily: 'OCR A Std, monospace', fontSize: 40});
-    let afficheScore =this.add.text(745, 440, "",{fontFamily: 'OCR A Std, monospace', fontSize: 40});
-    let textWin = this.add.text(330,300,"",{fontFamily: 'OCR A Std, monospace', fontSize: 20})
-        textWin.setInteractive({useHandCursor:true});
-        textWin.on('pointerdown',() => this.scene.start("LevelsScene"));
+            var replay = this.add.image(250, 130, 'replay');
+            replay.setScale(1.50)
+            replay.setInteractive({ useHandCursor: true });
+            replay.on('pointerdown', () => this.scene.start("Level1"));
+            var score = this.add.image(58, 275, 'score');
+            score.setScale(0.15);
 
-    //Draw Game form/
-    btnone = this.add.sprite(936, 412, 'carre').setInteractive({useHandCursor: true});
-    btntwo = this.add.sprite(1145, 412, 'circle').setInteractive({useHandCursor: true});
 
-    //Draw Simulation
-    let robotsim = this.add.sprite(700, 150, 'robot');
-    robotsim.setScale(0.3);
+            var back = this.add.image(1200, 50, 'backto');
+            back.setInteractive({ useHandCursor: true });
+            back.setScale(0.3);
+            back.on('pointerdown', () => this.scene.start("Menu"));
 
-    let Wallone = this.add.rectangle(580, 150,10,100, 0x00ff00);
-    let Walltwo = this.add.rectangle(850, 150,10,100, 0x00ff00);
+            //lignes de Découpage de la scenes 
+            var MenutoForm = this.add.graphics();
+            MenutoForm.lineStyle(1, 0xd3d3d3, 1);
+            MenutoForm.lineBetween(300, 0, 300, 275);
 
-    let outcome;
-    let action = null;
+            var Formtochain = this.add.graphics();
+            Formtochain.lineStyle(1, 0xd3d3d3, 1);
+            Formtochain.lineBetween(832, 275, 832, 550);
+
+            var ChaintoSimulation = this.add.graphics();
+            ChaintoSimulation.lineStyle(1, 0xd3d3d3, 1);
+            ChaintoSimulation.lineBetween(0, 275, 1250, 275);
+
+            //text and other things
+            this.add.text(500, 0, 'Little IA Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+            let TexteScore = this.add.text(700, 300, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+            let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+            let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
+            textWin.setInteractive({ useHandCursor: true });
+            textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
+
+            //Draw Game form/
+            btnone = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
+            btntwo = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
+
+            //Draw Simulation
+            let robotsim = this.add.sprite(700, 150, 'robot');
+            robotsim.setScale(0.3);
+
+            let Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
+            let Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+
+            let outcome;
+            let action = null;
             //Square
-                btnone.on(POINTER_DOWN, function () {
-                this.setTint(0xff00ff);
+            btnone.on(POINTER_DOWN, () => {
+                btnone.setTint(0xff00ff);
                 let action = 0;
                 console.log(action);
                 outcome = env(action, states);
-                if (outcome == 0){
-                    Formpush = this.add.image(936, 400, 'carre_rouge');
-                    }
-                    if (outcome == 1){
-                    Formpush = this.add.image(936, 412, 'carre_vert');    
-                    }
+                if (outcome == 0) {
+                    Formpush = this.add.image(possprite, 400, 'carre_rouge');
+                }
+                if (outcome == 1) {
+                    Formpush = this.add.image(possprite, 412, 'carre_vert');
+                }
 
             });
-                btnone.on(POINTER_OVER, function () {
+            btnone.on(POINTER_OVER, function() {
                 this.setTint(0x999999);
             });
-                btnone.on('pointerout', function () {
+            btnone.on('pointerout', function() {
                 this.clearTint();
             });
-    
+
             //Circle button
-                btntwo.on(POINTER_DOWN, function () {
-                this.setTint(0xff00ff);
-                
+            btntwo.on(POINTER_DOWN, () => {
+                btntwo.setTint(0xff00ff);
+
                 let action = 1;
                 console.log(action);
-                outcome = env(action,states);
-                if (outcome == 0){
-                    Formpush = this.image.add(1145, 400, 'cercle_rouge');
-                    }
-                    if (outcome == 1){
-                    Formpush = this.add.image(1145, 412, 'cercle_vert');   
-                    }
+                outcome = env(action, states);
+                if (outcome == 0) {
+                    Formpush = this.add.image(possprite, 400, 'cercle_rouge');
+                }
+                if (outcome == 1) {
+                    Formpush = this.add.image(possprite, 412, 'cercle_vert');
+                }
 
-            });    
+            });
 
-                btntwo.on(POINTER_OVER, function () {
+            btntwo.on(POINTER_OVER, function() {
                 this.setTint(0x999999);
             });
-                btntwo.on('pointerout', function () {
+            btntwo.on('pointerout', function() {
                 this.clearTint();
             });
-        
-    function env(action,states){
-        
-        var outcome = states[action]
-            if (action == 0) {
-                if(states[0] == 1){
-                    states[0] = 0; states[1] = 1;
+
+            function env(action, states) {
+
+                var outcome = states[action]
+                if (action == 0) {
+                    if (states[0] == 1) {
+                        states[0] = 0;
+                        states[1] = 1;
+                    }
+
                 }
-                
+                if (action == 1) {
+                    if (states[1] == 1) {
+                        states[0] = 1;
+                        states[1] = 0;
+                    }
+                }
+                console.log(states)
+                console.log(outcome + "Outcome test");
+                return outcome;
             }
-            if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 1; states[1] = 0;
-                } 
-            }
-        console.log(states)
-        console.log(outcome + "Outcome test");
-        return outcome;
-    }
-    
 
 
 
-    }//end create section
-    
+
+        } //end create section
 
 
-            
-      /*function Increment() {
+
+
+    /*function Increment() {
         afficheScore.setText([
             score
         ]);
@@ -385,13 +385,11 @@ create()
 
 
 */
-    
-
- update()
-{
 
 
+    update() {
 
-}
+
+    }
 
 }
