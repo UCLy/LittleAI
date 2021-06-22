@@ -67,7 +67,7 @@ create()
     let btnone;
     let btntwo;
     //init sprites gen.
-    var Formpush = this.add.sprite(null, null, null);
+    let Formpush = null;
     // background & pictures
     var backgroundimg = this.add.image(600, 400,'bgi');
     backgroundimg.alpha = 0.7;
@@ -130,6 +130,12 @@ create()
                 outcome = env(action, states);
 
             });
+            if (outcome == 0){
+                Formpush = this.add.image(936, 400, 'carre_rouge');
+                }
+                if (outcome == 1){
+                Formpush = this.add.image(936, 412, 'carre_vert');    
+                }
 
                 btnone.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
@@ -146,9 +152,14 @@ create()
                 console.log(action);
                 outcome = env(action,states);
 
-
             });    
-    
+            
+            if (outcome == 0){
+                Formpush = this.image.add(1145, 400, 'cercle_rouge');
+                }
+                if (outcome == 1){
+                Formpush = this.add.image(1145, 412, 'cercle_vert');   
+                }
                 btntwo.on(POINTER_OVER, function () {
                 this.setTint(0x999999);
             });
@@ -176,24 +187,6 @@ create()
     }
     
 
-
-        if (outcome = 1){
-            if(action = 0){
-                Formpush = this.add.sprite(622, 412, 'carre_vert');
-            }
-           if(action = 1){
-                Formpush = this.add.sprite(622, 412, 'cercle_vert');
-           }
-        }
-        if (outcome = 0){
-            if(action = 0){
-                Formpush = this.add.sprite(622, 412, 'carre_rouge');
-            }
-            if(action = 1){
-                Formpush = this.add.sprite(622, 412, 'cercle_rouge');
-            }
-            
-        }
 
 
     }//end create section

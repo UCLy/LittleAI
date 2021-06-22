@@ -69,6 +69,9 @@ class Menu extends Phaser.Scene
     var beta = this.add.text(800, 260, 'Beta level', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
     beta.setInteractive({useHandCursor: true});
     beta.on('pointerdown', () => this.scene.start("Level1beta"));
+    beta.setStroke('#00f', 16);
+    beta.setShadow(2, 2, "#333333", 2, true, true);
+
     var levelslist = this.add.text(500, 320, 'Niveaux', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
         levelslist.setInteractive({useHandCursor: true});
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
@@ -105,6 +108,9 @@ class Menu extends Phaser.Scene
 
     });
     }
+update (){
+
+}
     
 }
 
