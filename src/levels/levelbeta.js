@@ -120,6 +120,10 @@ export default class Level1beta extends Phaser.Scene {
 
             let outcome;
             let action = null;
+            let tabsprites;
+            let textscore;
+
+
             //Square
             btnone.on(POINTER_DOWN, () => {
                 btnone.setTint(0xff00ff);
@@ -127,12 +131,17 @@ export default class Level1beta extends Phaser.Scene {
                 console.log(action);
                 outcome = env(action, states);
                 if (outcome == 0) {
-                    Formpush = this.add.image(possprite, 400, 'carre_rouge');
+                    tabsprites = this.add.image(936, 400, 'carre_rouge');
+
                 }
                 if (outcome == 1) {
-                    Formpush = this.add.image(possprite, 412, 'carre_vert');
-                }
+                    Wallone.setFillStyle(0xff0000);
+                    Walltwo.setFillStyle(0x00ff00);
+                    tabsprites = this.add.image(936, 412, 'carre_vert');
 
+                }
+                this.tweens.add({ targets: tabsprites, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                textscore = this.add.text(622, 440, outcome);
             });
             btnone.on(POINTER_OVER, function() {
                 this.setTint(0x999999);
@@ -149,12 +158,15 @@ export default class Level1beta extends Phaser.Scene {
                 console.log(action);
                 outcome = env(action, states);
                 if (outcome == 0) {
-                    Formpush = this.add.image(possprite, 400, 'cercle_rouge');
+                    tabsprites = this.add.image(1145, 400, 'cercle_rouge');
                 }
                 if (outcome == 1) {
-                    Formpush = this.add.image(possprite, 412, 'cercle_vert');
+                    Wallone.setFillStyle(0x00ff00);
+                    Walltwo.setFillStyle(0xff0000);
+                    tabsprites = this.add.image(1145, 412, 'cercle_vert');
                 }
-
+                this.tweens.add({ targets: tabsprites, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                textscore = this.add.text(622, 440, outcome);
             });
 
             btntwo.on(POINTER_OVER, function() {
@@ -184,7 +196,6 @@ export default class Level1beta extends Phaser.Scene {
                 console.log(outcome + "Outcome test");
                 return outcome;
             }
-
 
 
 
@@ -388,7 +399,9 @@ export default class Level1beta extends Phaser.Scene {
 
 
     update() {
-
+        btntwo.on(POINTER_DOWN, () => {
+            tabsprites.setPosition()
+        });
 
     }
 
