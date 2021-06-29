@@ -260,7 +260,7 @@ export default class Level1 extends Phaser.Scene {
             if (tableau_interaction[tableau_interaction.length - 1] === 'Rond') {
                 env(action, states);
                 outcome = 0
-                Formpush = this.add.image(1145, 400, 'cercle_rouge');
+                Formpush = this.add.image(1145, 412, 'cercle_rouge');
                 this.tweens.add({
                     targets: Formpush,
                     x: 622,
@@ -281,7 +281,7 @@ export default class Level1 extends Phaser.Scene {
                     x: 622,
                     y: 412,
                     duration: 200,
-                    ease: 'Linear',
+                    ease: 'Power2',
                 });
                 Wallone.setFillStyle(0x00ff00);
                 Walltwo.setFillStyle(0xff0000);
@@ -295,7 +295,6 @@ export default class Level1 extends Phaser.Scene {
 
 
             posSprites.push(sprite);
-            console.log("possprite " + posSprites.length)
             posValeurInterraction.push(valeurInterraction);
             nombreCompteur += 1;
             tableau_interaction.push('Rond');
@@ -305,9 +304,7 @@ export default class Level1 extends Phaser.Scene {
 
             calculScore();
             Increment();
-            console.log(toto.x + "Toto value");
-            this.tweens.add({ targets: sprite, x: toto.x, y: 412, duration: 100, ease: 'Power1' })
-            sprite.setPosition(toto.x);
+
         });
 
         this.tweens.add({
