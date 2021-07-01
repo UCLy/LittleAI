@@ -182,8 +182,10 @@ export default class Level1 extends Phaser.Scene {
                 for (let i = 0; i < posSprites.length; i++) {
                     let sprite2posSprites = posSprites[i];
                     sprite2posSprites.x -= 65;
+                    this.add.tween({ targets: sprite2posSprites, x: sprite2posSprites.x, duration: 50, ease: 'Linear' });
                     toto = posValeurInterraction[i];
                     toto.x -= 65;
+                    this.add.tween({ targets: toto[i], x: toto.x, duration: 50, ease: 'Linear' });
                     console.log(sprite2posSprites);
                     console.log(posSprites);
                     console.log(toto.x);
@@ -212,10 +214,10 @@ export default class Level1 extends Phaser.Scene {
                 env(action, states)
                 outcome = 1
                 Formpush = this.add.sprite(936, 412, 'carre_vert');
-                this.tweens.add({ targets: Formpush, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                this.tweens.add({ targets: Formpush, x: 622, y: 412, duration: 200, ease: 'Linear' });
                 Wallone.setFillStyle(0xff0000);
                 Walltwo.setFillStyle(0x00ff00);
-                this.tweens.add({ targets: robotsim, x: 630, duration: 200, yoyo: true, ease: 'Power2' })
+                this.tweens.add({ targets: robotsim, x: 630, duration: 200, yoyo: true, ease: 'Linear' })
                 sprite = Formpush;
                 robotsim.setPosition(700, 150);
                 valeurInterraction = this.add.text(615, 440, "+" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
@@ -244,8 +246,10 @@ export default class Level1 extends Phaser.Scene {
                 for (let i = 0; i < posSprites.length; i++) {
                     let sprite2posSprites = posSprites[i];
                     sprite2posSprites.x -= 65;
+                    this.add.tween({ targets: sprite2posSprites, x: sprite2posSprites.x, duration: 50, ease: 'Power2' });
                     toto = posValeurInterraction[i];
                     toto.x -= 65;
+                    this.add.tween({ targets: toto[i], x: toto.x, duration: 50, ease: 'Power2' });
                     console.log(sprite2posSprites + "Circle");
                     console.log(posSprites + "Circle");
                     console.log(toto.x + "Circle");
