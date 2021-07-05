@@ -62,8 +62,11 @@ export default class Level1 extends Phaser.Scene {
         let posValeurInterraction = [];
         let tableau_feedback = [];
         let tableau_interaction = [];
-        let toto;
+        let valencetab;
         let outcome;
+        let sprite2posSprites;
+        let animatepos;
+        let animatevalence;
 
         //Keyboard Toutch
         var Squaretouch = this.input.keyboard.addKey('f');
@@ -141,6 +144,8 @@ export default class Level1 extends Phaser.Scene {
         this.btnCarre.on('pointerout', function() {
             this.clearTint();
         });
+        //animate function
+
 
 
         function Increment() {
@@ -167,6 +172,20 @@ export default class Level1 extends Phaser.Scene {
 
         }
 
+        function Traceon(scene) {
+            for (let i = 0; i < posSprites.length; i++) {
+                let sprite2posSprites = posSprites[i];
+                let animatepos = sprite2posSprites.x;
+                animatepos -= 65;
+                scene.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
+                valencetab = posValeurInterraction[i];
+                let animatevalence = valencetab.x;
+                animatevalence -= 65
+                scene.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
+                console.log("valence = " + animatevalence)
+            }
+        }
+
         function calculScore() {
             score = 0;
             for (let i = 0; i < tableau_feedback.length; i++) {
@@ -179,17 +198,7 @@ export default class Level1 extends Phaser.Scene {
             let action = 0;
 
             if (posSprites.length > 0) {
-                for (let i = 0; i < posSprites.length; i++) {
-                    let sprite2posSprites = posSprites[i];
-                    sprite2posSprites.x -= 65;
-                    this.add.tween({ targets: sprite2posSprites, x: sprite2posSprites.x, duration: 50, ease: 'Linear' });
-                    toto = posValeurInterraction[i];
-                    toto.x -= 65;
-                    this.add.tween({ targets: toto[i], x: toto.x, duration: 50, ease: 'Linear' });
-                    console.log(sprite2posSprites);
-                    console.log(posSprites);
-                    console.log(toto.x);
-                }
+                Traceon(this);
             }
             let sprite;
             let Formpush = null;
@@ -243,17 +252,8 @@ export default class Level1 extends Phaser.Scene {
             let action = 1;
 
             if (posSprites.length > 0) {
-                for (let i = 0; i < posSprites.length; i++) {
-                    let sprite2posSprites = posSprites[i];
-                    sprite2posSprites.x -= 65;
-                    this.add.tween({ targets: sprite2posSprites, x: sprite2posSprites.x, duration: 50, ease: 'Power2' });
-                    toto = posValeurInterraction[i];
-                    toto.x -= 65;
-                    this.add.tween({ targets: toto[i], x: toto.x, duration: 50, ease: 'Power2' });
-                    console.log(sprite2posSprites + "Circle");
-                    console.log(posSprites + "Circle");
-                    console.log(toto.x + "Circle");
-                }
+                Traceon(this);
+
             }
 
             let sprite;
