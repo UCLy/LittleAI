@@ -8,7 +8,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level3')
+        super('Level6')
 
     }
 

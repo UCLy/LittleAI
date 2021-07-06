@@ -8,7 +8,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level3')
+        super('Level0')
 
     }
 
@@ -26,7 +26,7 @@ export default class Level1 extends Phaser.Scene {
         let activeimulation = true;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [1, 1];
+        var states = [1, 0];
         let hedonist_array = [
             [0, 1],
             [0, 1]
@@ -140,17 +140,11 @@ export default class Level1 extends Phaser.Scene {
 
             valence_array.push(valence);
             if (action == 0) {
-                if (states[0] == 1) {
-                    states[0] = 0;
-                    states[1] = 1;
-                }
+                return outcome
 
             }
             if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 1;
-                    states[1] = 0;
-                }
+                return outcome;
             }
             console.log(outcome + "Outcome test");
             return outcome;

@@ -3,22 +3,6 @@ import MyGame from '../index.js';
 
 import backgroundimage from '../assets/background.png';
 
-import Info from '../assets/icons/info.png';
-import Ranking from '../assets/icons/ranking.png';
-import Replay from '../assets/icons/replay.png';
-import Backarrow from '../assets/back-arrow.png';
-import Pause from '../assets/icons/pause.png';
-
-import Robot from '../assets/littleAI.png';
-
-import Whitesquare from '../assets/Whiteform/carre.png';
-import Wcircle from '../assets/Whiteform/circle.png';
-import Circlered from '../assets/game-icons/circle_red.png';
-import Redsquare from '../assets/game-icons/carre_rouge.png';
-import Greensquare from '../assets/game-icons/carre_vert.png';
-import Greencircle from '../assets/game-icons/circle_vert.png';
-import Levelselector from '../data/levels'
-
 
 export default class Level1 extends Phaser.Scene {
 
@@ -32,45 +16,39 @@ export default class Level1 extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('bgi', backgroundimage);
-        this.load.image('info', Info);
-        this.load.image('ranking', Ranking);
-        this.load.image('replay', Replay);
-
-        this.load.image('pause', Pause);
-        this.load.image('backto', Backarrow);
-
-        this.load.image('carre', Whitesquare);
-        this.load.image('circle', Wcircle);
-        this.load.image('cercle_rouge', Circlered);
-        this.load.image('cercle_vert', Greencircle);
-        this.load.image('carre_vert', Greensquare);
-        this.load.image('carre_rouge', Redsquare);
-
 
     }
 
     create() {
 
-        //load Variables use on game 
-        var totalscore = 0;
+        //load Variables use on game
+        let activeTrace = false;
+        let activeimulation = false;
+        var score = 0;
         let nombreCompteur = 0;
         var states = [1, 1];
+        let hedonist_array = [
+            [0, 1],
+            [0, 2]
+        ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
         let posSprites = [];
         let posValeurInterraction = [];
-        let tableau_feedback = [];
+        let valence_array = [];
         let tableau_interaction = [];
         let valencetab;
         let outcome;
+        let sprite;
+        let valeurInterraction;
+        let action;
         let sprite2posSprites;
         let animatepos;
         let animatevalence;
 
-        //Keyboard Toutch
-        var Squaretouch = this.input.keyboard.addKey('f');
-        var Circletouch = this.input.keyboard.addKey('g');
+        let Wallone;
+        let Walltwo;
+
 
         // background & pictures
         var backgroundimg = this.add.image(600, 400, 'bgi');
@@ -83,8 +61,6 @@ export default class Level1 extends Phaser.Scene {
         replay.setScale(1.50)
         replay.setInteractive({ useHandCursor: true });
         replay.on('pointerdown', () => this.scene.start("Level1"));
-        var score = this.add.image(58, 275, 'score');
-        score.setScale(0.15);
 
 
         var back = this.add.image(1200, 50, 'backto');
@@ -117,13 +93,15 @@ export default class Level1 extends Phaser.Scene {
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
 
+
         //Draw Simulation
-        let robotsim = this.add.sprite(700, 150, 'robot');
-        robotsim.setScale(0.3);
-
-        let Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
-        let Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
-
+        let robotsim;
+        if (activeimulation == true) {
+            robotsim = this.add.sprite(700, 150, 'robot');
+            robotsim.setScale(0.3);
+            Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
+            Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+        }
 
         //create button square
 
@@ -144,9 +122,31 @@ export default class Level1 extends Phaser.Scene {
         this.btnCarre.on('pointerout', function() {
             this.clearTint();
         });
-        //animate function
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------LEVEL SYSTEM--------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
 
 
+        function env(action, states) {
+
+            var outcome = states[action]
+            console.log("outcome" + outcome);
+
+            for (let i = 0; i < valence_array.length; i++) {
+                if (i >= 9) {
+                    valence_array.shift();
+                }
+            }
+            let valence = hedonist_array[action][outcome];
+            console.log("valence" + valence);
+            valence_array.push(valence);
+            console.log(outcome + "Outcome test");
+            return valence
+
+        }
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
 
         function Increment() {
             afficheScore.setText([
@@ -160,215 +160,164 @@ export default class Level1 extends Phaser.Scene {
                 ]);
             }
         }
-
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------feedback for score parameters --------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
         function feedback(parametre) {
-            for (let i = 0; i < tableau_feedback.length; i++) {
+            for (let i = 0; i < valence_array.length; i++) {
                 if (i >= 9) {
-                    tableau_feedback.shift();
+                    valence_array.shift();
                 }
             }
-            tableau_feedback.push(parametre);
-            console.log(tableau_feedback);
+            valence_array.push(parametre);
+            console.log(valence_array);
 
         }
-
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------TRACE SYSTEM--------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
         function Traceon(scene) {
-            for (let i = 0; i < posSprites.length; i++) {
-                let sprite2posSprites = posSprites[i];
-                let animatepos = sprite2posSprites.x;
-                animatepos -= 65;
-                scene.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
-                valencetab = posValeurInterraction[i];
-                let animatevalence = valencetab.x;
-                animatevalence -= 65
-                scene.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
-                console.log("valence = " + animatevalence)
+            if (posSprites.length > 0 && activeTrace == true) {
+                for (let i = 0; i < posSprites.length; i++) {
+                    console.log("POS SPRITE : " + posSprites[0]);
+                    let sprite2posSprites = posSprites[i];
+                    let animatepos = sprite2posSprites.x;
+                    animatepos -= 65;
+                    scene.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
+                    valencetab = posValeurInterraction[i];
+                    let animatevalence = valencetab.x;
+                    animatevalence -= 65
+                    scene.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
+                    console.log("valence = " + animatevalence)
+                }
             }
         }
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------ROBOT SIM SYSTEM ON // OFF------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        function robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo) {
+            if (activeimulation == true) {
+                if (action == 0) {
+                    if (outcome == 0) {
+                        scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
+                        robotsim.setPosition(700, 150);
+                    }
+                    scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
+                    robotsim.setPosition(700, 150);
+                    Wallone.setFillStyle(0xff0000);
+                    Walltwo.setFillStyle(0x00ff00);
+                }
+                if (action == 1) {
+                    if (outcome == 0) {
+                        scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
+                        robotsim.setPosition(700, 150);
+                    }
+                    scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
+                    robotsim.setPosition(700, 150);
+                    Wallone.setFillStyle(0x00ff00);
+                    Walltwo.setFillStyle(0xff0000);
 
+                }
+
+            }
+        }
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        function drawing(action, outcome, scene) {
+            if (action == 0) {
+                if (outcome == 0) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(936, 400, 'carre_rouge');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    }
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+
+                }
+                if (outcome == 1) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(936, 412, 'carre_vert');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    }
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+                }
+            }
+            if (action == 1) {
+                if (outcome == 0) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    };
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+
+                }
+                if (outcome == 1) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(1145, 412, 'cercle_vert');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    };
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+                }
+            }
+
+
+        }
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
         function calculScore() {
             score = 0;
-            for (let i = 0; i < tableau_feedback.length; i++) {
-                score += tableau_feedback[i];
+            for (let i = 0; i < valence_array.length; i++) {
+                score += valence_array[i];
             }
             console.log(score);
 
         }
-        this.btnCarre.on(POINTER_DOWN || Squaretouch.on, () => {
-            let action = 0;
-
-            if (posSprites.length > 0) {
-                Traceon(this);
-            }
-            let sprite;
-            let Formpush = null;
-            let valeurInterraction;
-
-            if (tableau_interaction[tableau_interaction.length - 1] === 'Carré') {
-                env(action, states);
-                outcome = 0
-                Formpush = this.add.sprite(936, 400, 'carre_rouge');
-                this.tweens.add({
-                    targets: Formpush,
-                    x: 622,
-                    y: 412,
-                    duration: 200,
-                    ease: 'Power2'
-                });
-                this.tweens.add({ targets: robotsim, x: 630, duration: 200, yoyo: false, ease: 'Power2' })
-                sprite = Formpush;
-                robotsim.setPosition(700, 150);
-                valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-            } else {
-                env(action, states)
-                outcome = 1
-                Formpush = this.add.sprite(936, 412, 'carre_vert');
-                this.tweens.add({ targets: Formpush, x: 622, y: 412, duration: 200, ease: 'Linear' });
-                Wallone.setFillStyle(0xff0000);
-                Walltwo.setFillStyle(0x00ff00);
-                this.tweens.add({ targets: robotsim, x: 630, duration: 200, yoyo: true, ease: 'Linear' })
-                sprite = Formpush;
-                robotsim.setPosition(700, 150);
-                valeurInterraction = this.add.text(615, 440, "+" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-            }
-
-
-
-
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        function posmanager(sprite, valeurInterraction, formuse) {
             posSprites.push(sprite);
             posValeurInterraction.push(valeurInterraction);
             nombreCompteur += 1;
-            tableau_interaction.push('Carré');
+            tableau_interaction.push(formuse);
             console.log(tableau_interaction);
-
-
+        }
+        //------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------BUTTON INTERACTION SYSTEM-------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        this.btnCarre.on(POINTER_DOWN, () => {
+            action = 0;
+            outcome = env(action, states);
+            Traceon(this);
+            drawing(action, outcome, this);
+            posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
-
         });
 
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            let action = 1;
-
-            if (posSprites.length > 0) {
-                Traceon(this);
-
-            }
-
-            let sprite;
-            var Formpush;
-            let valeurInterraction;
-
-
-            if (tableau_interaction[tableau_interaction.length - 1] === 'Rond') {
-                env(action, states);
-                outcome = 0
-                Formpush = this.add.image(1145, 412, 'cercle_rouge');
-                this.tweens.add({
-                    targets: Formpush,
-                    x: 622,
-                    y: 412,
-                    duration: 200,
-                    ease: 'Power2',
-                });
-                this.tweens.add({ targets: robotsim, x: 825, duration: 200, yoyo: true, ease: 'Power2' })
-                sprite = Formpush;
-                robotsim.setPosition(700, 150);
-                valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-            } else {
-                env(action, states)
-                outcome = 1
-                Formpush = this.add.image(1145, 412, 'cercle_vert');
-                this.tweens.add({
-                    targets: Formpush,
-                    x: 622,
-                    y: 412,
-                    duration: 200,
-                    ease: 'Power2',
-                });
-                Wallone.setFillStyle(0x00ff00);
-                Walltwo.setFillStyle(0xff0000);
-                this.tweens.add({ targets: robotsim, x: 825, duration: 200, yoyo: true, ease: 'Power2' })
-                sprite = Formpush;
-                robotsim.setPosition(700, 150);
-                valeurInterraction = this.add.text(615, 440, "+" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-            }
-
-
-
-
-            posSprites.push(sprite);
-            posValeurInterraction.push(valeurInterraction);
-            nombreCompteur += 1;
-            tableau_interaction.push('Rond');
-            console.log(tableau_interaction);
-
-
-
+            action = 1;
+            outcome = env(action, states);
+            Traceon(this);
+            drawing(action, outcome, this);
+            posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
-
         });
-
-        this.tweens.add({
-
-            targets: this.btnCarre,
-            scaleX: 0.8,
-            scaleY: 0.80,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
-
-        });
-        this.tweens.add({
-
-            targets: this.btnCircle,
-            scaleX: 0.80,
-            scaleY: 0.80,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
-
-        });
-
-        function env(action, states) {
-
-            var outcome = states[action]
-
-            for (let i = 0; i < tableau_feedback.length; i++) {
-                if (i >= 9) {
-                    tableau_feedback.shift();
-                }
-            }
-            tableau_feedback.push(outcome);
-            if (action == 0) {
-                if (states[0] == 1) {
-                    states[0] = 0;
-                    states[1] = 1;
-                }
-
-            }
-            if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 1;
-                    states[1] = 0;
-                }
-            }
-            console.log(states)
-            console.log(outcome + "Outcome test");
-            return outcome;
-        }
-
-
-
-
     }
 
 
     update() {
-
-
 
     }
 }
