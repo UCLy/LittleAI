@@ -23,10 +23,10 @@ export default class Level1 extends Phaser.Scene {
 
         //load Variables use on game
         let activeTrace = false;
-        let activeimulation = true;
+        let activeimulation = false;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [1, 1];
+        var states = [0, 1];
         let hedonist_array = [
             [0, 1],
             [0, 1]
@@ -139,21 +139,14 @@ export default class Level1 extends Phaser.Scene {
             let valence = hedonist_array[action][outcome];
 
             valence_array.push(valence);
-            if (action == 0) {
-                if (states[0] == 1) {
-                    states[0] = 0;
-                    states[1] = 1;
-                }
+            if (action == 1) {
+
 
             }
-            if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 1;
-                    states[1] = 0;
-                }
+            if (action == 0) {
+
             }
-            console.log(outcome + "Outcome test");
-            return outcome;
+
         }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------

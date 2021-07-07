@@ -96,7 +96,7 @@ class Menu extends Phaser.Scene {
 
         var game = this.add.text(500, 260, 'Jouez', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
         game.setInteractive({ useHandCursor: true });
-        game.on('pointerdown', () => this.scene.start("Level1"));
+        game.on('pointerdown', () => this.scene.start("Level2"));
         //beta test
         var beta = this.add.text(800, 260, 'Beta level', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
         beta.setInteractive({ useHandCursor: true });
