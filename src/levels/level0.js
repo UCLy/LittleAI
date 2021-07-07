@@ -144,7 +144,7 @@ export default class Level1 extends Phaser.Scene {
 
             }
             if (action == 1) {
-                return outcome;
+
             }
             console.log(outcome + "Outcome test");
             return outcome;

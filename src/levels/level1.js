@@ -26,10 +26,10 @@ export default class Level1 extends Phaser.Scene {
         let activeimulation = false;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [1, 1];
+        var states = [1, 0];
         let hedonist_array = [
             [0, 1],
-            [0, 2]
+            [2, 0]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
@@ -128,21 +128,18 @@ export default class Level1 extends Phaser.Scene {
 
 
         function env(action, states) {
-
-            var outcome = states[action]
-            console.log("outcome" + outcome);
-
+            outcome = 0
             for (let i = 0; i < valence_array.length; i++) {
                 if (i >= 9) {
                     valence_array.shift();
                 }
             }
             let valence = hedonist_array[action][outcome];
-            console.log("valence" + valence);
             valence_array.push(valence);
-            console.log(outcome + "Outcome test");
-            return valence
+            if (action == 0) {
+                return outcome
 
+            }
         }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
@@ -159,19 +156,6 @@ export default class Level1 extends Phaser.Scene {
                     'Victoire ! press for next level'
                 ]);
             }
-        }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------feedback for score parameters --------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function feedback(parametre) {
-            for (let i = 0; i < valence_array.length; i++) {
-                if (i >= 9) {
-                    valence_array.shift();
-                }
-            }
-            valence_array.push(parametre);
-            console.log(valence_array);
-
         }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE SYSTEM--------------------------------------------------------------------
@@ -295,7 +279,7 @@ export default class Level1 extends Phaser.Scene {
         //----------------------------------------BUTTON INTERACTION SYSTEM-------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
         this.btnCarre.on(POINTER_DOWN, () => {
-            action = 0;
+            action = 1;
             outcome = env(action, states);
             Traceon(this);
             drawing(action, outcome, this);
@@ -306,7 +290,7 @@ export default class Level1 extends Phaser.Scene {
 
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            action = 1;
+            action = 0;
             outcome = env(action, states);
             Traceon(this);
             drawing(action, outcome, this);
