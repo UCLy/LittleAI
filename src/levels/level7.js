@@ -29,7 +29,7 @@ export default class Level1 extends Phaser.Scene {
         var states = [1, 1];
         let hedonist_array = [
             [0, 1],
-            [-1, 1]
+            [0, 1]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
@@ -38,6 +38,7 @@ export default class Level1 extends Phaser.Scene {
         let valence_array = [];
         let tableau_interaction = [];
         let valencetab;
+        let valence;
         let outcome;
         let sprite;
         let valeurInterraction;
@@ -136,7 +137,7 @@ export default class Level1 extends Phaser.Scene {
                     valence_array.shift();
                 }
             }
-            let valence = hedonist_array[action][outcome];
+            valence = hedonist_array[action][outcome];
 
             valence_array.push(valence);
             if (action == 0) {
