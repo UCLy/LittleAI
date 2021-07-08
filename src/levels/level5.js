@@ -22,14 +22,14 @@ export default class Level1 extends Phaser.Scene {
     create() {
 
         //load Variables use on game
-        let activeTrace = false;
+        let activeTrace = true;
         let activeimulation = true;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [1, 1];
+        var states = [1, 0];
         let hedonist_array = [
             [0, 1],
-            [0, 1]
+            [-1, 1]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
@@ -38,6 +38,7 @@ export default class Level1 extends Phaser.Scene {
         let valence_array = [];
         let tableau_interaction = [];
         let valencetab;
+        let valence;
         let outcome;
         let sprite;
         let valeurInterraction;
@@ -100,7 +101,7 @@ export default class Level1 extends Phaser.Scene {
             robotsim = this.add.sprite(700, 150, 'robot');
             robotsim.setScale(0.3);
             Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
-            Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+            Walltwo = this.add.rectangle(850, 150, 10, 100, 0xff0000);
         }
 
         //create button square
@@ -130,29 +131,27 @@ export default class Level1 extends Phaser.Scene {
         function env(action, states) {
 
             var outcome = states[action]
-
+            valence = hedonist_array[action][outcome];
+            console.log("hedonist array" + hedonist_array[action][outcome]);
+            valence = hedonist_array[action][outcome];
             for (let i = 0; i < valence_array.length; i++) {
                 if (i >= 9) {
                     valence_array.shift();
                 }
             }
-            let valence = hedonist_array[action][outcome];
-
-            valence_array.push(valence);
             if (action == 0) {
-                if (states[0] == 1) {
-                    states[0] = 0;
-                    states[1] = 1;
-                }
+                valence = hedonist_array[outcome][1];
+                valence_array.push(valence);
+                return outcome;
 
             }
             if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 1;
-                    states[1] = 0;
-                }
+                valence_array.push(valence);
+                return outcome;
             }
+
             console.log(outcome + "Outcome test");
+
             return outcome;
         }
         //------------------------------------------------------------------------------------------------------------------------
@@ -215,8 +214,7 @@ export default class Level1 extends Phaser.Scene {
                     }
                     scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
                     robotsim.setPosition(700, 150);
-                    Wallone.setFillStyle(0xff0000);
-                    Walltwo.setFillStyle(0x00ff00);
+
                 }
                 if (action == 1) {
                     if (outcome == 0) {
@@ -225,8 +223,6 @@ export default class Level1 extends Phaser.Scene {
                     }
                     scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
                     robotsim.setPosition(700, 150);
-                    Wallone.setFillStyle(0x00ff00);
-                    Walltwo.setFillStyle(0xff0000);
 
                 }
 
@@ -235,14 +231,14 @@ export default class Level1 extends Phaser.Scene {
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
-        function drawing(action, outcome, scene) {
+        function drawing(action, outcome, scene, valence) {
             if (action == 0) {
                 if (outcome == 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(936, 400, 'carre_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
 
@@ -252,7 +248,7 @@ export default class Level1 extends Phaser.Scene {
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(936, 412, 'carre_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
@@ -263,7 +259,7 @@ export default class Level1 extends Phaser.Scene {
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
 
@@ -273,7 +269,7 @@ export default class Level1 extends Phaser.Scene {
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'cercle_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
@@ -309,7 +305,7 @@ export default class Level1 extends Phaser.Scene {
             action = 0;
             outcome = env(action, states);
             Traceon(this);
-            drawing(action, outcome, this);
+            drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
@@ -320,7 +316,7 @@ export default class Level1 extends Phaser.Scene {
             action = 1;
             outcome = env(action, states);
             Traceon(this);
-            drawing(action, outcome, this);
+            drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
