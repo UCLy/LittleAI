@@ -22,7 +22,7 @@ export default class Level1 extends Phaser.Scene {
     create() {
 
         //load Variables use on game
-        let activeTrace = false;
+        let activeTrace = true;
         let activeimulation = true;
         var score = 0;
         let nombreCompteur = 0;
