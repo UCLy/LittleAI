@@ -1,6 +1,6 @@
 import phaser, { Game } from 'phaser';
 import MyGame from '../index.js';
-import GameScene from './GameScene.js'
+
 
 
 import backgroundimage from '../assets/background.png';
@@ -53,7 +53,7 @@ export default class Levelscene extends Phaser.Scene {
         let level4 = this.add.text(580, 205, '4', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
         let level5 = this.add.text(720, 205, '5', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
         let level6 = this.add.text(850, 205, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level7 = this.add.text(990, 205, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level7 = this.add.text(980, 205, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
         //pour pouvoir acceder au niveau qd on clique
         rectlevel0.setInteractive({ useHandCursor: true });

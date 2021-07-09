@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import LevelsScene from "./scenes/LevelsScene";
-import GameScene from "./scenes/GameScene";
 import CreditScene from "./scenes/credits";
 
 import Level0 from "./levels/easy/level0";
@@ -35,7 +34,6 @@ import Circlered from './assets/game-icons/circle_red.png';
 import Redsquare from './assets/game-icons/carre_rouge.png';
 import Greensquare from './assets/game-icons/carre_vert.png';
 import Greencircle from './assets/game-icons/circle_vert.png';
-import Levelselector from './data/levels'
 
 
 class Menu extends Phaser.Scene {
@@ -167,7 +165,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu, LevelsScene, GameScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Settings]
+    scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Settings]
 };
 
 const configmusic = {
