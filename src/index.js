@@ -3,17 +3,17 @@ import LevelsScene from "./scenes/LevelsScene";
 import GameScene from "./scenes/GameScene";
 import CreditScene from "./scenes/credits";
 
-import Level0 from "./levels/level0";
-import Level1 from "./levels/level1";
-import Level2 from "./levels/level2";
-import Level3 from "./levels/level3";
-import Level4 from "./levels/level4";
-import Level5 from "./levels/level5";
-import Level6 from "./levels/level6";
-import Level7 from "./levels/level7";
+import Level0 from "./levels/easy/level0";
+import Level1 from "./levels/easy/level1";
+import Level2 from "./levels/easy/level2";
+import Level3 from "./levels/easy/level3";
+import Level4 from "./levels/easy/level4";
+import Level5 from "./levels/easy/level5";
+import Level6 from "./levels/easy/level6";
+import Level7 from "./levels/easy/level7";
 
 import Settings from './scenes/params';
-import Level1beta from './levels/levelbeta';
+
 
 import backgroundimage from './assets/background.png';
 import levels from './assets/icons/levels.svg';
@@ -71,16 +71,16 @@ class Menu extends Phaser.Scene {
         //params games
 
         //Mise en place des Images affiché dans le navigateur
-        this.add.image(600, 400, 'bgi');
+        this.add.image(600, 300, 'bgi');
         var little1 = this.add.image(150, 250, 'robot')
 
-        var jouer = this.add.image(460, 290, 'play');
+        var jouer = this.add.image(460, 275, 'play');
         jouer.setScale(0.1);
 
         var param = this.add.image(460, 410, 'settings');
         param.setScale(0.05);
 
-        var niveau = this.add.image(460, 350, 'levels');
+        var niveau = this.add.image(460, 340, 'levels');
         niveau.setScale(0.3);
 
         var credits = this.add.image(460, 470, 'credits');
@@ -91,38 +91,50 @@ class Menu extends Phaser.Scene {
         music.loop
         music.play(configmusic);
 
+        // Titre
+        let title = this.add.text(500, 0, 'Little IA', { fontFamily: 'OCR A Std, monospace', fontSize: 70 });
+        title.setStroke('#000000', 4);
+
+        const gradient = title.context.createLinearGradient(0, 0, 0, title.height);
+        gradient.addColorStop(0, '#ff00ff');
+        gradient.addColorStop(.5, '#ffffff');
+        gradient.addColorStop(.5, '#aaaaaa');
+        gradient.addColorStop(1, '#111111');
+
+        //////////////
         // Chargement des textes et liens cliquables
-        this.add.text(500, 0, 'Little IA', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
-
-        var game = this.add.text(500, 260, 'Jouez', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
+        var game = this.add.text(500, 240, 'Jouez', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         game.setInteractive({ useHandCursor: true });
-        game.on('pointerdown', () => this.scene.start("Level7"));
-        //beta test
-        var beta = this.add.text(800, 260, 'Beta level', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
-        beta.setInteractive({ useHandCursor: true });
-        beta.on('pointerdown', () => this.scene.start("Level1"));
-        beta.setStroke('#00f', 16);
-        beta.setShadow(2, 2, "#333333", 2, true, true);
+        game.on('pointerdown', () => this.scene.start("Level1"));
+        game.setStroke('#00f', 16);
+        game.setShadow(2, 2, "#333333", 2, true, true);
 
-        var levelslist = this.add.text(500, 320, 'Niveaux', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
+
+        var levelslist = this.add.text(500, 310, 'Niveaux', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         levelslist.setInteractive({ useHandCursor: true });
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
+        levelslist.setStroke('#00f', 16);
+        levelslist.setShadow(2, 2, "#333333", 2, true, true);
 
-        var parametres = this.add.text(500, 380, 'Paramètres', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
+        var parametres = this.add.text(500, 370, 'Paramètres', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         parametres.setInteractive({ useHandCursor: true });
         parametres.on('pointerdown', () => this.scene.start("Settings"));
+        parametres.setStroke('#00ff22', 16);
+        parametres.setShadow(2, 2, "#cccccc", 2, true, true);
 
-        var credits = this.add.text(500, 440, 'Crédits', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
+        var credits = this.add.text(500, 430, 'Crédits', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         credits.setInteractive({ useHandCursor: true });
         credits.on('pointerdown', () => this.scene.start("CreditsScene"));
+        credits.setStroke('#00f', 16);
+
 
 
         this.tweens.add({
 
             targets: game,
 
-            scaleX: 0.8,
-            scaleY: 0.80,
+            scaleX: 0.9,
+            scaleY: 0.9,
             yoyo: true,
             repeat: -1,
             ease: 'Sine.easeInOut'
@@ -132,8 +144,8 @@ class Menu extends Phaser.Scene {
 
             targets: levelslist,
 
-            scaleX: 0.8,
-            scaleY: 0.80,
+            scaleX: 0.9,
+            scaleY: 0.9,
             yoyo: true,
             repeat: -1,
             ease: 'Sine.easeInOut'
@@ -155,7 +167,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu, LevelsScene, GameScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level1beta, Settings]
+    scene: [Menu, LevelsScene, GameScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Settings]
 };
 
 const configmusic = {

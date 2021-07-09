@@ -28,42 +28,42 @@ export default class CreditScene extends Phaser.Scene {
 
 
     create() {
-        this.add.image(500,400,'bgi');
-        var back = this.add.image(50,50, 'backto');
-        back.setInteractive({useHandCursor: true});
+        this.add.image(600, 300, 'bgi');
+        var back = this.add.image(50, 50, 'backto');
+        back.setInteractive({ useHandCursor: true });
         back.on('pointerdown', () => this.scene.start("Menu"));
         back.setScale(0.3);
 
-        var credits = this.add.text(560, 0, 'Crédits ', {fontFamily: 'OCR A Std, monospace', fontSize: 35});
+        var credits = this.add.text(560, 0, 'Crédits ', { fontFamily: 'OCR A Std, monospace', fontSize: 35 });
         credits.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 
-        var dev = this.add.text(560, 64, 'Développement', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
+        var dev = this.add.text(560, 64, 'Développement', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
         dev.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
-        this.add.text(550, 110, 'Valentin Favre', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
+        this.add.text(550, 110, 'Valentin Favre', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
 
-        var partern = this.add.text(535, 150, 'En Partenariat avec', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
+        var partern = this.add.text(535, 150, 'En Partenariat avec', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
         partern.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 
-        var ucly = this.add.image(200,240,'ucly');
+        var ucly = this.add.image(200, 240, 'ucly');
         ucly.setScale(0.5);
 
-        var ucbl = this.add.image(500,240, 'Ucbl');
+        var ucbl = this.add.image(500, 240, 'Ucbl');
         ucbl.setScale(0.5);
 
-        var urconf = this.add.image(750,240,'URconf');
+        var urconf = this.add.image(750, 240, 'URconf');
         urconf.setScale(0.7);
 
-        var esqese =this.add.image(1050,240,'Esqese');
+        var esqese = this.add.image(1050, 240, 'Esqese');
         esqese.setScale(0.4);
 
-        var teams = this.add.text(480, 370, 'Projet initialisé avec :', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
+        var teams = this.add.text(480, 370, 'Projet initialisé avec :', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
         teams.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
         teams.setStyle()
-        this.add.text(50, 410, 'Pierre Zelnio', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-        this.add.text(300, 470, 'Emmanuel Lattier', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-        this.add.text(550, 410, 'Gaetan Gongiu', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-        this.add.text(800, 470, 'Rami Johnstone', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
-        this.add.text(950, 410, 'Théotime Clément', {fontFamily: 'OCR A Std, monospace', fontSize: 20});
+        this.add.text(50, 410, 'Pierre Zelnio', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(300, 470, 'Emmanuel Lattier', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(550, 410, 'Gaetan Gongiu', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(800, 470, 'Rami Johnstone', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(950, 410, 'Théotime Clément', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
 
 
     }
@@ -77,4 +77,3 @@ export default class CreditScene extends Phaser.Scene {
 
 
 }
-

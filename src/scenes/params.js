@@ -24,12 +24,12 @@ export default class Settings extends Phaser.Scene {
 
 
     create() {
-        var background = this.add.image(500,400,'bgi');
-        this.add.text(500, 0, 'Paramètres', {fontFamily: 'OCR A Std, monospace', fontSize: 64});
-        this.add.text(400, 150, 'Volume Musique', {fontFamily: 'OCR A Std, monospace', fontSize: 30});
-        this.add.text(400, 240, 'Mute', {fontFamily: 'OCR A Std, monospace', fontSize: 30});
-        this.add.text(400, 310, 'Tutoriel', {fontFamily: 'OCR A Std, monospace', fontSize: 30});
-        this.add.text(300, 380, 'Site Officiel (Disponible durant le développement)', {fontFamily: 'OCR A Std, monospace', fontSize: 25});
+        var background = this.add.image(600, 300, 'bgi');
+        this.add.text(500, 0, 'Paramètres', { fontFamily: 'OCR A Std, monospace', fontSize: 64 });
+        this.add.text(400, 150, 'Volume Musique', { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+        this.add.text(400, 240, 'Mute', { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+        this.add.text(400, 310, 'Tutoriel', { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+        this.add.text(300, 380, 'Site Officiel (Disponible durant le développement)', { fontFamily: 'OCR A Std, monospace', fontSize: 25 });
 
     }
 
@@ -42,4 +42,3 @@ export default class Settings extends Phaser.Scene {
 
 
 }
-

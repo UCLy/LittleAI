@@ -1,14 +1,14 @@
 import phaser from 'phaser';
-import MyGame from '../index.js';
+import MyGame from '../../index.js';
 
-import backgroundimage from '../assets/background.png';
+import backgroundimage from '../../assets/background.png';
 
 
 export default class Level1 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level4')
+        super('Level3')
 
     }
 
@@ -29,7 +29,7 @@ export default class Level1 extends Phaser.Scene {
         var states = [1, 0];
         let hedonist_array = [
             [0, 1],
-            [-1, 1]
+            [0, 2]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
@@ -52,8 +52,7 @@ export default class Level1 extends Phaser.Scene {
 
 
         // background & pictures
-        var backgroundimg = this.add.image(600, 400, 'bgi');
-        backgroundimg.alpha = 0.7;
+        var backgroundimg = this.add.image(600, 300, 'bgi');
 
         var info = this.add.image(50, 130, 'info');
         info.setScale(1.50)
@@ -83,8 +82,8 @@ export default class Level1 extends Phaser.Scene {
         ChaintoSimulation.lineBetween(0, 275, 1250, 275);
 
         //text and other things
-        this.add.text(500, 0, 'Little IA Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let TexteScore = this.add.text(700, 300, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+        this.add.text(500, 0, 'Little IA Level 3 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
