@@ -87,7 +87,7 @@ export default class Level1 extends Phaser.Scene {
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
+        textWin.on('pointerdown', () => this.scene.start("Level6"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });

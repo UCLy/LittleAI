@@ -53,32 +53,13 @@ export default class Level1 extends Phaser.Scene {
         // background & pictures
         var backgroundimg = this.add.image(600, 300, 'bgi');
 
-        var info = this.add.image(50, 130, 'info');
-        info.setScale(1.50)
-
-        var replay = this.add.image(250, 130, 'replay');
-        replay.setScale(1.50)
-        replay.setInteractive({ useHandCursor: true });
-        replay.on('pointerdown', () => this.scene.start("Level1"));
 
 
-        var back = this.add.image(1200, 50, 'backto');
+        var back = this.add.image(50, 50, 'backto');
         back.setInteractive({ useHandCursor: true });
-        back.setScale(0.3);
+        back.setScale(0.07);
         back.on('pointerdown', () => this.scene.start("Menu"));
 
-        //lignes de Découpage de la scenes 
-        var MenutoForm = this.add.graphics();
-        MenutoForm.lineStyle(1, 0xd3d3d3, 1);
-        MenutoForm.lineBetween(300, 0, 300, 275);
-
-        var Formtochain = this.add.graphics();
-        Formtochain.lineStyle(1, 0xd3d3d3, 1);
-        Formtochain.lineBetween(832, 275, 832, 550);
-
-        var ChaintoSimulation = this.add.graphics();
-        ChaintoSimulation.lineStyle(1, 0xd3d3d3, 1);
-        ChaintoSimulation.lineBetween(0, 275, 1250, 275);
 
         //text and other things
         this.add.text(500, 0, 'Little IA Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
@@ -86,7 +67,7 @@ export default class Level1 extends Phaser.Scene {
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
+        textWin.on('pointerdown', () => this.scene.start("Level2"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });

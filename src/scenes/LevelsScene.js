@@ -42,6 +42,7 @@ export default class Levelscene extends Phaser.Scene {
         var rectlevel5 = this.add.circle(730, 220, 40, 0xaa0088);
         var rectlevel6 = this.add.circle(860, 220, 40, 0xaa0088);
         var rectlevel7 = this.add.circle(990, 220, 40, 0xaa0088);
+        var rectlevelspeed = this.add.circle(1200, 500, 40, 0x00ffff);
 
 
 
@@ -55,6 +56,8 @@ export default class Levelscene extends Phaser.Scene {
         let level6 = this.add.text(850, 205, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
         let level7 = this.add.text(980, 205, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
+        let speed = this.add.text(1190, 485, '?', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+
         //pour pouvoir acceder au niveau qd on clique
         rectlevel0.setInteractive({ useHandCursor: true });
         rectlevel1.setInteractive({ useHandCursor: true });
@@ -65,6 +68,8 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel6.setInteractive({ useHandCursor: true });
         rectlevel7.setInteractive({ useHandCursor: true });
 
+        rectlevelspeed.setInteractive({ useHandCursor: true });
+
 
         rectlevel0.on('pointerdown', () => this.scene.start("Level0", { levelused: 1 }));
         rectlevel1.on('pointerdown', () => this.scene.start("Level1", { levelused: 2 }));
@@ -74,6 +79,8 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel5.on('pointerdown', () => this.scene.start("Level5", { levelused: 6 }));
         rectlevel6.on('pointerdown', () => this.scene.start("Level6", { levelused: 6 }));
         rectlevel7.on('pointerdown', () => this.scene.start("Level7", { levelused: 6 }));
+
+        rectlevelspeed.on('pointerdown', () => this.scene.start("speedchallenge", { levelused: 6 }));
 
 
 
@@ -87,6 +94,8 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel5.on('pointerover', () => { this.tweens.add({ targets: rectlevel5, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel6.on('pointerover', () => { this.tweens.add({ targets: rectlevel6, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel7.on('pointerover', () => { this.tweens.add({ targets: rectlevel7, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+
+        rectlevelspeed.on('pointerover', () => { this.tweens.add({ targets: rectlevelspeed, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
 
         rectlevel0.on('pointerout', () => { rectlevel0.width = 10 });
         rectlevel1.on('pointerout', () => { rectlevel1.width = 10 });
