@@ -135,6 +135,7 @@ export default class Level1 extends Phaser.Scene {
                 textWin.setText([
                     'Victoire ! press for next level'
                 ]);
+                textWin.setStroke('#ffd700');
             }
         }
         //------------------------------------------------------------------------------------------------------------------------

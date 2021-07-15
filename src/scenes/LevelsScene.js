@@ -42,6 +42,15 @@ export default class Levelscene extends Phaser.Scene {
         var rectlevel5 = this.add.circle(730, 220, 40, 0xaa0088);
         var rectlevel6 = this.add.circle(860, 220, 40, 0xaa0088);
         var rectlevel7 = this.add.circle(990, 220, 40, 0xaa0088);
+
+        var rectlevel8 = this.add.circle(80, 320, 40, 0xaa0088);
+        var rectlevel9 = this.add.circle(200, 320, 40, 0xaa0088);
+        var rectlevel10 = this.add.circle(330, 320, 40, 0xaa0088);
+        var rectlevel11 = this.add.circle(460, 320, 40, 0xaa0088);
+        var rectlevel12 = this.add.circle(590, 320, 40, 0xaa0088);
+        var rectlevel13 = this.add.circle(730, 320, 40, 0xaa0088);
+
+
         var rectlevelspeed = this.add.circle(1200, 500, 40, 0x00ffff);
 
 
@@ -56,6 +65,13 @@ export default class Levelscene extends Phaser.Scene {
         let level6 = this.add.text(850, 205, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
         let level7 = this.add.text(980, 205, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
+        let level8 = this.add.text(980, 305, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level9 = this.add.text(980, 305, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level10 = this.add.text(980, 305, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level11 = this.add.text(980, 305, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level12 = this.add.text(980, 305, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level13 = this.add.text(980, 305, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+
         let speed = this.add.text(1190, 485, '?', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
         //pour pouvoir acceder au niveau qd on clique
@@ -67,6 +83,13 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel5.setInteractive({ useHandCursor: true });
         rectlevel6.setInteractive({ useHandCursor: true });
         rectlevel7.setInteractive({ useHandCursor: true });
+
+        rectlevel8.setInteractive({ useHandCursor: true });
+        rectlevel9.setInteractive({ useHandCursor: true });
+        rectlevel10.setInteractive({ useHandCursor: true });
+        rectlevel11.setInteractive({ useHandCursor: true });
+        rectlevel12.setInteractive({ useHandCursor: true });
+        rectlevel13.setInteractive({ useHandCursor: true });
 
         rectlevelspeed.setInteractive({ useHandCursor: true });
 

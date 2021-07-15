@@ -8,7 +8,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level2')
+        super('Level8')
 
     }
 
@@ -22,14 +22,14 @@ export default class Level1 extends Phaser.Scene {
     create() {
 
         //load Variables use on game
-        let activeTrace = false;
-        let activeimulation = false;
+        let activeTrace = true;
+        let activeimulation = true;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [0, 1];
+        var states = [1, 0, -1];
         let hedonist_array = [
-            [0, 1],
-            [0, 1]
+            [0, 1, 2],
+            [-1, 0, 1]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
@@ -62,16 +62,17 @@ export default class Level1 extends Phaser.Scene {
 
 
         //text and other things
-        this.add.text(500, 0, 'Little IA Level 2 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        this.add.text(500, 0, 'Little IA Level 6 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("Level3"));
+        textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
 
         //Draw Game form/
-        this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
-        this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
+        this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
+        this.btnCircle = this.add.sprite(1045, 412, 'circle').setInteractive({ useHandCursor: true });
+        this.btnTriangle = this.add.sprite(1145, 412, 'triangle').setInteractive({ useHandCursor: true });
 
 
         //Draw Simulation
@@ -102,6 +103,15 @@ export default class Level1 extends Phaser.Scene {
         this.btnCarre.on('pointerout', function() {
             this.clearTint();
         });
+        //create button triangle
+
+
+        this.btnTriangle.on(POINTER_OVER, function() {
+            this.setTint(0x999999);
+        });
+        this.btnTriangle.on('pointerout', function() {
+            this.clearTint();
+        });
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------LEVEL SYSTEM--------------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -119,18 +129,26 @@ export default class Level1 extends Phaser.Scene {
             let valence = hedonist_array[action][outcome];
 
             valence_array.push(valence);
-            if (action == 1) {
-
-
-            }
             if (action == 0) {
+                if (states[0] == 1) {
+                    states[0] = 0;
+                    states[1] = 1;
+                }
 
             }
-
+            if (action == 1) {
+                if (states[1] == 1) {
+                    states[0] = 1;
+                    states[1] = 0;
+                }
+            }
+            console.log(outcome + "Outcome test");
+            return outcome;
         }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
+
         function Increment() {
             afficheScore.setText([
                 score
@@ -251,6 +269,27 @@ export default class Level1 extends Phaser.Scene {
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
             }
+            if (action == 2) {
+                if (outcome == 0) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(1145, 412, 'triangle_rouge');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    };
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+
+                }
+                if (outcome == 1) {
+                    console.log('output : ' + outcome + '  Action :' + action);
+                    if (activeTrace == true) {
+                        sprite = scene.add.sprite(1145, 412, 'triangle_vert');
+                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                    };
+                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
+                }
+            }
 
 
         }
@@ -291,6 +330,15 @@ export default class Level1 extends Phaser.Scene {
 
         this.btnCircle.on(POINTER_DOWN, () => {
             action = 1;
+            outcome = env(action, states);
+            Traceon(this);
+            drawing(action, outcome, this);
+            posmanager(sprite, valeurInterraction, "Rond");
+            calculScore();
+            Increment();
+        });
+        this.btnTriangle.on(POINTER_DOWN, () => {
+            action = 2;
             outcome = env(action, states);
             Traceon(this);
             drawing(action, outcome, this);

@@ -103,32 +103,32 @@ class Menu extends Phaser.Scene {
 
         //////////////
         // Chargement des textes et liens cliquables
-        var game = this.add.text(500, 240, 'Jouez', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
+        var game = this.add.text(500, 240, 'Play', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         game.setInteractive({ useHandCursor: true });
         game.on('pointerover', () => game.setStroke(("#00ff2", 16)));
         game.on('pointerout', () => game.setStroke(("#00f", 16)));
         game.on('pointerdown', () => this.scene.start("Level1"));
         game.setStroke('#00f', 16);
-        game.setShadow(2, 2, "#333333", 2, true, true);
 
 
-        var levelslist = this.add.text(500, 310, 'Niveaux', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
+
+        var levelslist = this.add.text(500, 310, 'Levels', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         levelslist.setInteractive({ useHandCursor: true });
         levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
         levelslist.on('pointerover', () => levelslist.setStroke(("#00ff2", 16)));
         levelslist.on('pointerout', () => levelslist.setStroke(("#00f", 16)));
         levelslist.setStroke('#00f', 16);
-        levelslist.setShadow(2, 2, "#333333", 2, true, true);
 
-        var parametres = this.add.text(500, 370, 'Paramètres', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
+
+        var parametres = this.add.text(500, 370, 'Settings', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         parametres.setInteractive({ useHandCursor: true });
         parametres.on('pointerdown', () => this.scene.start("Settings"));
         parametres.on('pointerover', () => parametres.setStroke("#00ff2", 16));
         parametres.on('pointerout', () => parametres.setStroke(("#00f", 16)));
         parametres.setStroke('#00f', 16);
-        parametres.setShadow(2, 2, "#333333", 2, true, true);
 
-        var credits = this.add.text(500, 430, 'Crédits', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
+
+        var credits = this.add.text(500, 430, 'Credits', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
         credits.setInteractive({ useHandCursor: true });
         credits.on('pointerdown', () => this.scene.start("CreditsScene"));
         credits.on('pointerover', () => credits.setStroke("#00ff22", 16));
