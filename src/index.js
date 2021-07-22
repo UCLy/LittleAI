@@ -11,6 +11,13 @@ import Level5 from "./levels/easy/level5";
 import Level6 from "./levels/easy/level6";
 import Level7 from "./levels/easy/level7";
 
+import Level8 from "./levels/medium/level8";
+import Level9 from "./levels/medium/level9";
+import Level10 from "./levels/medium/level10";
+import Level11 from "./levels/medium/level11";
+import Level12 from "./levels/medium/level12";
+import Level13 from "./levels/medium/level13";
+
 import speedchallenge from "./levels/epic/speedchallenge";
 
 import Settings from './scenes/params';
@@ -32,10 +39,17 @@ import Pause from './assets/icons/pause.png';
 
 import Whitesquare from './assets/Whiteform/carre.png';
 import Wcircle from './assets/Whiteform/circle.png';
+import Wtriangle from './assets/Whiteform/triangle.png';
+
 import Circlered from './assets/game-icons/circle_red.png';
 import Redsquare from './assets/game-icons/carre_rouge.png';
+import Redtriangle from './assets/game-icons/triangle_rouge.png';
+import Yellowsquare from './assets/game-icons/carre_jaune.png';
+import Yellowcircle from './assets/game-icons/circle_jaune.png';
+import Yellowtriangle from './assets/game-icons/triangle_jaune.png';
 import Greensquare from './assets/game-icons/carre_vert.png';
 import Greencircle from './assets/game-icons/circle_vert.png';
+import Greentriangle from './assets/game-icons/triangle_vert.png';
 
 
 class Menu extends Phaser.Scene {
@@ -60,10 +74,19 @@ class Menu extends Phaser.Scene {
 
         this.load.image('carre', Whitesquare);
         this.load.image('circle', Wcircle);
+        this.load.image('triangle', Wtriangle);
+
         this.load.image('cercle_rouge', Circlered);
+        this.load.image('cercle_jaune', Yellowcircle);
         this.load.image('cercle_vert', Greencircle);
-        this.load.image('carre_vert', Greensquare);
+
+        this.load.image('triangle_vert', Greentriangle);
+        this.load.image('triangle_jaune', Yellowtriangle);
+        this.load.image('triangle_rouge', Redtriangle);
+
+        this.load.image('carre_jaune', Yellowsquare);
         this.load.image('carre_rouge', Redsquare);
+        this.load.image('carre_vert', Greensquare);
 
     }
 
@@ -107,7 +130,7 @@ class Menu extends Phaser.Scene {
         game.setInteractive({ useHandCursor: true });
         game.on('pointerover', () => game.setStroke(("#00ff2", 16)));
         game.on('pointerout', () => game.setStroke(("#00f", 16)));
-        game.on('pointerdown', () => this.scene.start("Level1"));
+        game.on('pointerdown', () => this.scene.start("Level13"));
         game.setStroke('#00f', 16);
 
 
@@ -175,7 +198,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Settings, speedchallenge]
+    scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge]
 };
 
 const configmusic = {

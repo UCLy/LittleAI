@@ -87,6 +87,7 @@ export default class Level1 extends Phaser.Scene {
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
         textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
+        textWin.setStroke('#ffd700');
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -162,7 +163,6 @@ export default class Level1 extends Phaser.Scene {
                 textWin.setText([
                     'Victoire ! press for next level'
                 ]);
-                textWin.setStroke('#ffd700')
             }
         }
         //------------------------------------------------------------------------------------------------------------------------

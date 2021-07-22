@@ -29,7 +29,7 @@ export default class Level1 extends Phaser.Scene {
         var states = [1, 0];
         let hedonist_array = [
             [0, 1],
-            [0, 2]
+            [0, 1]
         ];
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'

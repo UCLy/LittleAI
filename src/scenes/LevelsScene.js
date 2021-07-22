@@ -65,12 +65,12 @@ export default class Levelscene extends Phaser.Scene {
         let level6 = this.add.text(850, 205, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
         let level7 = this.add.text(980, 205, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
-        let level8 = this.add.text(980, 305, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level9 = this.add.text(980, 305, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level10 = this.add.text(980, 305, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level11 = this.add.text(980, 305, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level12 = this.add.text(980, 305, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
-        let level13 = this.add.text(980, 305, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level8 = this.add.text(70, 305, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level9 = this.add.text(190, 305, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level10 = this.add.text(310, 305, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level11 = this.add.text(440, 305, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level12 = this.add.text(580, 305, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
+        let level13 = this.add.text(710, 305, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
         let speed = this.add.text(1190, 485, '?', { fontFamily: 'OCR A Std, monospace', fontSize: 29 });
 
@@ -103,6 +103,13 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel6.on('pointerdown', () => this.scene.start("Level6", { levelused: 6 }));
         rectlevel7.on('pointerdown', () => this.scene.start("Level7", { levelused: 6 }));
 
+        rectlevel8.on('pointerdown', () => this.scene.start("Level8", { levelused: 1 }));
+        rectlevel9.on('pointerdown', () => this.scene.start("Level9", { levelused: 2 }));
+        rectlevel10.on('pointerdown', () => this.scene.start("Level10", { levelused: 3 }));
+        rectlevel11.on('pointerdown', () => this.scene.start("Level11", { levelused: 4 }));
+        rectlevel12.on('pointerdown', () => this.scene.start("Level12", { levelused: 5 }));
+        rectlevel13.on('pointerdown', () => this.scene.start("Level13", { levelused: 6 }));
+
         rectlevelspeed.on('pointerdown', () => this.scene.start("speedchallenge", { levelused: 6 }));
 
 
@@ -117,6 +124,12 @@ export default class Levelscene extends Phaser.Scene {
         rectlevel5.on('pointerover', () => { this.tweens.add({ targets: rectlevel5, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel6.on('pointerover', () => { this.tweens.add({ targets: rectlevel6, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel7.on('pointerover', () => { this.tweens.add({ targets: rectlevel7, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel8.on('pointerover', () => { this.tweens.add({ targets: rectlevel8, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel9.on('pointerover', () => { this.tweens.add({ targets: rectlevel9, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel10.on('pointerover', () => { this.tweens.add({ targets: rectlevel10, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel11.on('pointerover', () => { this.tweens.add({ targets: rectlevel11, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel12.on('pointerover', () => { this.tweens.add({ targets: rectlevel12, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel13.on('pointerover', () => { this.tweens.add({ targets: rectlevel13, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
 
         rectlevelspeed.on('pointerover', () => { this.tweens.add({ targets: rectlevelspeed, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
 
