@@ -82,6 +82,8 @@ export default class Level1 extends Phaser.Scene {
 
         //text and other things
         this.add.text(500, 0, 'Little IA Level 0 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        let previouslevel = this.add.text(430, 0, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        let nextlevel = this.add.text(460, 0, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
@@ -92,6 +94,8 @@ export default class Level1 extends Phaser.Scene {
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
+        this.add.tween({ targets: this.btnCarre, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
+        this.add.tween({ targets: this.btnCircle, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
 
 
         //Draw Simulation

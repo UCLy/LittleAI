@@ -72,6 +72,8 @@ export default class Level1 extends Phaser.Scene {
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
+        this.add.tween({ targets: this.btnCarre, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
+        this.add.tween({ targets: this.btnCircle, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
 
 
         //Draw Simulation
