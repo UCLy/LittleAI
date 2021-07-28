@@ -229,7 +229,11 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
+<<<<<<< HEAD
     scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
+=======
+    scene: [Menu, Level1, LevelsScene, CreditScene, Level0, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge]
+>>>>>>> 384518b3db1e2722ba48c0c8abce0d19e2ea3220
 };
 
 const configmusic = {
@@ -245,5 +249,7 @@ const configmusic = {
 };
 
 
-
+export const textmessages = {
+    winmsg: "Victory => Press To access next Level !",
+}
 const game = new Phaser.Game(config);

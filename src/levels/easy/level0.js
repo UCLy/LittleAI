@@ -1,6 +1,11 @@
 import phaser from 'phaser';
+<<<<<<< HEAD
 import MyGame from '../../index.js';
 //import { levelSwitch } from '../levelswitch'
+=======
+import { textmessages } from '../../index.js';
+import { levelSwitch } from '../levelswitch'
+>>>>>>> 384518b3db1e2722ba48c0c8abce0d19e2ea3220
 import backgroundimage from '../../assets/background.png';
 
 
@@ -76,7 +81,7 @@ export default class Level0 extends Phaser.Scene {
         this.add.text(500, 0, 'Level 0 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
+        let textWin = this.add.text(400, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         textWin.setInteractive({ useHandCursor: true });
         textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
         textWin.setStroke('#ffd700');
@@ -154,8 +159,9 @@ export default class Level0 extends Phaser.Scene {
             afficheScore.setFill(['white']);
             if (score >= 10) {
                 afficheScore.setFill(['lime']);
+
                 textWin.setText([
-                    'Victoire ! press for next level'
+                    textmessages.winmsg
                 ]);
             }
         }
