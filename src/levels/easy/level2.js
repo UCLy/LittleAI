@@ -2,9 +2,10 @@ import phaser from 'phaser';
 import MyGame from '../../index.js';
 
 import backgroundimage from '../../assets/background.png';
+import AbstractLevel from '../AbstractLevel.js';
 
 
-export default class Level1 extends Phaser.Scene {
+export default class Level1 extends AbstractLevel {
 
 
     constructor() {
@@ -137,22 +138,7 @@ export default class Level1 extends Phaser.Scene {
             }
 
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function Increment() {
-            afficheScore.setText([
-                score
-            ]);
-            afficheScore.setFill(['white']);
-            if (score >= 10) {
-                afficheScore.setFill(['lime']);
-                textWin.setText([
-                    'Victoire ! press for next level'
-                ]);
-                textWin.setStroke('#ffd700');
-            }
-        }
+ 
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------feedback for score parameters --------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -294,7 +280,7 @@ export default class Level1 extends Phaser.Scene {
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
-            Increment();
+            this.Increment(score, afficheScore, textWin);
         });
 
 
@@ -305,7 +291,7 @@ export default class Level1 extends Phaser.Scene {
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
-            Increment();
+            this.Increment(score, afficheScore, textWin);
         });
     }
 
