@@ -2,14 +2,14 @@ import phaser from 'phaser';
 import MyGame from '../../index.js';
 
 import backgroundimage from '../../assets/background.png';
+//import AbstractLevel from '../AbstractLevel.js';
 
 
 export default class Level1 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level1')
-
+        super('Level1');
     }
 
 
@@ -142,6 +142,7 @@ export default class Level1 extends Phaser.Scene {
                 afficheScore.setFill(['lime']);
                 textWin.setText([
                     'Victoire ! press for next level'
+                    //victoireMsg
                 ]);
                 textWin.setStroke('#ffd700');
             }

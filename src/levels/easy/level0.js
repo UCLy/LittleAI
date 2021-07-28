@@ -1,6 +1,6 @@
 import phaser from 'phaser';
 import MyGame from '../../index.js';
-import { levelSwitch } from '../levelswitch'
+//import { levelSwitch } from '../levelswitch'
 import backgroundimage from '../../assets/background.png';
 
 

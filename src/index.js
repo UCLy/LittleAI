@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import LevelsScene from "./scenes/LevelsScene";
 import CreditScene from "./scenes/credits";
-import levelSwitch from "./levels/levelswitch"
+//import levelSwitch from "./levels/levelswitch"
 import Level0 from "./levels/easy/level0";
 import Level1 from "./levels/easy/level1";
 import Level2 from "./levels/easy/level2";
@@ -229,7 +229,7 @@ const config = {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge]
+    scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
 };
 
 const configmusic = {
@@ -242,7 +242,8 @@ const configmusic = {
     loop: true,
     delay: 0
 
-}
+};
+
 
 
 const game = new Phaser.Game(config);
