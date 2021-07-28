@@ -143,7 +143,7 @@ export default class Level1 extends AbstractLevel {
                 afficheScore.setFill(['lime']);
                 textWin.setText([
                     //'Victoire ! press for next level'
-                    this.victoireMsg
+                    AbstractLevel.getVictoireMessage()
                 ]);
                 textWin.setStroke('#ffd700');
             }
