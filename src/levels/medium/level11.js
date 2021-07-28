@@ -97,7 +97,7 @@ export default class Level11 extends Phaser.Scene {
             robotsim.setScale(0.3);
             Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
             Walltwo = this.add.circle(850, 150, 15, 0xff0000);
-            buttonup = this.add.triangle(710, 250, 710, 80, 720, 90, 700, 90, 0xff0000);
+            buttonup = this.add.triangle(710, 80, 710, 80, 720, 90, 700, 90, 0xff0000);
         }
 
         //create button square
