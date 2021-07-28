@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import LevelsScene from "./scenes/LevelsScene";
 import CreditScene from "./scenes/credits";
-
+import levelSwitch from "./levels/levelswitch"
 import Level0 from "./levels/easy/level0";
 import Level1 from "./levels/easy/level1";
 import Level2 from "./levels/easy/level2";
@@ -91,98 +91,129 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-        //params games
 
-        //Mise en place des Images affiché dans le navigateur
+
+        //titre de la page & background
         this.add.image(600, 300, 'bgi');
-        var little1 = this.add.image(150, 250, 'robot')
-
-        var jouer = this.add.image(460, 275, 'play');
-        jouer.setScale(0.1);
-
-        var param = this.add.image(460, 410, 'settings');
-        param.setScale(0.05);
-
-        var niveau = this.add.image(460, 340, 'levels');
-        niveau.setScale(0.3);
-
-        var credits = this.add.image(460, 470, 'credits');
-        credits.setScale(0.2);
-
-        //Mise en place du player audio (Non visible)
-        var music = this.sound.add('music');
-        music.loop
-        music.play(configmusic);
-
-        // Titre
-        let title = this.add.text(500, 0, 'Little IA', { fontFamily: 'OCR A Std, monospace', fontSize: 70 });
-        title.setStroke('#000000', 4);
-
-        const gradient = title.context.createLinearGradient(0, 0, 0, title.height);
-        gradient.addColorStop(0, '#ff00ff');
-        gradient.addColorStop(.5, '#ffffff');
-        gradient.addColorStop(.5, '#aaaaaa');
-        gradient.addColorStop(1, '#111111');
-
-        //////////////
-        // Chargement des textes et liens cliquables
-        var game = this.add.text(500, 240, 'Play', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
-        game.setInteractive({ useHandCursor: true });
-        game.on('pointerover', () => game.setStroke(("#00ff2", 16)));
-        game.on('pointerout', () => game.setStroke(("#00f", 16)));
-        game.on('pointerdown', () => this.scene.start("Level13"));
-        game.setStroke('#00f', 16);
-
-
-
-        var levelslist = this.add.text(500, 310, 'Levels', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
-        levelslist.setInteractive({ useHandCursor: true });
-        levelslist.on('pointerdown', () => this.scene.start("LevelsScene"));
-        levelslist.on('pointerover', () => levelslist.setStroke(("#00ff2", 16)));
-        levelslist.on('pointerout', () => levelslist.setStroke(("#00f", 16)));
-        levelslist.setStroke('#00f', 16);
-
-
-        var parametres = this.add.text(500, 370, 'Settings', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
-        parametres.setInteractive({ useHandCursor: true });
-        parametres.on('pointerdown', () => this.scene.start("Settings"));
-        parametres.on('pointerover', () => parametres.setStroke("#00ff2", 16));
-        parametres.on('pointerout', () => parametres.setStroke(("#00f", 16)));
-        parametres.setStroke('#00f', 16);
-
-
-        var credits = this.add.text(500, 430, 'Credits', { fontFamily: 'OCR A Std, monospace', fontSize: 54 });
+        var little1 = this.add.image(350, 70, 'robot');
+        var little2 = this.add.image(900, 70, 'robot');
+        little1.setScale(0.30);
+        little2.setScale(0.30);
+        var titrejeux = this.add.text(450, 10, 'Little AI', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif', fontSize: 100 });
+        var credits = this.add.text(0, 500, 'Credits', { fontFamily: 'OCR A Std, monospace', fontSize: 34 });
         credits.setInteractive({ useHandCursor: true });
         credits.on('pointerdown', () => this.scene.start("CreditsScene"));
-        credits.on('pointerover', () => credits.setStroke("#00ff22", 16));
-        credits.on('pointerout', () => credits.setStroke(("#00f", 16)));
-        credits.setStroke('#00f', 16);
 
 
 
-        this.tweens.add({
+        //pour les rectacercles ngles des niveaux (PS : SI VOUS VOULEZ CHANGER LA COULEUR qui est en Hexadecimal, remplacé le '#' par '0x')
+        var rectlevel0 = this.add.circle(80, 220, 30, 0xaa0088);
+        var rectlevel1 = this.add.circle(200, 220, 30, 0xaa0088);
+        var rectlevel2 = this.add.circle(330, 220, 30, 0xaa0088);
+        var rectlevel3 = this.add.circle(460, 220, 30, 0xaa0088);
+        var rectlevel4 = this.add.circle(590, 220, 30, 0xaa0088);
+        var rectlevel5 = this.add.circle(730, 220, 30, 0xaa0088);
+        var rectlevel6 = this.add.circle(860, 220, 30, 0xaa0088);
+        var rectlevel7 = this.add.circle(990, 220, 30, 0xaa0088);
 
-            targets: game,
+        var rectlevel8 = this.add.circle(80, 320, 30, 0xaa0088);
+        var rectlevel9 = this.add.circle(200, 320, 30, 0xaa0088);
+        var rectlevel10 = this.add.circle(330, 320, 30, 0xaa0088);
+        var rectlevel11 = this.add.circle(460, 320, 30, 0xaa0088);
+        var rectlevel12 = this.add.circle(590, 320, 30, 0xaa0088);
+        var rectlevel13 = this.add.circle(730, 320, 30, 0xaa0088);
 
-            scaleX: 0.9,
-            scaleY: 0.9,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
 
-        });
-        this.tweens.add({
 
-            targets: levelslist,
 
-            scaleX: 0.9,
-            scaleY: 0.9,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
 
-        });
+        //pour les textes des niveaux
+        let level0 = this.add.text(75, 210, '0', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level1 = this.add.text(195, 210, '1', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level2 = this.add.text(325, 210, '2', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level3 = this.add.text(455, 210, '3', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level4 = this.add.text(585, 210, '4', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level5 = this.add.text(725, 210, '5', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level6 = this.add.text(855, 210, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level7 = this.add.text(985, 210, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+
+        let level8 = this.add.text(75, 315, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level9 = this.add.text(195, 315, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level10 = this.add.text(313, 315, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level11 = this.add.text(443, 315, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level12 = this.add.text(583, 315, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+
+
+
+        //pour pouvoir acceder au niveau qd on clique
+        rectlevel0.setInteractive({ useHandCursor: true });
+        rectlevel1.setInteractive({ useHandCursor: true });
+        rectlevel2.setInteractive({ useHandCursor: true });
+        rectlevel3.setInteractive({ useHandCursor: true });
+        rectlevel4.setInteractive({ useHandCursor: true });
+        rectlevel5.setInteractive({ useHandCursor: true });
+        rectlevel6.setInteractive({ useHandCursor: true });
+        rectlevel7.setInteractive({ useHandCursor: true });
+
+        rectlevel8.setInteractive({ useHandCursor: true });
+        rectlevel9.setInteractive({ useHandCursor: true });
+        rectlevel10.setInteractive({ useHandCursor: true });
+        rectlevel11.setInteractive({ useHandCursor: true });
+        rectlevel12.setInteractive({ useHandCursor: true });
+        rectlevel13.setInteractive({ useHandCursor: true });
+
+
+        rectlevel0.on('pointerdown', () => this.scene.start("Level0", { levelused: 1 }));
+        rectlevel1.on('pointerdown', () => this.scene.start("Level1", { levelused: 2 }));
+        rectlevel2.on('pointerdown', () => this.scene.start("Level2", { levelused: 3 }));
+        rectlevel3.on('pointerdown', () => this.scene.start("Level3", { levelused: 4 }));
+        rectlevel4.on('pointerdown', () => this.scene.start("Level4", { levelused: 5 }));
+        rectlevel5.on('pointerdown', () => this.scene.start("Level5", { levelused: 6 }));
+        rectlevel6.on('pointerdown', () => this.scene.start("Level6", { levelused: 6 }));
+        rectlevel7.on('pointerdown', () => this.scene.start("Level7", { levelused: 6 }));
+
+        rectlevel8.on('pointerdown', () => this.scene.start("Level8", { levelused: 1 }));
+        rectlevel9.on('pointerdown', () => this.scene.start("Level9", { levelused: 2 }));
+        rectlevel10.on('pointerdown', () => this.scene.start("Level10", { levelused: 3 }));
+        rectlevel11.on('pointerdown', () => this.scene.start("Level11", { levelused: 4 }));
+        rectlevel12.on('pointerdown', () => this.scene.start("Level12", { levelused: 5 }));
+        rectlevel13.on('pointerdown', () => this.scene.start("Level13", { levelused: 6 }));
+
+
+
+
+
+        //changer la forme du cercle rouge qd on passe le curseur dessus
+        rectlevel0.on('pointerover', () => { this.tweens.add({ targets: rectlevel0, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel1.on('pointerover', () => { this.tweens.add({ targets: rectlevel1, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel2.on('pointerover', () => { this.tweens.add({ targets: rectlevel2, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel3.on('pointerover', () => { this.tweens.add({ targets: rectlevel3, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel4.on('pointerover', () => { this.tweens.add({ targets: rectlevel4, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel5.on('pointerover', () => { this.tweens.add({ targets: rectlevel5, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel6.on('pointerover', () => { this.tweens.add({ targets: rectlevel6, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel7.on('pointerover', () => { this.tweens.add({ targets: rectlevel7, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel8.on('pointerover', () => { this.tweens.add({ targets: rectlevel8, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel9.on('pointerover', () => { this.tweens.add({ targets: rectlevel9, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel10.on('pointerover', () => { this.tweens.add({ targets: rectlevel10, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel11.on('pointerover', () => { this.tweens.add({ targets: rectlevel11, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel12.on('pointerover', () => { this.tweens.add({ targets: rectlevel12, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        rectlevel13.on('pointerover', () => { this.tweens.add({ targets: rectlevel13, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+
+
+
+        rectlevel0.on('pointerout', () => { rectlevel0.width = 10 });
+        rectlevel1.on('pointerout', () => { rectlevel1.width = 10 });
+        rectlevel2.on('pointerout', () => { rectlevel2.width = 10 });
+        rectlevel3.on('pointerout', () => { rectlevel3.width = 10 });
+        rectlevel4.on('pointerout', () => { rectlevel4.width = 10 });
+        rectlevel5.on('pointerout', () => { rectlevel5.width = 10 });
+        rectlevel6.on('pointerout', () => { rectlevel6.width = 10 });
+        rectlevel7.on('pointerout', () => { rectlevel7.width = 10 });
+
+
     }
+
     update() {
 
     }
