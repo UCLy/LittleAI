@@ -1,11 +1,6 @@
 import phaser from 'phaser';
-<<<<<<< HEAD
-import MyGame from '../../index.js';
-//import { levelSwitch } from '../levelswitch'
-=======
 import { textmessages } from '../../index.js';
-import { levelSwitch } from '../levelswitch'
->>>>>>> 384518b3db1e2722ba48c0c8abce0d19e2ea3220
+
 import backgroundimage from '../../assets/background.png';
 
 
