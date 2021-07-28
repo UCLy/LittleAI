@@ -53,7 +53,13 @@ export default class Level1 extends Phaser.Scene {
         // background & pictures
         var backgroundimg = this.add.image(600, 300, 'bgi');
 
-
+        // "New function" Change Level directly on game
+        let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
+        nextlevel.setInteractive({ useHandCursor: true });
+        nextlevel.on('pointerdown', () => this.scene.start('Level2'));
+        previouslevel.setInteractive({ useHandCursor: true });
+        previouslevel.on('pointerdown', () => this.scene.start('Level0'));
 
         var back = this.add.image(50, 50, 'backto');
         back.setInteractive({ useHandCursor: true });
@@ -62,14 +68,14 @@ export default class Level1 extends Phaser.Scene {
 
 
         //text and other things
-        this.add.text(500, 0, 'Little IA Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        this.add.text(500, 0, 'Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
         textWin.setInteractive({ useHandCursor: true });
         textWin.on('pointerdown', () => this.scene.start("Level2"));
 
-        //Draw Game form/
+        //Draw Game form=
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
         this.add.tween({ targets: this.btnCarre, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
@@ -81,8 +87,8 @@ export default class Level1 extends Phaser.Scene {
         if (activeimulation == true) {
             robotsim = this.add.sprite(700, 150, 'robot');
             robotsim.setScale(0.3);
-            Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
-            Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+            Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
+            Walltwo = this.add.circle(850, 150, 15, 0xff0000);
         }
 
         //create button square

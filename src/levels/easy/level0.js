@@ -1,10 +1,10 @@
 import phaser from 'phaser';
 import MyGame from '../../index.js';
-
+import { levelSwitch } from '../levelswitch'
 import backgroundimage from '../../assets/background.png';
 
 
-export default class Level1 extends Phaser.Scene {
+export default class Level0 extends Phaser.Scene {
 
 
     constructor() {
@@ -20,7 +20,8 @@ export default class Level1 extends Phaser.Scene {
     }
 
     create() {
-
+        //Fix Variable /////DO NOT TOUCH /////
+        let currentlevel = 0;
         //load Variables use on game
         let activeTrace = true;
         let activeimulation = false;
@@ -48,10 +49,13 @@ export default class Level1 extends Phaser.Scene {
 
         let Wallone;
         let Walltwo;
-
-
         // background & pictures
         var backgroundimg = this.add.image(600, 300, 'bgi');
+
+        // "New function" Change Level directly on game
+        let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        nextlevel.setInteractive({ useHandCursor: true });
+        nextlevel.on('pointerdown', () => this.scene.start('Level1'));
 
         var info = this.add.image(50, 130, 'info');
         info.setScale(1.50)
@@ -67,23 +71,9 @@ export default class Level1 extends Phaser.Scene {
         back.setScale(0.3);
         back.on('pointerdown', () => this.scene.start("Menu"));
 
-        //lignes de Découpage de la scenes 
-        var MenutoForm = this.add.graphics();
-        MenutoForm.lineStyle(1, 0xd3d3d3, 1);
-        MenutoForm.lineBetween(300, 0, 300, 275);
-
-        var Formtochain = this.add.graphics();
-        Formtochain.lineStyle(1, 0xd3d3d3, 1);
-        Formtochain.lineBetween(832, 275, 832, 550);
-
-        var ChaintoSimulation = this.add.graphics();
-        ChaintoSimulation.lineStyle(1, 0xd3d3d3, 1);
-        ChaintoSimulation.lineBetween(0, 275, 1250, 275);
 
         //text and other things
-        this.add.text(500, 0, 'Little IA Level 0 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let previouslevel = this.add.text(430, 0, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let nextlevel = this.add.text(460, 0, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        this.add.text(500, 0, 'Level 0 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
@@ -103,8 +93,8 @@ export default class Level1 extends Phaser.Scene {
         if (activeimulation == true) {
             robotsim = this.add.sprite(700, 150, 'robot');
             robotsim.setScale(0.3);
-            Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
-            Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+            Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
+            Walltwo = this.add.circle(850, 150, 15, 0xff0000);
         }
 
         //create button square

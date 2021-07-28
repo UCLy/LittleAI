@@ -4,11 +4,11 @@ import MyGame from '../../index.js';
 import backgroundimage from '../../assets/background.png';
 
 
-export default class Level8 extends Phaser.Scene {
+export default class Level14 extends Phaser.Scene {
 
 
     constructor() {
-        super('Level8')
+        super('Level14')
 
     }
 
@@ -23,15 +23,15 @@ export default class Level8 extends Phaser.Scene {
 
         //load Variables use on game
         let activeTrace = false;
-        let activeimulation = false;
+        let activeimulation = true;
         let revealresultonform = true;
         var score = 0;
         let nombreCompteur = 0;
         var states = [1, 0, 0];
         let hedonist_array = [
-            [0, 1],
-            [0, 1],
-            [0, 1]
+            [0, 5],
+            [0, -1],
+            [0, -2]
 
         ];
         console.log(hedonist_array[2][0]);
@@ -59,7 +59,13 @@ export default class Level8 extends Phaser.Scene {
         // background & pictures
         var backgroundimg = this.add.image(600, 300, 'bgi');
 
-
+        // "New function" Change Level directly on game
+        let nextlevel = this.add.text(755, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
+        nextlevel.setInteractive({ useHandCursor: true });
+        nextlevel.on('pointerdown', () => this.scene.start('Level14'));
+        previouslevel.setInteractive({ useHandCursor: true });
+        previouslevel.on('pointerdown', () => this.scene.start('Level12'));
 
         var back = this.add.image(50, 50, 'backto');
         back.setInteractive({ useHandCursor: true });
@@ -68,7 +74,7 @@ export default class Level8 extends Phaser.Scene {
 
 
         //text and other things
-        this.add.text(500, 0, 'Little IA Level 8 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        this.add.text(500, 0, 'Level 13 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
         let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
@@ -79,6 +85,9 @@ export default class Level8 extends Phaser.Scene {
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1040, 412, 'circle').setInteractive({ useHandCursor: true });
         this.btnTriangle = this.add.sprite(1145, 412, 'triangle').setInteractive({ useHandCursor: true });
+        this.add.tween({ targets: this.btnCarre, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
+        this.add.tween({ targets: this.btnCircle, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
+        this.add.tween({ targets: this.btnTriangle, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
 
 
         //Draw Simulation
@@ -86,8 +95,8 @@ export default class Level8 extends Phaser.Scene {
         if (activeimulation == true) {
             robotsim = this.add.sprite(700, 150, 'robot');
             robotsim.setScale(0.3);
-            Wallone = this.add.rectangle(580, 150, 10, 100, 0x00ff00);
-            Walltwo = this.add.rectangle(850, 150, 10, 100, 0x00ff00);
+            Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
+            Walltwo = this.add.circle(850, 150, 15, 0xff0000);
             buttonup = this.add.rectangle(710, 80, 100, 10, 0xff0000);
         }
 
@@ -221,20 +230,20 @@ export default class Level8 extends Phaser.Scene {
         function robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo) {
             if (activeimulation == true) {
                 if (action == 0) {
-                    if (outcome == 0 || -1) {
+                    if (outcome <= 0) {
                         scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
                         robotsim.setPosition(700, 150);
                     }
                     scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
                     robotsim.setPosition(700, 150);
 
-                    if (outcome == 1) {
+                    if (outcome >= 1) {
                         Wallone.setFillStyle(0xff0000);
                         Walltwo.setFillStyle(0x00ff00);
                     }
                 }
                 if (action == 1) {
-                    if (outcome == 0 || -1) {
+                    if (outcome <= 0) {
                         scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
                         robotsim.setPosition(700, 150);
                     }
@@ -246,13 +255,13 @@ export default class Level8 extends Phaser.Scene {
                     }
                 }
                 if (action == 2) {
-                    if (outcome == 0 || -1) {
+                    if (outcome <= 0) {
                         scene.tweens.add({ targets: robotsim, y: 100, duration: 150, yoyo: true, ease: 'Power2' });
                         robotsim.setPosition(700, 150);
                     }
                     scene.tweens.add({ targets: robotsim, x: 710, duration: 150, yoyo: true, ease: 'Power2' });
                     robotsim.setPosition(700, 150);
-                    if (outcome == 1) {
+                    if (outcome >= 1) {
                         Wallone.setFillStyle(0x00ff00);
                         Walltwo.setFillStyle(0xff0000);
                         buttonup.setFillStyle(0xff0000);
@@ -264,24 +273,24 @@ export default class Level8 extends Phaser.Scene {
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
-        function drawing(action, outcome, scene) {
+        function drawing(action, outcome, scene, valence) {
             if (action == 0) {
-                if (outcome == 0) {
+                if (outcome <= 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(936, 400, 'carre_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
 
                 }
-                if (outcome == 1) {
+                if (outcome >= 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(936, 412, 'carre_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
@@ -298,22 +307,22 @@ export default class Level8 extends Phaser.Scene {
                 */
             }
             if (action == 1) {
-                if (outcome == 0) {
+                if (outcome <= 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
 
                 }
-                if (outcome == 1) {
+                if (outcome >= 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'cercle_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
@@ -330,22 +339,22 @@ export default class Level8 extends Phaser.Scene {
                 */
             }
             if (action == 2) {
-                if (outcome == 0) {
+                if (outcome <= 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'triangle_jaune');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
 
                 }
-                if (outcome == 1) {
+                if (outcome >= 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (activeTrace == true) {
                         sprite = scene.add.sprite(1145, 412, 'triangle_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+                        valeurInterraction = scene.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
@@ -392,7 +401,7 @@ export default class Level8 extends Phaser.Scene {
             action = 0;
             outcome = env(action, states);
             Traceon(this);
-            drawing(action, outcome, this);
+            drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
@@ -403,7 +412,7 @@ export default class Level8 extends Phaser.Scene {
             action = 1;
             outcome = env(action, states);
             Traceon(this);
-            drawing(action, outcome, this);
+            drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
             Increment();
@@ -413,7 +422,7 @@ export default class Level8 extends Phaser.Scene {
             action = 2;
             outcome = env(action, states);
             Traceon(this);
-            drawing(action, outcome, this);
+            drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Triangle");
             calculScore();
             Increment();
