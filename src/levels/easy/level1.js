@@ -1,7 +1,31 @@
-import phaser from 'phaser';
-import MyGame from '../../index.js';
-
 import backgroundimage from '../../assets/background.png';
+import levels from '../../assets/icons/levels.svg';
+import roux from '../../assets/icons/settings.svg';
+import play from '../../assets/icons/play.svg';
+import robot from '../../assets/littleAI.png';
+import loop from '../../assets/loopsong.mp3';
+import info from '../../assets/icons/infomenu.png';
+import Info from '../../assets/icons/info.png';
+import Ranking from '../../assets/icons/ranking.png';
+import Replay from '../../assets/icons/replay.png';
+import Backarrow from '../../assets/icons/menubtn.png';
+import Pause from '../../assets/icons/pause.png';
+
+
+import Whitesquare from '../../assets/Whiteform/carre.png';
+import Wcircle from '../../assets/Whiteform/circle.png';
+import Wtriangle from '../../assets/Whiteform/triangle.png';
+
+import Circlered from '../../assets/game-icons/circle_red.png';
+import Redsquare from '../../assets/game-icons/carre_rouge.png';
+import Redtriangle from '../../assets/game-icons/triangle_rouge.png';
+import Yellowsquare from '../../assets/game-icons/carre_jaune.png';
+import Yellowcircle from '../../assets/game-icons/circle_jaune.png';
+import Yellowtriangle from '../../assets/game-icons/triangle_jaune.png';
+import Greensquare from '../../assets/game-icons/carre_vert.png';
+import Greencircle from '../../assets/game-icons/circle_vert.png';
+import Greentriangle from '../../assets/game-icons/triangle_vert.png';
+
 import AbstractLevel from '../AbstractLevel.js';
 
 
@@ -9,7 +33,7 @@ import AbstractLevel from '../AbstractLevel.js';
 export default class Level1 extends AbstractLevel {
 
     constructor() {
-        super('Level1');
+        super(1);
         //this.afficheScore;
 
         //this.toto = 1;
@@ -17,11 +41,42 @@ export default class Level1 extends AbstractLevel {
 
 
     preload() {
+        this.load.image('bgi', backgroundimage);
+        this.load.image('play', play);
+        this.load.image('settings', roux);
+        this.load.image('levels', levels);
+        this.load.image('robot', robot)
+        this.load.audio('music', loop, loop);
+        this.load.image('credits', info);
+        this.load.image('info', Info);
+        this.load.image('ranking', Ranking);
+        this.load.image('replay', Replay);
+
+        this.load.image('pause', Pause);
+        this.load.image('backto', Backarrow);
+
+        this.load.image('carre', Whitesquare);
+        this.load.image('circle', Wcircle);
+        this.load.image('triangle', Wtriangle);
+
+        this.load.image('cercle_rouge', Circlered);
+        this.load.image('cercle_jaune', Yellowcircle);
+        this.load.image('cercle_vert', Greencircle);
+
+        this.load.image('triangle_vert', Greentriangle);
+        this.load.image('triangle_jaune', Yellowtriangle);
+        this.load.image('triangle_rouge', Redtriangle);
+
+        this.load.image('carre_jaune', Yellowsquare);
+        this.load.image('carre_rouge', Redsquare);
+        this.load.image('carre_vert', Greensquare);
 
 
     }
 
     create() {
+
+        super.create();
 
         //load Variables use on game
         let activeTrace = false;
@@ -52,30 +107,6 @@ export default class Level1 extends AbstractLevel {
         let Walltwo;
 
 
-        // background & pictures
-        var backgroundimg = this.add.image(600, 300, 'bgi');
-
-        // "New function" Change Level directly on game
-        let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        nextlevel.setInteractive({ useHandCursor: true });
-        nextlevel.on('pointerdown', () => this.scene.start('Level2'));
-        previouslevel.setInteractive({ useHandCursor: true });
-        previouslevel.on('pointerdown', () => this.scene.start('Level0'));
-
-        var back = this.add.image(50, 50, 'backto');
-        back.setInteractive({ useHandCursor: true });
-        back.setScale(0.07);
-        back.on('pointerdown', () => this.scene.start("Menu"));
-
-
-        //text and other things
-        this.add.text(500, 0, 'Level 1 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("Level2"));
 
         //Draw Game form=
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -228,17 +259,7 @@ export default class Level1 extends AbstractLevel {
 
 
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function calculScore() {
-            score = 0;
-            for (let i = 0; i < valence_array.length; i++) {
-                score += valence_array[i];
-            }
-            console.log(score);
-
-        }
+    
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -258,8 +279,8 @@ export default class Level1 extends AbstractLevel {
             Traceon(this);
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            this.Increment(score, afficheScore, textWin);
+            this.calculScore(valence_array);
+            this.Increment();
         });
 
 
@@ -269,8 +290,8 @@ export default class Level1 extends AbstractLevel {
             Traceon(this);
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            this.Increment(score, afficheScore, textWin);
+            this.calculScore(valence_array);
+            this.Increment();
         });
     }
 
@@ -278,4 +299,6 @@ export default class Level1 extends AbstractLevel {
     update() {
 
     }
+
+
 }
