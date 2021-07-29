@@ -1,7 +1,31 @@
-import phaser from 'phaser';
-import MyGame from '../../index.js';
-
 import backgroundimage from '../../assets/background.png';
+import levels from '../../assets/icons/levels.svg';
+import roux from '../../assets/icons/settings.svg';
+import play from '../../assets/icons/play.svg';
+import robot from '../../assets/littleAI.png';
+import loop from '../../assets/loopsong.mp3';
+import info from '../../assets/icons/infomenu.png';
+import Info from '../../assets/icons/info.png';
+import Ranking from '../../assets/icons/ranking.png';
+import Replay from '../../assets/icons/replay.png';
+import Backarrow from '../../assets/icons/menubtn.png';
+import Pause from '../../assets/icons/pause.png';
+
+
+import Whitesquare from '../../assets/Whiteform/carre.png';
+import Wcircle from '../../assets/Whiteform/circle.png';
+import Wtriangle from '../../assets/Whiteform/triangle.png';
+
+import Circlered from '../../assets/game-icons/circle_red.png';
+import Redsquare from '../../assets/game-icons/carre_rouge.png';
+import Redtriangle from '../../assets/game-icons/triangle_rouge.png';
+import Yellowsquare from '../../assets/game-icons/carre_jaune.png';
+import Yellowcircle from '../../assets/game-icons/circle_jaune.png';
+import Yellowtriangle from '../../assets/game-icons/triangle_jaune.png';
+import Greensquare from '../../assets/game-icons/carre_vert.png';
+import Greencircle from '../../assets/game-icons/circle_vert.png';
+import Greentriangle from '../../assets/game-icons/triangle_vert.png';
+
 import AbstractLevel from '../AbstractLevel.js';
 
 
@@ -17,6 +41,35 @@ export default class Level1 extends AbstractLevel {
 
 
     preload() {
+        this.load.image('bgi', backgroundimage);
+        this.load.image('play', play);
+        this.load.image('settings', roux);
+        this.load.image('levels', levels);
+        this.load.image('robot', robot)
+        this.load.audio('music', loop, loop);
+        this.load.image('credits', info);
+        this.load.image('info', Info);
+        this.load.image('ranking', Ranking);
+        this.load.image('replay', Replay);
+
+        this.load.image('pause', Pause);
+        this.load.image('backto', Backarrow);
+
+        this.load.image('carre', Whitesquare);
+        this.load.image('circle', Wcircle);
+        this.load.image('triangle', Wtriangle);
+
+        this.load.image('cercle_rouge', Circlered);
+        this.load.image('cercle_jaune', Yellowcircle);
+        this.load.image('cercle_vert', Greencircle);
+
+        this.load.image('triangle_vert', Greentriangle);
+        this.load.image('triangle_jaune', Yellowtriangle);
+        this.load.image('triangle_rouge', Redtriangle);
+
+        this.load.image('carre_jaune', Yellowsquare);
+        this.load.image('carre_rouge', Redsquare);
+        this.load.image('carre_vert', Greensquare);
 
 
     }

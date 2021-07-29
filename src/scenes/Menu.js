@@ -1,3 +1,33 @@
+
+import backgroundimage from '../assets/background.png';
+import levels from '../assets/icons/levels.svg';
+import roux from '../assets/icons/settings.svg';
+import play from '../assets/icons/play.svg';
+import robot from '../assets/littleAI.png';
+import loop from '../assets/loopsong.mp3';
+import info from '../assets/icons/infomenu.png';
+import Info from '../assets/icons/info.png';
+import Ranking from '../assets/icons/ranking.png';
+import Replay from '../assets/icons/replay.png';
+import Backarrow from '../assets/icons/menubtn.png';
+import Pause from '../assets/icons/pause.png';
+
+
+import Whitesquare from '../assets/Whiteform/carre.png';
+import Wcircle from '../assets/Whiteform/circle.png';
+import Wtriangle from '../assets/Whiteform/triangle.png';
+
+import Circlered from '../assets/game-icons/circle_red.png';
+import Redsquare from '../assets/game-icons/carre_rouge.png';
+import Redtriangle from '../assets/game-icons/triangle_rouge.png';
+import Yellowsquare from '../assets/game-icons/carre_jaune.png';
+import Yellowcircle from '../assets/game-icons/circle_jaune.png';
+import Yellowtriangle from '../assets/game-icons/triangle_jaune.png';
+import Greensquare from '../assets/game-icons/carre_vert.png';
+import Greencircle from '../assets/game-icons/circle_vert.png';
+import Greentriangle from '../assets/game-icons/triangle_vert.png';
+
+
 export default class Menu extends Phaser.Scene {
     constructor() {
         super('Menu');

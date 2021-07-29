@@ -1,5 +1,4 @@
 import phaser from 'phaser';
-import { textmessages } from '../../index.js';
 
 import backgroundimage from '../../assets/background.png';
 
