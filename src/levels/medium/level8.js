@@ -2,13 +2,14 @@ import phaser from 'phaser';
 import MyGame from '../../index.js';
 
 import backgroundimage from '../../assets/background.png';
+import AbstractLevel from '../AbstractLevel.js';
 
 
-export default class Level8 extends Phaser.Scene {
+export default class Level8 extends AbstractLevel {
 
 
     constructor() {
-        super('Level8')
+        super(8)
 
     }
 
@@ -60,12 +61,7 @@ export default class Level8 extends Phaser.Scene {
         var backgroundimg = this.add.image(600, 300, 'bgi');
 
         // "New function" Change Level directly on game
-        let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        nextlevel.setInteractive({ useHandCursor: true });
-        nextlevel.on('pointerdown', () => this.scene.start('Level9'));
-        previouslevel.setInteractive({ useHandCursor: true });
-        previouslevel.on('pointerdown', () => this.scene.start('Level7'));
+        super.create();
 
         var back = this.add.image(50, 50, 'backto');
         back.setInteractive({ useHandCursor: true });
