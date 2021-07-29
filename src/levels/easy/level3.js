@@ -24,7 +24,7 @@ export default class Level1 extends Phaser.Scene {
         //load Variables use on game
         let activeTrace = true;
         let activeimulation = false;
-        var score = 0;
+        this.score = 0;
         let nombreCompteur = 0;
         var states = [1, 0];
         let hedonist_array = [
@@ -69,11 +69,11 @@ export default class Level1 extends Phaser.Scene {
 
         //text and other things
         this.add.text(500, 0, 'Level 3 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("Level4"));
+        this.TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+        this.afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+        this.textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
+        this.textWin.setInteractive({ useHandCursor: true });
+        this.textWin.on('pointerdown', () => this.scene.start("Level4"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -268,17 +268,7 @@ export default class Level1 extends Phaser.Scene {
 
 
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function calculScore() {
-            score = 0;
-            for (let i = 0; i < valence_array.length; i++) {
-                score += valence_array[i];
-            }
-            console.log(score);
-
-        }
+ 
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -298,8 +288,8 @@ export default class Level1 extends Phaser.Scene {
             Traceon(this);
             drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
+            this.calculScore(valence_array);
+            this.Increment();
         });
 
 
@@ -309,8 +299,8 @@ export default class Level1 extends Phaser.Scene {
             Traceon(this);
             drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
+            this.calculScore(valence_array);
+            this.Increment();
         });
     }
 
@@ -318,4 +308,34 @@ export default class Level1 extends Phaser.Scene {
     update() {
 
     }
+    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
+    Increment() 
+    {
+        this.afficheScore.setText([
+            this.score
+        ]);
+        this.afficheScore.setFill(['white']);
+        if (this.score >= 10) {
+            this.afficheScore.setFill(['lime']);
+            this.textWin.setText([
+                'Victoire ! press for next level'
+            ]);
+            this.textWin.setStroke('#ffd700');
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
+    calculScore(valence_array) 
+    {
+        this.score = 0;
+        for (let i = 0; i < valence_array.length; i++) {
+            this.score += valence_array[i];
+        }
+        console.log(this.score);
+    }
+
 }

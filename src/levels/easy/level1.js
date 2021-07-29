@@ -8,11 +8,12 @@ import AbstractLevel from '../AbstractLevel.js';
 //export default class Level1 extends Phaser.Scene {
 export default class Level1 extends AbstractLevel {
 
-
     constructor() {
         super('Level1');
-    }
+        //this.afficheScore;
 
+        //this.toto = 1;
+    }
 
 
     preload() {
@@ -128,24 +129,6 @@ export default class Level1 extends AbstractLevel {
             if (action == 0) {
                 return outcome
 
-            }
-        }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-
-        function Increment() {
-            afficheScore.setText([
-                score
-            ]);
-            afficheScore.setFill(['white']);
-            if (score >= 10) {
-                afficheScore.setFill(['lime']);
-                textWin.setText([
-                    //'Victoire ! press for next level'
-                    AbstractLevel.getVictoireMessage()
-                ]);
-                textWin.setStroke('#ffd700');
             }
         }
         //------------------------------------------------------------------------------------------------------------------------
@@ -276,7 +259,7 @@ export default class Level1 extends AbstractLevel {
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
-            Increment();
+            this.Increment(score, afficheScore, textWin);
         });
 
 
@@ -287,7 +270,7 @@ export default class Level1 extends AbstractLevel {
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
             calculScore();
-            Increment();
+            this.Increment(score, afficheScore, textWin);
         });
     }
 

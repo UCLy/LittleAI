@@ -4,17 +4,30 @@ export default class AbstractLevel extends Phaser.Scene {
 
     constructor(level) {
         super(level);
-        //this.victoireMsg = 'Victoire ! Click here to access next level';
+        this.level = level;
     }
 
     preload(){}
 
-    create() {}
+    create(){}
     
     update(){}
 
-    static getVictoireMessage(){
-        return 'Victoire! Click here to access next level';
+    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
+    Increment(score, afficheScore, textWin) 
+    {
+        afficheScore.setText([score]);
+        afficheScore.setFill(['white']);
+
+        if (score >= 10) {
+            afficheScore.setFill(['lime']);
+            textWin.setText([
+                'You win! Click > to proceed to next level'
+            ]);
+            textWin.setStroke('#ffd700');
+        }
     }
 
 }
