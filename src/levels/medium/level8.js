@@ -58,7 +58,6 @@ export default class Level8 extends AbstractLevel {
 
 
         // background & pictures
-        var backgroundimg = this.add.image(600, 300, 'bgi');
 
         // "New function" Change Level directly on game
         super.create();
@@ -171,23 +170,7 @@ export default class Level8 extends AbstractLevel {
             console.log(outcome + "Outcome test");
             return outcome;
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
 
-        function Increment() {
-            afficheScore.setText([
-                score
-            ]);
-            afficheScore.setFill(['white']);
-            if (score >= 10) {
-                afficheScore.setFill(['lime']);
-                textWin.setText([
-                    'Victoire ! press for next level'
-                ]);
-                textWin.setStroke('#ffd700');
-            }
-        }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------feedback for score parameters --------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -369,17 +352,7 @@ export default class Level8 extends AbstractLevel {
             }
 
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function calculScore() {
-            score = 0;
-            for (let i = 0; i < valence_array.length; i++) {
-                score += valence_array[i];
-            }
-            console.log(score);
 
-        }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -399,8 +372,8 @@ export default class Level8 extends AbstractLevel {
             Traceon(this);
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
+            this.calculScore(valence_array);
+            this.Increment();
         });
 
 
@@ -410,8 +383,8 @@ export default class Level8 extends AbstractLevel {
             Traceon(this);
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
+            this.calculScore(valence_array);
+            this.Increment();
         });
 
         this.btnTriangle.on(POINTER_DOWN, () => {
@@ -420,8 +393,8 @@ export default class Level8 extends AbstractLevel {
             Traceon(this);
             drawing(action, outcome, this);
             posmanager(sprite, valeurInterraction, "Triangle");
-            calculScore();
-            Increment();
+            this.calculScore(valence_array);
+            this.Increment();
         });
     }
 
