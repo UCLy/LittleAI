@@ -34,10 +34,7 @@ export default class Level1 extends AbstractLevel {
 
     constructor() {
         super(1);
-        //this.afficheScore;
-
-        //this.toto = 1;
-    }
+   }
 
 
     preload() {
@@ -81,7 +78,6 @@ export default class Level1 extends AbstractLevel {
         //load Variables use on game
         let activeTrace = false;
         let activeimulation = false;
-        var score = 0;
         let nombreCompteur = 0;
         var states = [1, 0];
         let hedonist_array = [
