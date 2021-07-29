@@ -33,7 +33,7 @@ import AbstractLevel from '../AbstractLevel.js';
 export default class Level1 extends AbstractLevel {
 
     constructor() {
-        super('Level1');
+        super(1);
         //this.afficheScore;
 
         //this.toto = 1;
@@ -112,7 +112,7 @@ export default class Level1 extends AbstractLevel {
         let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
         let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
         nextlevel.setInteractive({ useHandCursor: true });
-        nextlevel.on('pointerdown', () => this.scene.start('Level2'));
+        nextlevel.on('pointerdown', () => {if (this.registry.get('maxUnlockedLevel') > 1) {this.scene.start('Level2')}});
         previouslevel.setInteractive({ useHandCursor: true });
         previouslevel.on('pointerdown', () => this.scene.start('Level0'));
 

@@ -1,16 +1,10 @@
-import phaser from 'phaser';
-import MyGame from '../../index.js';
-
-import backgroundimage from '../../assets/background.png';
 import AbstractLevel from '../AbstractLevel.js';
-
 
 export default class Level1 extends AbstractLevel {
 
 
     constructor() {
-        super('Level2')
-
+        super(2)
     }
 
 

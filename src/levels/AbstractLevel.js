@@ -3,7 +3,7 @@
 export default class AbstractLevel extends Phaser.Scene {
 
     constructor(level) {
-        super(level);
+        super('Level' + level);
         this.level = level;
     }
 
@@ -27,6 +27,10 @@ export default class AbstractLevel extends Phaser.Scene {
                 'You win! Click > to proceed to next level'
             ]);
             textWin.setStroke('#ffd700');
+            let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
+            if (this.level >= maxUnlockedLevel) {
+                this.registry.set('maxUnlockedLevel', maxUnlockedLevel + 1);
+            }
         }
     }
 

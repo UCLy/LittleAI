@@ -140,24 +140,21 @@ export default class Menu extends Phaser.Scene {
         rectlevel13.setInteractive({ useHandCursor: true });
 
 
-        rectlevel0.on('pointerdown', () => this.scene.start("Level0", { levelused: 1 }));
-        rectlevel1.on('pointerdown', () => this.scene.start("Level1", { levelused: 2 }));
-        rectlevel2.on('pointerdown', () => this.scene.start("Level2", { levelused: 3 }));
-        rectlevel3.on('pointerdown', () => this.scene.start("Level3", { levelused: 4 }));
-        rectlevel4.on('pointerdown', () => this.scene.start("Level4", { levelused: 5 }));
-        rectlevel5.on('pointerdown', () => this.scene.start("Level5", { levelused: 6 }));
-        rectlevel6.on('pointerdown', () => this.scene.start("Level6", { levelused: 6 }));
-        rectlevel7.on('pointerdown', () => this.scene.start("Level7", { levelused: 6 }));
+        rectlevel0.on('pointerdown', () => this.scene.start("Level0"));
+        rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
+        rectlevel2.on('pointerdown', () => this.scene.start("Level2"));
+        rectlevel3.on('pointerdown', () => this.scene.start("Level3"));
+        rectlevel4.on('pointerdown', () => this.scene.start("Level4"));
+        rectlevel5.on('pointerdown', () => this.scene.start("Level5"));
+        rectlevel6.on('pointerdown', () => this.scene.start("Level6"));
+        rectlevel7.on('pointerdown', () => this.scene.start("Level7"));
 
-        rectlevel8.on('pointerdown', () => this.scene.start("Level8", { levelused: 1 }));
-        rectlevel9.on('pointerdown', () => this.scene.start("Level9", { levelused: 2 }));
-        rectlevel10.on('pointerdown', () => this.scene.start("Level10", { levelused: 3 }));
-        rectlevel11.on('pointerdown', () => this.scene.start("Level11", { levelused: 4 }));
-        rectlevel12.on('pointerdown', () => this.scene.start("Level12", { levelused: 5 }));
-        rectlevel13.on('pointerdown', () => this.scene.start("Level13", { levelused: 6 }));
-
-
-
+        rectlevel8.on('pointerdown', () => this.scene.start("Level8"));
+        rectlevel9.on('pointerdown', () => this.scene.start("Level9"));
+        rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
+        rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
+        rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
+        rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
 
 
         //changer la forme du cercle rouge qd on passe le curseur dessus

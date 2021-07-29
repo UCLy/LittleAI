@@ -50,4 +50,6 @@ const configmusic = {
 
 };
 
-const game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
+
+game.registry.set('maxUnlockedLevel', 1); 
