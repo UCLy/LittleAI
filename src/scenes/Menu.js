@@ -83,7 +83,7 @@ export default class Menu extends Phaser.Scene {
 
 
         //pour les rectacercles ngles des niveaux (PS : SI VOUS VOULEZ CHANGER LA COULEUR qui est en Hexadecimal, remplacé le '#' par '0x')
-        var rectlevel0 = this.add.circle(80, 220, 30, 0xaa0088);
+        //var rectlevel0 = this.add.circle(80, 220, 30, 0xaa0088);
         var rectlevel1 = this.add.circle(200, 220, 30, 0xaa0088);
         var rectlevel2 = this.add.circle(330, 220, 30, 0xaa0088);
         var rectlevel3 = this.add.circle(460, 220, 30, 0xaa0088);
@@ -104,7 +104,7 @@ export default class Menu extends Phaser.Scene {
 
 
         //pour les textes des niveaux
-        let level0 = this.add.text(75, 210, '0', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        //let level0 = this.add.text(75, 210, '0', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level1 = this.add.text(195, 210, '1', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level2 = this.add.text(325, 210, '2', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level3 = this.add.text(455, 210, '3', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
@@ -120,45 +120,85 @@ export default class Menu extends Phaser.Scene {
         let level12 = this.add.text(583, 315, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
 
+        console.log("menu");
+
+        switch (this.registry.get('maxUnlockedLevel')){
+            case 13:
+                rectlevel13.setInteractive({ useHandCursor: true });
+                rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
+            case 12:
+                rectlevel12.setInteractive({ useHandCursor: true });
+                rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
+            case 11:
+                rectlevel11.setInteractive({ useHandCursor: true });
+                rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
+            case 10:
+                rectlevel1.setInteractive({ useHandCursor: true });
+                rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
+            case 9:
+                rectlevel9.setInteractive({ useHandCursor: true });
+                rectlevel9.on('pointerdown', () => this.scene.start("Level9"));
+            case 8:
+                rectlevel8.setInteractive({ useHandCursor: true });
+                rectlevel8.on('pointerdown', () => this.scene.start("Level8"));
+            case 7:
+                rectlevel7.setInteractive({ useHandCursor: true });
+                rectlevel7.on('pointerdown', () => this.scene.start("Level7"));
+            case 6:
+                rectlevel6.setInteractive({ useHandCursor: true });
+                rectlevel6.on('pointerdown', () => this.scene.start("Level6"));
+            case 5:
+                rectlevel5.setInteractive({ useHandCursor: true });
+                rectlevel5.on('pointerdown', () => this.scene.start("Level5"));
+            case 4:
+                rectlevel4.setInteractive({ useHandCursor: true });
+                rectlevel4.on('pointerdown', () => this.scene.start("Level4"));
+            case 3:
+                rectlevel3.setInteractive({ useHandCursor: true });
+                rectlevel3.on('pointerdown', () => this.scene.start("Level3"));
+            case 2:
+                rectlevel2.setInteractive({ useHandCursor: true });
+                rectlevel2.on('pointerdown', () => this.scene.start("Level2"));
+            case 1:
+                rectlevel1.setInteractive({ useHandCursor: true });
+                rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
+            }
+
+        // //pour pouvoir acceder au niveau qd on clique
+        // rectlevel0.setInteractive({ useHandCursor: true });
+        // rectlevel1.setInteractive({ useHandCursor: true });
+        // rectlevel2.setInteractive({ useHandCursor: true });
+        // rectlevel3.setInteractive({ useHandCursor: true });
+        // rectlevel4.setInteractive({ useHandCursor: true });
+        // rectlevel5.setInteractive({ useHandCursor: true });
+        // rectlevel6.setInteractive({ useHandCursor: true });
+        // rectlevel7.setInteractive({ useHandCursor: true });
+
+        // rectlevel8.setInteractive({ useHandCursor: true });
+        // rectlevel9.setInteractive({ useHandCursor: true });
+        // rectlevel10.setInteractive({ useHandCursor: true });
+        // rectlevel11.setInteractive({ useHandCursor: true });
+        // rectlevel12.setInteractive({ useHandCursor: true });
 
 
-        //pour pouvoir acceder au niveau qd on clique
-        rectlevel0.setInteractive({ useHandCursor: true });
-        rectlevel1.setInteractive({ useHandCursor: true });
-        rectlevel2.setInteractive({ useHandCursor: true });
-        rectlevel3.setInteractive({ useHandCursor: true });
-        rectlevel4.setInteractive({ useHandCursor: true });
-        rectlevel5.setInteractive({ useHandCursor: true });
-        rectlevel6.setInteractive({ useHandCursor: true });
-        rectlevel7.setInteractive({ useHandCursor: true });
+        // rectlevel0.on('pointerdown', () => this.scene.start("Level0"));
+        // rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
+        // rectlevel2.on('pointerdown', () => this.scene.start("Level2"));
+        // rectlevel3.on('pointerdown', () => this.scene.start("Level3"));
+        // rectlevel4.on('pointerdown', () => this.scene.start("Level4"));
+        // rectlevel5.on('pointerdown', () => this.scene.start("Level5"));
+        // rectlevel6.on('pointerdown', () => this.scene.start("Level6"));
+        // rectlevel7.on('pointerdown', () => this.scene.start("Level7"));
 
-        rectlevel8.setInteractive({ useHandCursor: true });
-        rectlevel9.setInteractive({ useHandCursor: true });
-        rectlevel10.setInteractive({ useHandCursor: true });
-        rectlevel11.setInteractive({ useHandCursor: true });
-        rectlevel12.setInteractive({ useHandCursor: true });
-        rectlevel13.setInteractive({ useHandCursor: true });
-
-
-        rectlevel0.on('pointerdown', () => this.scene.start("Level0"));
-        rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
-        rectlevel2.on('pointerdown', () => this.scene.start("Level2"));
-        rectlevel3.on('pointerdown', () => this.scene.start("Level3"));
-        rectlevel4.on('pointerdown', () => this.scene.start("Level4"));
-        rectlevel5.on('pointerdown', () => this.scene.start("Level5"));
-        rectlevel6.on('pointerdown', () => this.scene.start("Level6"));
-        rectlevel7.on('pointerdown', () => this.scene.start("Level7"));
-
-        rectlevel8.on('pointerdown', () => this.scene.start("Level8"));
-        rectlevel9.on('pointerdown', () => this.scene.start("Level9"));
-        rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
-        rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
-        rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
-        rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
+        // rectlevel8.on('pointerdown', () => this.scene.start("Level8"));
+        // rectlevel9.on('pointerdown', () => this.scene.start("Level9"));
+        // rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
+        // rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
+        // rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
 
 
         //changer la forme du cercle rouge qd on passe le curseur dessus
-        rectlevel0.on('pointerover', () => { this.tweens.add({ targets: rectlevel0, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        //rectlevel0.on('pointerover', () => { this.tweens.add({ targets: rectlevel0, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel1.on('pointerover', () => { this.tweens.add({ targets: rectlevel1, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel2.on('pointerover', () => { this.tweens.add({ targets: rectlevel2, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel3.on('pointerover', () => { this.tweens.add({ targets: rectlevel3, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
@@ -175,7 +215,7 @@ export default class Menu extends Phaser.Scene {
 
 
 
-        rectlevel0.on('pointerout', () => { rectlevel0.width = 10 });
+        //rectlevel0.on('pointerout', () => { rectlevel0.width = 10 });
         rectlevel1.on('pointerout', () => { rectlevel1.width = 10 });
         rectlevel2.on('pointerout', () => { rectlevel2.width = 10 });
         rectlevel3.on('pointerout', () => { rectlevel3.width = 10 });
