@@ -1,17 +1,13 @@
 import AbstractLevel from '../AbstractLevel.js';
 
-export default class Level1 extends AbstractLevel {
+export default class Level3 extends AbstractLevel {
 
 
     constructor() {
         super(3)
     }
 
-
-
     preload() {
-
-
     }
 
     create() {
@@ -21,7 +17,6 @@ export default class Level1 extends AbstractLevel {
         //load Variables use on game
         let activeTrace = true;
         let activeimulation = false;
-        this.score = 0;
         let nombreCompteur = 0;
         var states = [1, 0];
         let hedonist_array = [
@@ -47,31 +42,6 @@ export default class Level1 extends AbstractLevel {
         let Wallone;
         let Walltwo;
 
-        // background & pictures
-        //var backgroundimg = this.add.image(600, 300, 'bgi');
-
-        // "New function" Change Level directly on game
-        // let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        // nextlevel.setInteractive({ useHandCursor: true });
-        // nextlevel.on('pointerdown', () => this.scene.start('Level4'));
-        // previouslevel.setInteractive({ useHandCursor: true });
-        // previouslevel.on('pointerdown', () => this.scene.start('Level2'));
-
-        // var back = this.add.image(50, 50, 'backto');
-        // back.setInteractive({ useHandCursor: true });
-        // back.setScale(0.07);
-        // back.on('pointerdown', () => this.scene.start("Menu"));
-
-
-        // //text and other things
-        // //this.add.text(500, 0, 'Level 3 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // this.TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // this.afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // this.textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        // this.textWin.setInteractive({ useHandCursor: true });
-        // this.textWin.on('pointerdown', () => this.scene.start("Level4"));
-
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
@@ -89,7 +59,6 @@ export default class Level1 extends AbstractLevel {
         }
 
         //create button square
-
 
         this.btnCircle.on(POINTER_OVER, function() {
             this.setTint(0x999999);
@@ -137,23 +106,6 @@ export default class Level1 extends AbstractLevel {
             console.log(outcome + "Outcome test");
 
             return outcome;
-        }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-
-        function Increment() {
-            afficheScore.setText([
-                score
-            ]);
-            afficheScore.setFill(['white']);
-            if (score >= 10) {
-                afficheScore.setFill(['lime']);
-                textWin.setText([
-                    'Victoire ! press for next level'
-                ]);
-                textWin.setStroke('#ffd700');
-            }
         }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------feedback for score parameters --------------------------------------------------
@@ -262,8 +214,6 @@ export default class Level1 extends AbstractLevel {
                     robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
                 }
             }
-
-
         }
  
         //------------------------------------------------------------------------------------------------------------------------
@@ -305,23 +255,4 @@ export default class Level1 extends AbstractLevel {
     update() {
 
     }
-    //------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------------
-    Incrementold() 
-    {
-        this.afficheScore.setText([
-            this.score
-        ]);
-        this.afficheScore.setFill(['white']);
-        if (this.score >= 10) {
-            this.afficheScore.setFill(['lime']);
-            this.textWin.setText([
-                'Victoire ! press for next level'
-            ]);
-            this.textWin.setStroke('#ffd700');
-        }
-    }
-
-
 }

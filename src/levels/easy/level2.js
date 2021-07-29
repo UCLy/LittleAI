@@ -1,6 +1,6 @@
 import AbstractLevel from '../AbstractLevel.js';
 
-export default class Level1 extends AbstractLevel {
+export default class Level2 extends AbstractLevel {
 
 
     constructor() {
@@ -19,7 +19,6 @@ export default class Level1 extends AbstractLevel {
         //load Variables use on game
         let activeTrace = false;
         let activeimulation = false;
-        var score = 0;
         let nombreCompteur = 0;
         var states = [0, 1];
         let hedonist_array = [
@@ -45,34 +44,6 @@ export default class Level1 extends AbstractLevel {
         let Walltwo;
 
 
-        // background & pictures
-        //var backgroundimg = this.add.image(600, 300, 'bgi');
-
-        this.createNavigationBar();
-        // "New function" Change Level directly on game
-        // let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        // nextlevel.setInteractive({ useHandCursor: true });
-        // nextlevel.on('pointerdown', () => this.scene.start('Level3'));
-        // previouslevel.setInteractive({ useHandCursor: true });
-        // previouslevel.on('pointerdown', () => this.scene.start('Level1'));
-
-
-
-        // var back = this.add.image(50, 50, 'backto');
-        // back.setInteractive({ useHandCursor: true });
-        // back.setScale(0.07);
-        // back.on('pointerdown', () => this.scene.start("Menu"));
-
-       
-
-        //text and other things
-        //this.add.text(500, 0, 'Level 2 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        // textWin.setInteractive({ useHandCursor: true });
-        // textWin.on('pointerdown', () => this.scene.start("Level3"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -101,7 +72,6 @@ export default class Level1 extends AbstractLevel {
         });
 
         //create button circle
-
 
         this.btnCarre.on(POINTER_OVER, function() {
             this.setTint(0x999999);
@@ -247,17 +217,6 @@ export default class Level1 extends AbstractLevel {
 
         }
         //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function calculScore() {
-            score = 0;
-            for (let i = 0; i < valence_array.length; i++) {
-                score += valence_array[i];
-            }
-            console.log(score);
-
-        }
-        //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
         function posmanager(sprite, valeurInterraction, formuse) {
@@ -291,7 +250,6 @@ export default class Level1 extends AbstractLevel {
             this.Increment();
         });
     }
-
 
     update() {
 
