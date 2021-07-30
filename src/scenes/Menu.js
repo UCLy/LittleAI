@@ -121,8 +121,10 @@ export default class Menu extends Phaser.Scene {
         let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
 
         console.log("menu");
+        let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1; 
 
-        switch (this.registry.get('maxUnlockedLevel')){
+        //switch (this.registry.get('maxUnlockedLevel')){
+        switch (maxUnlockedLevel){
             case 13:
                 rectlevel13.setInteractive({ useHandCursor: true });
                 rectlevel13.on('pointerdown', () => this.scene.start("Level13"));

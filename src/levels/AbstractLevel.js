@@ -22,7 +22,8 @@ export default class AbstractLevel extends Phaser.Scene {
         this.previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
         this.nextlevel.setInteractive({ useHandCursor: true });
         this.nextlevel.on('pointerdown', () => 
-            {if (this.registry.get('maxUnlockedLevel') > this.level) 
+            //{if (this.registry.get('maxUnlockedLevel') > this.level) 
+            {if ((parseInt(localStorage.getItem('maxUnlockedLevel')) || 1) > this.level) 
                 {this.scene.start('Level' + (this.level + 1))}
             });
         this.previouslevel.setInteractive({ useHandCursor: true });
@@ -61,9 +62,12 @@ export default class AbstractLevel extends Phaser.Scene {
                 'You win! Click > to proceed to next level'
             ]);
             this.textWin.setStroke('#ffd700');
-            let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
+            //let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
+            let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1; 
+            
             if (this.level >= maxUnlockedLevel) {
-                this.registry.set('maxUnlockedLevel', maxUnlockedLevel + 1);
+                //this.registry.set('maxUnlockedLevel', this.level + 1);
+                localStorage.setItem('maxUnlockedLevel',this.level + 1);
             }
         }
     }
