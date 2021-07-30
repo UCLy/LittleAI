@@ -24,7 +24,7 @@ export default class Level8 extends AbstractLevel {
 
         //load Variables use on game
         let activeTrace = false;
-        let activeimulation = false;
+        let activeimulation = true;
         let revealresultonform = true;
         var score = 0;
         let nombreCompteur = 0;
@@ -62,19 +62,7 @@ export default class Level8 extends AbstractLevel {
         // "New function" Change Level directly on game
         super.create();
 
-        var back = this.add.image(50, 50, 'backto');
-        back.setInteractive({ useHandCursor: true });
-        back.setScale(0.07);
-        back.on('pointerdown', () => this.scene.start("Menu"));
 
-
-        //text and other things
-        this.add.text(500, 0, 'Level 8 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("LevelsScene"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -90,10 +78,13 @@ export default class Level8 extends AbstractLevel {
         if (activeimulation == true) {
             robotsim = this.add.sprite(700, 150, 'robot');
             robotsim.setScale(0.3);
-            Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
+            Wallone = this.add.graphics();
+            Wallone.fillGradientStyle(0xff0000, 0x00ff00, 0xff0000, 0x00ff00);
+            Wallone.fillRect(580, 150, 30, 30);
             Walltwo = this.add.circle(850, 150, 15, 0xff0000);
             buttonup = this.add.triangle(710, 80, 710, 80, 720, 90, 700, 90, 0xff0000);
         }
+
 
         //create button square
 
@@ -217,7 +208,7 @@ export default class Level8 extends AbstractLevel {
                     robotsim.setPosition(700, 150);
 
                     if (outcome == 1) {
-                        Wallone.setFillStyle(0xff0000);
+                        scene.tween.add({ targets: Wallone, rotate: 180, duration: 150, yoyo: true, ease: 'Power2' })
                         Walltwo.setFillStyle(0x00ff00);
                     }
                 }
