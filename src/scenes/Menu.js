@@ -122,8 +122,6 @@ export default class Menu extends Phaser.Scene {
         console.log("menu");
         let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 14;
 
-        maxUnlockedLevel = 13 // for debug
-
         //switch (this.registry.get('maxUnlockedLevel')){
         switch (maxUnlockedLevel) {
             case 13:

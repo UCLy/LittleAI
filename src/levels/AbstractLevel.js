@@ -65,7 +65,7 @@ export default class AbstractLevel extends Phaser.Scene {
                 //this.registry.set('maxUnlockedLevel', this.level + 1);
                 localStorage.setItem('maxUnlockedLevel',this.level + 1);
             }
-            updateNextLevelLink();
+            this.updateNextLevelLink();
         }
     }
     
