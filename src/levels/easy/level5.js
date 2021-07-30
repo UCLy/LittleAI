@@ -1,25 +1,18 @@
-import phaser from 'phaser';
-import MyGame from '../../index.js';
+import AbstractLevel from '../AbstractLevel.js';
 
-import backgroundimage from '../../assets/background.png';
-
-
-export default class Level1 extends Phaser.Scene {
+export default class Level5 extends AbstractLevel {
 
 
     constructor() {
-        super('Level5')
-
+        super(5)
     }
 
-
-
     preload() {
-
-
     }
 
     create() {
+
+        super.create();
 
         //load Variables use on game
         let activeTrace = true;
@@ -51,30 +44,30 @@ export default class Level1 extends Phaser.Scene {
         let Walltwo;
 
 
-        // background & pictures
-        var backgroundimg = this.add.image(600, 300, 'bgi');
+        // // background & pictures
+        // var backgroundimg = this.add.image(600, 300, 'bgi');
 
-        // "New function" Change Level directly on game
-        let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        nextlevel.setInteractive({ useHandCursor: true });
-        nextlevel.on('pointerdown', () => this.scene.start('Level6'));
-        previouslevel.setInteractive({ useHandCursor: true });
-        previouslevel.on('pointerdown', () => this.scene.start('Level4'));
+        // // "New function" Change Level directly on game
+        // let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        // let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
+        // nextlevel.setInteractive({ useHandCursor: true });
+        // nextlevel.on('pointerdown', () => this.scene.start('Level6'));
+        // previouslevel.setInteractive({ useHandCursor: true });
+        // previouslevel.on('pointerdown', () => this.scene.start('Level4'));
 
-        var back = this.add.image(50, 50, 'backto');
-        back.setInteractive({ useHandCursor: true });
-        back.setScale(0.07);
-        back.on('pointerdown', () => this.scene.start("Menu"));
+        // var back = this.add.image(50, 50, 'backto');
+        // back.setInteractive({ useHandCursor: true });
+        // back.setScale(0.07);
+        // back.on('pointerdown', () => this.scene.start("Menu"));
 
 
-        //text and other things
-        this.add.text(500, 0, 'Level 5 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        textWin.setInteractive({ useHandCursor: true });
-        textWin.on('pointerdown', () => this.scene.start("Level6"));
+        // //text and other things
+        // this.add.text(500, 0, 'Level 5 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
+        // let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+        // let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
+        // let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
+        // textWin.setInteractive({ useHandCursor: true });
+        // textWin.on('pointerdown', () => this.scene.start("Level6"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -146,19 +139,19 @@ export default class Level1 extends Phaser.Scene {
         //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
 
-        function Increment() {
-            afficheScore.setText([
-                score
-            ]);
-            afficheScore.setFill(['white']);
-            if (score >= 10) {
-                afficheScore.setFill(['lime']);
-                textWin.setText([
-                    'Victoire ! press for next level'
-                ]);
-                textWin.setStroke('#ffd700');
-            }
-        }
+        // function Increment() {
+        //     afficheScore.setText([
+        //         score
+        //     ]);
+        //     afficheScore.setFill(['white']);
+        //     if (score >= 10) {
+        //         afficheScore.setFill(['lime']);
+        //         textWin.setText([
+        //             'Victoire ! press for next level'
+        //         ]);
+        //         textWin.setStroke('#ffd700');
+        //     }
+        // }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------feedback for score parameters --------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -269,14 +262,14 @@ export default class Level1 extends Phaser.Scene {
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
-        function calculScore() {
-            score = 0;
-            for (let i = 0; i < valence_array.length; i++) {
-                score += valence_array[i];
-            }
-            console.log(score);
+        // function calculScore() {
+        //     score = 0;
+        //     for (let i = 0; i < valence_array.length; i++) {
+        //         score += valence_array[i];
+        //     }
+        //     console.log(score);
 
-        }
+        // }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -296,9 +289,9 @@ export default class Level1 extends Phaser.Scene {
             Traceon(this);
             drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
-        });
+            this.calculScore(valence_array);
+            this.Increment();
+         });
 
 
         this.btnCircle.on(POINTER_DOWN, () => {
@@ -307,9 +300,9 @@ export default class Level1 extends Phaser.Scene {
             Traceon(this);
             drawing(action, outcome, this, valence);
             posmanager(sprite, valeurInterraction, "Rond");
-            calculScore();
-            Increment();
-        });
+            this.calculScore(valence_array);
+            this.Increment();
+         });
     }
 
 
