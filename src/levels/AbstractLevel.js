@@ -17,21 +17,16 @@ export default class AbstractLevel extends Phaser.Scene {
         this.backgroundimg = this.add.image(600, 300, 'bgi');
 
         // Create the navigation bar
-        this.add.text(500, 0, 'Level ' + this.level, { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        this.nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        this.previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        this.nextlevel.setInteractive({ useHandCursor: true });
-        this.nextlevel.on('pointerdown', () => 
-            //{if (this.registry.get('maxUnlockedLevel') > this.level) 
-            {if ((parseInt(localStorage.getItem('maxUnlockedLevel')) || 1) > this.level) 
-                {this.scene.start('Level' + (this.level + 1))}
-            });
-        this.previouslevel.setInteractive({ useHandCursor: true });
-        this.previouslevel.on('pointerdown', () => 
-            {if (this.level > 1)
-                {this.scene.start('Level' + (this.level - 1))}
-            });
-
+        this.add.text(625, 30, 'Level ' + this.level, { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
+        this.nextlevel = this.add.text(625 + 150, 30, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
+        this.updateNextLevelLink();
+        this.previouslevel = this.add.text(625 - 150, 30, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
+        if (this.level > 1)
+        {
+            this.previouslevel.setInteractive({ useHandCursor: true });
+            this.previouslevel.setFill(['lime']);
+            this.previouslevel.on('pointerdown', () => this.scene.start('Level' + (this.level - 1)));
+        }
         // Create the menu button    
         this.back = this.add.image(50, 50, 'backto');
         this.back.setInteractive({ useHandCursor: true });
@@ -39,11 +34,12 @@ export default class AbstractLevel extends Phaser.Scene {
         this.back.on('pointerdown', () => this.scene.start("Menu"));
 
         // Create the score 
-        this.TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        this.afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        this.textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
+        this.TexteScore = this.add.text(750, 510, "Score", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        this.afficheScore = this.add.text(750, 455, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
+        this.textWin = this.add.text(625, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        //this.textWin.setFill(['lime']);
         this.textWin.setInteractive({ useHandCursor: true });
-        this.textWin.on('pointerdown', () => this.scene.start("Level4"));
+        this.textWin.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
    }
 
     update(){}
@@ -59,7 +55,7 @@ export default class AbstractLevel extends Phaser.Scene {
         if (this.score >= 10) {
             this.afficheScore.setFill(['lime']);
             this.textWin.setText([
-                'You win! Click > to proceed to next level'
+                'You win! Click here to proceed to next level'
             ]);
             this.textWin.setStroke('#ffd700');
             //let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
@@ -69,6 +65,7 @@ export default class AbstractLevel extends Phaser.Scene {
                 //this.registry.set('maxUnlockedLevel', this.level + 1);
                 localStorage.setItem('maxUnlockedLevel',this.level + 1);
             }
+            updateNextLevelLink();
         }
     }
     
@@ -84,4 +81,13 @@ export default class AbstractLevel extends Phaser.Scene {
         console.log(this.score);
     }
 
+    updateNextLevelLink()
+    {
+        if ((parseInt(localStorage.getItem('maxUnlockedLevel')) || 1) > this.level) 
+        {
+            this.nextlevel.setInteractive({ useHandCursor: true });
+            this.nextlevel.setFill(['lime']);
+            this.nextlevel.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
+        }
+    }
 }

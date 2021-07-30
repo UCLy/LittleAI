@@ -22,7 +22,7 @@ export default class Level2 extends AbstractLevel {
         let nombreCompteur = 0;
         var states = [0, 1];
         let hedonist_array = [
-            [0, 1],
+            [-1, 1],
             [0, 1]
         ];
         const POINTER_DOWN = "pointerdown";
