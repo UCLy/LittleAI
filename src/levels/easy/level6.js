@@ -42,6 +42,7 @@ export default class Level6 extends AbstractLevel {
         let Wallone;
         let Walltwo;
 
+        this.afficheEqual = this.add.text(700, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
 
         // // background & pictures
         // var backgroundimg = this.add.image(600, 300, 'bgi');

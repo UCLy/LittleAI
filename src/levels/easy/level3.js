@@ -42,6 +42,9 @@ export default class Level3 extends AbstractLevel {
         let Wallone;
         let Walltwo;
 
+        this.afficheEqual = this.add.text(700, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
+
+
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });

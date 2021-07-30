@@ -35,7 +35,7 @@ export default class AbstractLevel extends Phaser.Scene {
 
         // Create the score 
         this.TexteScore = this.add.text(750, 510, "Score", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
-        this.afficheScore = this.add.text(750, 455, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
+        this.afficheScore = this.add.text(750, 455, "0", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
         this.textWin = this.add.text(625, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
         //this.textWin.setFill(['lime']);
         this.textWin.setInteractive({ useHandCursor: true });

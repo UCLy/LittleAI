@@ -19,9 +19,9 @@ export default class Level4 extends AbstractLevel {
         let activeimulation = false;
         var score = 0;
         let nombreCompteur = 0;
-        var states = [1, 0];
+        var states = [0, 1];
         let hedonist_array = [
-            [0, 1],
+            [-1, -1],
             [-1, 1]
         ];
         const POINTER_DOWN = "pointerdown";
@@ -43,32 +43,8 @@ export default class Level4 extends AbstractLevel {
         let Wallone;
         let Walltwo;
 
+        this.afficheEqual = this.add.text(700, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
 
-        // background & pictures
-        //var backgroundimg = this.add.image(600, 300, 'bgi');
-
-        // // "New function" Change Level directly on game
-        // let nextlevel = this.add.text(720, 2, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // let previouslevel = this.add.text(455, 2, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 })
-        // nextlevel.setInteractive({ useHandCursor: true });
-        // nextlevel.on('pointerdown', () => this.scene.start('Level5'));
-        // previouslevel.setInteractive({ useHandCursor: true });
-        // previouslevel.on('pointerdown', () => this.scene.start('Level3'));
-
-
-        // var back = this.add.image(50, 50, 'backto');
-        // back.setInteractive({ useHandCursor: true });
-        // back.setScale(0.07);
-        // back.on('pointerdown', () => this.scene.start("Menu"));
-
-
-        // //text and other things
-        // this.add.text(500, 0, 'Level 4 ', { fontFamily: 'OCR A Std, monospace', fontSize: 50 });
-        // let TexteScore = this.add.text(700, 500, "Score \n", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // let afficheScore = this.add.text(745, 440, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 });
-        // let textWin = this.add.text(330, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 20 })
-        // textWin.setInteractive({ useHandCursor: true });
-        // textWin.on('pointerdown', () => this.scene.start("Level5"));
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -115,44 +91,26 @@ export default class Level4 extends AbstractLevel {
             var outcome = states[action]
             valence = hedonist_array[action][outcome];
             console.log("hedonist array" + hedonist_array[action][outcome]);
-            valence = hedonist_array[action][outcome];
             for (let i = 0; i < valence_array.length; i++) {
                 if (i >= 9) {
                     valence_array.shift();
                 }
             }
-            if (action == 0) {
-                valence = hedonist_array[outcome][1];
-                valence_array.push(valence);
-                return outcome;
+            // if (action == 0) {
+            //     valence = hedonist_array[outcome][1];
+            //     valence_array.push(valence);
+            //     return outcome;
 
-            }
-            if (action == 1) {
+            // }
+            //if (action == 1) {
                 valence_array.push(valence);
                 return outcome;
-            }
+            //}
 
             console.log(outcome + "Outcome test");
 
             return outcome;
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-
-        // function Increment() {
-        //     afficheScore.setText([
-        //         score
-        //     ]);
-        //     afficheScore.setFill(['white']);
-        //     if (score >= 10) {
-        //         afficheScore.setFill(['lime']);
-        //         textWin.setText([
-        //             'Victoire ! press for next level'
-        //         ]);
-        //         textWin.setStroke('#ffd700');
-        //     }
-        // }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------feedback for score parameters --------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
@@ -263,17 +221,6 @@ export default class Level4 extends AbstractLevel {
 
 
         }
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        // function calculScore() {
-        //     score = 0;
-        //     for (let i = 0; i < valence_array.length; i++) {
-        //         score += valence_array[i];
-        //     }
-        //     console.log(score);
-
-        // }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
