@@ -1,4 +1,3 @@
-
 import backgroundimage from '../assets/background.png';
 import levels from '../assets/icons/levels.svg';
 import roux from '../assets/icons/settings.svg';
@@ -121,12 +120,12 @@ export default class Menu extends Phaser.Scene {
         let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
 
         console.log("menu");
-        let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1; 
+        let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 14;
 
         maxUnlockedLevel = 13 // for debug
 
         //switch (this.registry.get('maxUnlockedLevel')){
-        switch (maxUnlockedLevel){
+        switch (maxUnlockedLevel) {
             case 13:
                 rectlevel13.setInteractive({ useHandCursor: true });
                 rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
@@ -166,7 +165,7 @@ export default class Menu extends Phaser.Scene {
             case 1:
                 rectlevel1.setInteractive({ useHandCursor: true });
                 rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
-            }
+        }
 
         // //pour pouvoir acceder au niveau qd on clique
         // rectlevel0.setInteractive({ useHandCursor: true });
