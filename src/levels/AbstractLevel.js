@@ -12,6 +12,12 @@ export default class AbstractLevel extends Phaser.Scene {
     create(){
 
         this.score = 0;
+        this.nombreCompteur = 0;
+        this.posSprites = [];
+        this.posValeurInterraction = [];
+        this.tableau_interaction = [];
+        this.valeurInterraction = 0;
+
 
         // Create the background image before enything else
         this.backgroundimg = this.add.image(600, 300, 'bgi');
@@ -90,4 +96,32 @@ export default class AbstractLevel extends Phaser.Scene {
             this.nextlevel.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
         }
     }
+
+    Traceon() 
+    {
+        if (this.posSprites.length > 0 && this.activeTrace == true) {
+            console.log("POS SPRITE LENGTH " + this.posSprites.length);
+            for (let i = 0; i < this.posSprites.length; i++) {
+                console.log("POS SPRITE : " + i + " " + this.posSprites[i]);
+                let sprite2posSprites = this.posSprites[i];
+                let animatepos = sprite2posSprites.x;
+                animatepos -= 65;
+                this.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
+                let valencetab = this.posValeurInterraction[i];
+                let animatevalence = valencetab.x;
+                animatevalence -= 65
+                this.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
+                console.log("valence = " + animatevalence)
+            }
+        }
+    }
+    posmanager(sprite, valeurInterraction, formuse) 
+    {
+        this.posSprites.push(sprite);
+        this.posValeurInterraction.push(valeurInterraction);
+        this.nombreCompteur += 1;
+        this.tableau_interaction.push(formuse);
+        console.log(this.tableau_interaction);
+    }
+
 }

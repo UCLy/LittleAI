@@ -27,7 +27,7 @@ export default class Level8 extends AbstractLevel {
         let activeimulation = true;
         let revealresultonform = true;
         var score = 0;
-        this.nombreCompteur = 0;
+//        this.nombreCompteur = 0;
         var states = [1, 0, 0];
         let hedonist_array = [
             [0, 1],
@@ -38,14 +38,14 @@ export default class Level8 extends AbstractLevel {
         console.log(hedonist_array[2][0]);
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover';
-        this.posSprites = [];
-        this.posValeurInterraction = [];
+//        this.posSprites = [];
+//        this.posValeurInterraction = [];
         let valence_array = [];
-        this.tableau_interaction = [];
+        //this.tableau_interaction = [];
         let valencetab;
         let valence;
         let outcome;
-        let sprite;
+        //this.sprite;
         let valeurInterraction;
         let action;
         let sprite2posSprites;
@@ -359,7 +359,7 @@ export default class Level8 extends AbstractLevel {
             outcome = env(action, states);
             this.Traceon();
             this.drawing(action, outcome, this);
-            this.posmanager(sprite, valeurInterraction, "Rond");
+            this.posmanager(this.sprite, valeurInterraction, "Rond");
             this.calculScore(valence_array);
             this.Increment();
         });
@@ -370,7 +370,7 @@ export default class Level8 extends AbstractLevel {
             outcome = env(action, states);
             this.Traceon();
             this.drawing(action, outcome, this);
-            this.posmanager(sprite, valeurInterraction, "Rond");
+            this.posmanager(this.sprite, valeurInterraction, "Rond");
             this.calculScore(valence_array);
             this.Increment();
         });
@@ -380,7 +380,7 @@ export default class Level8 extends AbstractLevel {
             outcome = env(action, states);
             this.Traceon();
             this.drawing(action, outcome, this);
-            this.posmanager(sprite, valeurInterraction, "Triangle");
+            this.posmanager(this.sprite, valeurInterraction, "Triangle");
             this.calculScore(valence_array);
             this.Increment();
         });
@@ -400,7 +400,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(936, 400, 'carre_rouge');
+                        this.sprite = scene.add.sprite(936, 400, 'carre_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
@@ -409,7 +409,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(936, 412, 'carre_vert');
+                        this.sprite = scene.add.sprite(936, 412, 'carre_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     }
@@ -431,7 +431,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
+                        this.sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
@@ -441,7 +441,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'cercle_vert');
+                        this.sprite = scene.add.sprite(1145, 412, 'cercle_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
@@ -463,7 +463,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 0) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'triangle_jaune');
+                        this.sprite = scene.add.sprite(1145, 412, 'triangle_jaune');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
@@ -473,7 +473,7 @@ export default class Level8 extends AbstractLevel {
                 if (outcome == 1) {
                     console.log('output : ' + outcome + '  Action :' + action);
                     if (this.activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'triangle_vert');
+                        this.sprite = scene.add.sprite(1145, 412, 'triangle_vert');
                         scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
                         valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
                     };
@@ -542,33 +542,5 @@ export default class Level8 extends AbstractLevel {
             
     }
 
-
-            //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------TRACE SYSTEM--------------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-Traceon() 
-{
-            if (this.posSprites.length > 0 && this.activeTrace == true) {
-                for (let i = 0; i < this.posSprites.length; i++) {
-                    console.log("POS SPRITE : " + i + " " + this.posSprites[i]);
-                    let sprite2posSprites = this.posSprites[i];
-                    let animatepos = sprite2posSprites.x;
-                    animatepos -= 65;
-                    this.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
-                    let valencetab = this.posValeurInterraction[i];
-                    let animatevalence = valencetab.x;
-                    animatevalence -= 65
-                    this.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
-                    console.log("valence = " + animatevalence)
-                }
-            }
-        }
-posmanager(sprite, valeurInterraction, formuse) {
-            this.posSprites.push(sprite);
-            this.posValeurInterraction.push(valeurInterraction);
-            this.nombreCompteur += 1;
-            this.tableau_interaction.push(formuse);
-            console.log(this.tableau_interaction);
-}
 
 }
