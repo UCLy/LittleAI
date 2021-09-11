@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 
-import LevelsScene from "./scenes/LevelsScene";
+//import LevelsScene from "./scenes/LevelsScene";
 import CreditScene from "./scenes/credits";
-import Level0 from "./levels/easy/level0";
+//import Level0 from "./levels/easy/level0";
 import Level1 from "./levels/easy/level1";
 import Level2 from "./levels/easy/level2";
 import Level3 from "./levels/easy/level3";
@@ -35,7 +35,7 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     // scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
-    scene: [Level1, Menu, LevelsScene, CreditScene, Level0, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
+    scene: [Level1, Menu, CreditScene, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
 };
 
 const configmusic = {
@@ -52,4 +52,4 @@ const configmusic = {
 
 var game = new Phaser.Game(config);
 
-localStorage.setItem('maxUnlockedLevel',13); // For debug
+localStorage.setItem('maxUnlockedLevel',10); // For debug

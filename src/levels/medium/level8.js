@@ -29,8 +29,6 @@ export default class Level8 extends AbstractLevel {
             [0, 1]
         ];
 
-        // background & pictures
-
         //Draw Game form/
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1040, 412, 'circle').setInteractive({ useHandCursor: true });

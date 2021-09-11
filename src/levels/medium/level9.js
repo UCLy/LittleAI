@@ -17,12 +17,6 @@ export default class Level9 extends AbstractLevel {
 
         super.create();
 
-        //load Variables use on game
-        this.activeTrace = true;
-        this.activeimulation = false;
-        let revealresultonform = true;
-        var score = 0;
-        //let nombreCompteur = 0;
         this.envState = [1, 0, 0];
         this.hedonist_array = [
             [0, 1],
@@ -131,30 +125,23 @@ export default class Level9 extends AbstractLevel {
     }
 
 
-    // //------------------------------------------------------------------------------------------------------------------------
-    // //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
-    // //------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
     drawing(action, outcome) {
  
         if (action == 0) {
             if (outcome == 0) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(936, 400, 'carre_rouge');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                }
-                //this.robotsimulation(action, outcome);
-
+                this.interactionSprite = this.add.sprite(936, 400, 'carre_rouge');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             if (outcome == 1) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(936, 412, 'carre_vert');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                }
-                //this.robotsimulation(action, outcome);
+                this.interactionSprite = this.add.sprite(936, 412, 'carre_vert');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             /*if (outcome == -1) {
                 console.log('output : ' + outcome + '  Action :' + action);
@@ -171,22 +158,15 @@ export default class Level9 extends AbstractLevel {
         if (action == 1) {
             if (outcome == 0) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(1145, 412, 'cercle_rouge');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                };
-                //this.robotsimulation(action, outcome);
-
+                this.interactionSprite = this.add.sprite(1145, 412, 'cercle_rouge');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             if (outcome == 1) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(1145, 412, 'cercle_vert');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                };
-                //this.robotsimulation(action, outcome);
+                this.interactionSprite = this.add.sprite(1145, 412, 'cercle_vert');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             /*if (outcome == -1) {
                 console.log('output : ' + outcome + '  Action :' + action);
@@ -203,22 +183,15 @@ export default class Level9 extends AbstractLevel {
         if (action == 2) {
             if (outcome == 0) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(1145, 412, 'triangle_jaune');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                };
-                //this.robotsimulation(action, outcome);
-
+                this.interactionSprite = this.add.sprite(1145, 412, 'triangle_jaune');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             if (outcome == 1) {
                 console.log('output : ' + outcome + '  Action :' + action);
-                if (this.activeTrace == true) {
-                    this.interactionSprite = this.add.sprite(1145, 412, 'triangle_vert');
-                    this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                    this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                };
-                //this.robotsimulation(action, outcome);
+                this.interactionSprite = this.add.sprite(1145, 412, 'triangle_vert');
+                this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
+                this.valeurInterraction = this.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
             }
             /*if (outcome == -1) {
                 console.log('output : ' + outcome + '  Action :' + action);
@@ -231,9 +204,6 @@ export default class Level9 extends AbstractLevel {
 
             }
             */
-
         }
-
     }
-
 }

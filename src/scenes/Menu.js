@@ -94,9 +94,9 @@ export default class Menu extends Phaser.Scene {
         var rectlevel8 = this.add.circle(80, 320, 30, 0xaa0088);
         var rectlevel9 = this.add.circle(200, 320, 30, 0xaa0088);
         var rectlevel10 = this.add.circle(330, 320, 30, 0xaa0088);
-        var rectlevel11 = this.add.circle(460, 320, 30, 0xaa0088);
-        var rectlevel12 = this.add.circle(590, 320, 30, 0xaa0088);
-        var rectlevel13 = this.add.circle(730, 320, 30, 0xaa0088);
+        // var rectlevel11 = this.add.circle(460, 320, 30, 0xaa0088);
+        // var rectlevel12 = this.add.circle(590, 320, 30, 0xaa0088);
+        // var rectlevel13 = this.add.circle(730, 320, 30, 0xaa0088);
 
 
 
@@ -115,26 +115,26 @@ export default class Menu extends Phaser.Scene {
         let level8 = this.add.text(75, 315, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level9 = this.add.text(195, 315, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         let level10 = this.add.text(313, 315, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level11 = this.add.text(443, 315, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level12 = this.add.text(583, 315, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        // let level11 = this.add.text(443, 315, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        // let level12 = this.add.text(583, 315, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        // let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
 
         console.log("menu");
-        let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 14;
+        let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1;// preset in index.js
 
         //switch (this.registry.get('maxUnlockedLevel')){
         switch (maxUnlockedLevel) {
-            case 13:
-                rectlevel13.setInteractive({ useHandCursor: true });
-                rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
-            case 12:
-                rectlevel12.setInteractive({ useHandCursor: true });
-                rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
-            case 11:
-                rectlevel11.setInteractive({ useHandCursor: true });
-                rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
+            // case 13:
+            //     rectlevel13.setInteractive({ useHandCursor: true });
+            //     rectlevel13.on('pointerdown', () => this.scene.start("Level13"));
+            // case 12:
+            //     rectlevel12.setInteractive({ useHandCursor: true });
+            //     rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
+            // case 11:
+            //     rectlevel11.setInteractive({ useHandCursor: true });
+            //     rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
             case 10:
-                rectlevel1.setInteractive({ useHandCursor: true });
+                rectlevel10.setInteractive({ useHandCursor: true });
                 rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
             case 9:
                 rectlevel9.setInteractive({ useHandCursor: true });
@@ -165,38 +165,6 @@ export default class Menu extends Phaser.Scene {
                 rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
         }
 
-        // //pour pouvoir acceder au niveau qd on clique
-        // rectlevel0.setInteractive({ useHandCursor: true });
-        // rectlevel1.setInteractive({ useHandCursor: true });
-        // rectlevel2.setInteractive({ useHandCursor: true });
-        // rectlevel3.setInteractive({ useHandCursor: true });
-        // rectlevel4.setInteractive({ useHandCursor: true });
-        // rectlevel5.setInteractive({ useHandCursor: true });
-        // rectlevel6.setInteractive({ useHandCursor: true });
-        // rectlevel7.setInteractive({ useHandCursor: true });
-
-        // rectlevel8.setInteractive({ useHandCursor: true });
-        // rectlevel9.setInteractive({ useHandCursor: true });
-        // rectlevel10.setInteractive({ useHandCursor: true });
-        // rectlevel11.setInteractive({ useHandCursor: true });
-        // rectlevel12.setInteractive({ useHandCursor: true });
-
-
-        // rectlevel0.on('pointerdown', () => this.scene.start("Level0"));
-        // rectlevel1.on('pointerdown', () => this.scene.start("Level1"));
-        // rectlevel2.on('pointerdown', () => this.scene.start("Level2"));
-        // rectlevel3.on('pointerdown', () => this.scene.start("Level3"));
-        // rectlevel4.on('pointerdown', () => this.scene.start("Level4"));
-        // rectlevel5.on('pointerdown', () => this.scene.start("Level5"));
-        // rectlevel6.on('pointerdown', () => this.scene.start("Level6"));
-        // rectlevel7.on('pointerdown', () => this.scene.start("Level7"));
-
-        // rectlevel8.on('pointerdown', () => this.scene.start("Level8"));
-        // rectlevel9.on('pointerdown', () => this.scene.start("Level9"));
-        // rectlevel10.on('pointerdown', () => this.scene.start("Level10"));
-        // rectlevel11.on('pointerdown', () => this.scene.start("Level11"));
-        // rectlevel12.on('pointerdown', () => this.scene.start("Level12"));
-
 
         //changer la forme du cercle rouge qd on passe le curseur dessus
         //rectlevel0.on('pointerover', () => { this.tweens.add({ targets: rectlevel0, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
@@ -210,9 +178,9 @@ export default class Menu extends Phaser.Scene {
         rectlevel8.on('pointerover', () => { this.tweens.add({ targets: rectlevel8, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel9.on('pointerover', () => { this.tweens.add({ targets: rectlevel9, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
         rectlevel10.on('pointerover', () => { this.tweens.add({ targets: rectlevel10, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
-        rectlevel11.on('pointerover', () => { this.tweens.add({ targets: rectlevel11, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
-        rectlevel12.on('pointerover', () => { this.tweens.add({ targets: rectlevel12, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
-        rectlevel13.on('pointerover', () => { this.tweens.add({ targets: rectlevel13, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        // rectlevel11.on('pointerover', () => { this.tweens.add({ targets: rectlevel11, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        // rectlevel12.on('pointerover', () => { this.tweens.add({ targets: rectlevel12, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
+        // rectlevel13.on('pointerover', () => { this.tweens.add({ targets: rectlevel13, scaleX: 0.8, scaleY: 0.80, yoyo: true, duration: 150, ease: 'Sine.easeInOut' }) });
 
 
 
@@ -224,6 +192,9 @@ export default class Menu extends Phaser.Scene {
         rectlevel5.on('pointerout', () => { rectlevel5.width = 10 });
         rectlevel6.on('pointerout', () => { rectlevel6.width = 10 });
         rectlevel7.on('pointerout', () => { rectlevel7.width = 10 });
+        rectlevel8.on('pointerout', () => { rectlevel8.width = 10 });
+        rectlevel9.on('pointerout', () => { rectlevel9.width = 10 });
+        rectlevel10.on('pointerout', () => { rectlevel10.width = 10 });
 
 
     }
