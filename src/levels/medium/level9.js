@@ -25,6 +25,8 @@ export default class Level9 extends AbstractLevel {
         ];
 
         //Draw Game form/
+        this.afficheEqual = this.add.text(700, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1040, 412, 'circle').setInteractive({ useHandCursor: true });
         this.btnTriangle = this.add.sprite(1145, 412, 'triangle').setInteractive({ useHandCursor: true });

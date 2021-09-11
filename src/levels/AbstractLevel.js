@@ -1,5 +1,7 @@
 //import phaser from 'phaser';
 
+const MAX_LEVEL = 10;
+
 export default class AbstractLevel extends Phaser.Scene {
 
     constructor(level) {
@@ -47,9 +49,12 @@ export default class AbstractLevel extends Phaser.Scene {
         this.TexteScore = this.add.text(750, 510, "Score", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
         this.afficheScore = this.add.text(750, 455, "0", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
         this.textWin = this.add.text(625, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
-        //this.textWin.setFill(['lime']);
-        this.textWin.setInteractive({ useHandCursor: true });
-        this.textWin.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
+        if (this.level < MAX_LEVEL) {
+            this.textWin.setInteractive({ useHandCursor: true });
+            this.textWin.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
+        } else {
+            this.textWin.setFill(['lime']);
+        }
    }
 
     update(){}
@@ -81,18 +86,20 @@ export default class AbstractLevel extends Phaser.Scene {
         // Unlock level
         if (this.score >= 10) {
             this.afficheScore.setFill(['lime']);
-            this.textWin.setText([
-                'You win! Click here to proceed to next level'
-            ]);
-            this.textWin.setStroke('#ffd700');
-            //let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
-            let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1; 
-            
-            if (this.level >= maxUnlockedLevel) {
-                //this.registry.set('maxUnlockedLevel', this.level + 1);
-                localStorage.setItem('maxUnlockedLevel',this.level + 1);
+            if (this.level < MAX_LEVEL) {
+                this.textWin.setText(['You win! Click here to proceed to next level']);
+                this.textWin.setStroke('#ffd700');
+                //let maxUnlockedLevel = this.registry.get('maxUnlockedLevel');
+                let maxUnlockedLevel = parseInt(localStorage.getItem('maxUnlockedLevel')) || 1; 
+                if (this.level >= maxUnlockedLevel) {
+                    //this.registry.set('maxUnlockedLevel', this.level + 1);
+                    localStorage.setItem('maxUnlockedLevel',this.level + 1);
+                }
+                this.updateNextLevelLink();
+            } else {
+                this.textWin.setText(['Congratulations! You have completed the game']);
+                this.textWin.setStroke('#ffd700');
             }
-            this.updateNextLevelLink();
         }
     }
 
@@ -100,9 +107,11 @@ export default class AbstractLevel extends Phaser.Scene {
     {
         if ((parseInt(localStorage.getItem('maxUnlockedLevel')) || 1) > this.level) 
         {
-            this.nextlevel.setInteractive({ useHandCursor: true });
-            this.nextlevel.setFill(['lime']);
-            this.nextlevel.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
+            if (this.level < MAX_LEVEL) {
+                this.nextlevel.setInteractive({ useHandCursor: true });
+                this.nextlevel.setFill(['lime']);
+                this.nextlevel.on('pointerdown', () => this.scene.start('Level' + (this.level + 1)));
+            }
         }
     }
 
