@@ -12,12 +12,16 @@ export default class AbstractLevel extends Phaser.Scene {
     create(){
 
         this.score = 0;
-        this.nombreCompteur = 0;
+//        this.nombreCompteur = 0;
         this.posSprites = [];
         this.posValeurInterraction = [];
-        this.tableau_interaction = [];
+        //this.tableau_interaction = [];
         this.valeurInterraction = 0;
-
+        this.hedonist_array = [
+            [0, 1],
+            [0, 1]
+        ];
+        this.valence_array = [];
 
         // Create the background image before enything else
         this.backgroundimg = this.add.image(600, 300, 'bgi');
@@ -50,14 +54,31 @@ export default class AbstractLevel extends Phaser.Scene {
 
     update(){}
 
+     //------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------- SCORE SYSTEM  -----------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------PRINT SCORE & TEXT -------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------------
-    Increment() 
+    calculScore(action, outcome) 
     {
+        // Update valence array
+        for (let i = 0; i < this.valence_array.length; i++) {
+            if (i >= 9) {
+                this.valence_array.shift();
+            }
+        }
+        this.valence_array.push(this.hedonist_array[action][outcome]);
+
+        // computes score
+        this.score = 0;
+        for (let i = 0; i < this.valence_array.length; i++) {
+            this.score += this.valence_array[i];
+        }
+        console.log(this.score);
+
+        // Display score
         this.afficheScore.setText([this.score]);
         this.afficheScore.setFill(['white']);
 
+        // Unlock level
         if (this.score >= 10) {
             this.afficheScore.setFill(['lime']);
             this.textWin.setText([
@@ -74,18 +95,6 @@ export default class AbstractLevel extends Phaser.Scene {
             this.updateNextLevelLink();
         }
     }
-    
-    //------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------SCORE SYSTEM  (Need improuvement)-----------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------------
-    calculScore(valence_array) 
-    {
-        this.score = 0;
-        for (let i = 0; i < valence_array.length; i++) {
-            this.score += valence_array[i];
-        }
-        console.log(this.score);
-    }
 
     updateNextLevelLink()
     {
@@ -97,31 +106,56 @@ export default class AbstractLevel extends Phaser.Scene {
         }
     }
 
+    // Shift the trace
     Traceon() 
     {
-        if (this.posSprites.length > 0 && this.activeTrace == true) {
+        if (this.posSprites.length > 0 ) {
             console.log("POS SPRITE LENGTH " + this.posSprites.length);
             for (let i = 0; i < this.posSprites.length; i++) {
                 console.log("POS SPRITE : " + i + " " + this.posSprites[i]);
                 let sprite2posSprites = this.posSprites[i];
                 let animatepos = sprite2posSprites.x;
                 animatepos -= 65;
-                this.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
+                //this.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
+                this.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 200, ease: 'Power2' });
                 let valencetab = this.posValeurInterraction[i];
                 let animatevalence = valencetab.x;
                 animatevalence -= 65
                 this.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
+                //this.add.tween({ targets: valencetab, x: animatevalence, duration: 180, ease: 'Linear' });
                 console.log("valence = " + animatevalence)
             }
         }
+        this.posSprites.push(this.interactionSprite);
+        this.posValeurInterraction.push(this.valeurInterraction);
     }
-    posmanager(sprite, valeurInterraction, formuse) 
-    {
-        this.posSprites.push(sprite);
-        this.posValeurInterraction.push(valeurInterraction);
-        this.nombreCompteur += 1;
-        this.tableau_interaction.push(formuse);
-        console.log(this.tableau_interaction);
+ 
+
+    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
+
+    drawing(action, outcome) {
+        console.log('Action :' + action + ' Outcome : ' + outcome );
+        let valence = this.hedonist_array[action][outcome];
+        if (action == 0) {
+            if (outcome == 0) {
+                this.interactionSprite = this.add.sprite(936, 400, 'carre_rouge');
+            }
+            if (outcome == 1) {
+                this.interactionSprite = this.add.sprite(936, 412, 'carre_vert');
+            }
+        }
+        if (action == 1) {
+            if (outcome == 0) {
+                this.interactionSprite = this.add.sprite(1145, 412, 'cercle_rouge');
+            }
+            if (outcome == 1) {
+                this.interactionSprite = this.add.sprite(1145, 412, 'cercle_vert');
+            }
+        }
+        this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
+        this.valeurInterraction = this.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
     }
 
 }

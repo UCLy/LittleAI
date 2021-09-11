@@ -1,68 +1,35 @@
-import phaser from 'phaser';
-import MyGame from '../../index.js';
-
-import backgroundimage from '../../assets/background.png';
 import AbstractLevel from '../AbstractLevel.js';
 
+const POINTER_DOWN = "pointerdown";
+const POINTER_OVER = 'pointerover';
+const ROBOT_X_LEFT = 630;
+const ROBOT_X_CENTER = 715;
+const ROBOT_X_RIGHT = 825;
+const ROBOT_Y_TOP = 100;
+const ROBOT_Y_CENTER = 150;
 
 export default class Level8 extends AbstractLevel {
 
 
     constructor() {
         super(8)
-
     }
 
-
-
     preload() {
-
-
     }
 
     create() {
 
-        //load Variables use on game
-        this.activeTrace = false;
-        let activeimulation = true;
-        let revealresultonform = true;
-        var score = 0;
-//        this.nombreCompteur = 0;
-        var states = [1, 0, 0];
-        let hedonist_array = [
+        super.create();
+
+        this.envState = [1, 0, 0];
+        this.hedonist_array = [
             [0, 1],
             [0, 1],
             [0, 1]
-
         ];
-        console.log(hedonist_array[2][0]);
-        const POINTER_DOWN = "pointerdown";
-        const POINTER_OVER = 'pointerover';
-//        this.posSprites = [];
-//        this.posValeurInterraction = [];
-        let valence_array = [];
-        //this.tableau_interaction = [];
-        let valencetab;
-        let valence;
-        let outcome;
-        //this.sprite;
-        let valeurInterraction;
-        let action;
-        let sprite2posSprites;
-        let animatepos;
-        let animatevalence;
-
-        let Wallone;
-        let Walltwo;
-        let buttonup;
-
 
         // background & pictures
-
-        // "New function" Change Level directly on game
-        super.create();
-
-
 
         //Draw Game form/
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
@@ -74,17 +41,17 @@ export default class Level8 extends AbstractLevel {
 
 
         //Draw Simulation
-        this.robotsim = this.add.sprite(700, 150, 'robot');
+        this.robotsim = this.add.sprite(ROBOT_X_CENTER, ROBOT_Y_CENTER, 'robot');
         this.robotsim.setScale(0.3);
-        this.Wallone = this.add.graphics();
-        this.Wallone.fillGradientStyle(0xff0000, 0x00ff00, 0xff0000, 0x00ff00);
-        this.Wallone.fillRect(580, 150, 30, 30);
+        //this.Wallone = this.add.graphics();
+        //this.Wallone.fillGradientStyle(0xff0000, 0x00ff00, 0xff0000, 0x00ff00);
+        //this.Wallone.fillRect(580, 150, 30, 30);
+        this.Wallone = this.add.rectangle(580, 150, 30, 30, 0x00ff00);
         this.Walltwo = this.add.circle(850, 150, 15, 0xff0000);
-        this.buttonup = this.add.triangle(710, 80, 710, 80, 720, 90, 700, 90, 0xff0000);
+        this.buttonup = this.add.triangle(735, 75, 0, -10, -20, 20, 20, 20, 0xff0000);
+        //this.buttonup.setOrigin(0, 0);
 
-
-        //create button square
-
+        // Anim buttons
 
         this.btnCircle.on(POINTER_OVER, function() {
             this.setTint(0x999999);
@@ -93,17 +60,12 @@ export default class Level8 extends AbstractLevel {
             this.clearTint();
         });
 
-        //create button circle
-
-
         this.btnCarre.on(POINTER_OVER, function() {
             this.setTint(0x999999);
         });
         this.btnCarre.on('pointerout', function() {
             this.clearTint();
         });
-        //create button triangle
-
 
         this.btnTriangle.on(POINTER_OVER, function() {
             this.setTint(0x999999);
@@ -111,388 +73,79 @@ export default class Level8 extends AbstractLevel {
         this.btnTriangle.on('pointerout', function() {
             this.clearTint();
         });
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------LEVEL SYSTEM--------------------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
 
-
-        function env(action, states) {
-
-            var outcome = states[action]
-
-            for (let i = 0; i < valence_array.length; i++) {
-                if (i >= 9) {
-                    valence_array.shift();
-                }
-            }
-            console.log("action" + action + "outcome" + outcome);
-            valence = hedonist_array[action][outcome];
-
-            valence_array.push(valence);
-            if (action == 0) {
-
-                if (states[0] == 1) {
-                    states[0] = 0;
-                    states[1] = 1;
-                    states[2] = 0;
-                }
-
-            }
-            if (action == 1) {
-                if (states[1] == 1) {
-                    states[0] = 0;
-                    states[1] = 0;
-                    states[2] = 1
-                }
-
-            }
-            if (action == 2) {
-                if (states[2] == 1) {
-                    states[0] = 1;
-                    states[1] = 0;
-                    states[2] = 0;
-                }
-
-            }
-
-            console.log(outcome + "Outcome test");
-            return outcome;
-        }
-
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------feedback for score parameters --------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        function feedback(parametre) {
-            for (let i = 0; i < valence_array.length; i++) {
-                if (i >= 9) {
-                    valence_array.shift();
-                }
-            }
-            valence_array.push(parametre);
-            console.log(valence_array);
-
-        }
-        // //------------------------------------------------------------------------------------------------------------------------
-        // //----------------------------------------TRACE SYSTEM--------------------------------------------------------------------
-        // //------------------------------------------------------------------------------------------------------------------------
-        // function Traceon(scene) {
-        //     if (posSprites.length > 0) {
-        //         for (let i = 0; i < posSprites.length; i++) {
-        //             console.log("POS SPRITE : " + posSprites[0]);
-        //             let sprite2posSprites = posSprites[i];
-        //             let animatepos = sprite2posSprites.x;
-        //             animatepos -= 65;
-        //             scene.add.tween({ targets: sprite2posSprites, x: animatepos, duration: 180, ease: 'Linear' });
-        //             valencetab = posValeurInterraction[i];
-        //             let animatevalence = valencetab.x;
-        //             animatevalence -= 65
-        //             scene.add.tween({ targets: valencetab, x: animatevalence, duration: 200, ease: 'Power2' });
-        //             console.log("valence = " + animatevalence)
-        //         }
-        //     }
-        // }
-        // //------------------------------------------------------------------------------------------------------------------------
-        // //----------------------------------------ROBOT SIM SYSTEM Left / Right / Up------------------------------------------------------
-        // //------------------------------------------------------------------------------------------------------------------------
-        // function robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo) {
-        //     if (activeimulation == true) {
-        //         if (action == 0) {
-        //             if (outcome == 0 || -1) {
-        //                 scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
-        //                 robotsim.setPosition(700, 150);
-        //             }
-        //             scene.tweens.add({ targets: robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
-        //             robotsim.setPosition(700, 150);
-
-        //             if (outcome == 1) {
-        //                 scene.tween.add({ targets: Wallone, rotate: 180, duration: 150, yoyo: true, ease: 'Power2' })
-        //                 Walltwo.setFillStyle(0x00ff00);
-        //             }
-        //         }
-        //         if (action == 1) {
-        //             if (outcome == 0 || -1) {
-        //                 scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
-        //                 robotsim.setPosition(700, 150);
-        //             }
-        //             scene.tweens.add({ targets: robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
-        //             robotsim.setPosition(700, 150);
-        //             if (outcome == 1) {
-        //                 Walltwo.setFillStyle(0xff0000);
-        //                 buttonup.setFillStyle(0x00ff00);
-        //             }
-        //         }
-        //         if (action == 2) {
-        //             if (outcome == 0 || -1) {
-        //                 scene.tweens.add({ targets: robotsim, y: 100, duration: 150, yoyo: true, ease: 'Power2' });
-        //                 robotsim.setPosition(700, 150);
-        //             }
-        //             scene.tweens.add({ targets: robotsim, x: 710, duration: 150, yoyo: true, ease: 'Power2' });
-        //             robotsim.setPosition(700, 150);
-        //             if (outcome == 1) {
-        //                 Wallone.setFillStyle(0x00ff00);
-        //                 Walltwo.setFillStyle(0xff0000);
-        //                 buttonup.setFillStyle(0xff0000);
-        //             };
-        //         }
-
-        //     }
-        // }
-        // //------------------------------------------------------------------------------------------------------------------------
-        // //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
-        // //------------------------------------------------------------------------------------------------------------------------
-        // function drawing(action, outcome, scene) {
-        //     if (action == 0) {
-        //         if (outcome == 0) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(936, 400, 'carre_rouge');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             }
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         if (outcome == 1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(936, 412, 'carre_vert');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             }
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-        //         }
-        //         /*if (outcome == -1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         */
-        //     }
-        //     if (action == 1) {
-        //         if (outcome == 0) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         if (outcome == 1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'cercle_vert');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-        //         }
-        //         /*if (outcome == -1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         */
-        //     }
-        //     if (action == 2) {
-        //         if (outcome == 0) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'triangle_jaune');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         if (outcome == 1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'triangle_vert');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(this, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-        //         }
-        //         /*if (outcome == -1) {
-        //             console.log('output : ' + outcome + '  Action :' + action);
-        //             if (activeTrace == true) {
-        //                 sprite = scene.add.sprite(1145, 412, 'triangle_rouge');
-        //                 scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-        //                 valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-        //             };
-        //             robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-        //         }
-        //         */
-
-        //     }
-
-        // }
-
-        //------------------------------------------------------------------------------------------------------------------------
-        //----------------------------------------TRACE POSITION MANAGER ---------------------------------------------------------
-        //------------------------------------------------------------------------------------------------------------------------
-        // function posmanager(sprite, valeurInterraction, formuse) {
-        //     posSprites.push(sprite);
-        //     posValeurInterraction.push(valeurInterraction);
-        //     nombreCompteur += 1;
-        //     tableau_interaction.push(formuse);
-        //     console.log(tableau_interaction);
-        // }
         //------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------BUTTON INTERACTION SYSTEM-------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
         this.btnCarre.on(POINTER_DOWN, () => {
-            action = 0;
-            outcome = env(action, states);
-            this.Traceon();
-            this.drawing(action, outcome, this);
-            this.posmanager(this.sprite, valeurInterraction, "Rond");
-            this.calculScore(valence_array);
-            this.Increment();
+            let action = 0;
+            let outcome = this.env(action);
+            this.calculScore(action, outcome);
+            this.robotsimulation(action, outcome);
         });
 
 
         this.btnCircle.on(POINTER_DOWN, () => {
-            action = 1;
-            outcome = env(action, states);
-            this.Traceon();
-            this.drawing(action, outcome, this);
-            this.posmanager(this.sprite, valeurInterraction, "Rond");
-            this.calculScore(valence_array);
-            this.Increment();
+            let action = 1;
+            let outcome = this.env(action);
+            this.calculScore(action, outcome);
+            this.robotsimulation(action, outcome);
         });
 
         this.btnTriangle.on(POINTER_DOWN, () => {
-            action = 2;
-            outcome = env(action, states);
-            this.Traceon();
-            this.drawing(action, outcome, this);
-            this.posmanager(this.sprite, valeurInterraction, "Triangle");
-            this.calculScore(valence_array);
-            this.Increment();
+            let action = 2;
+            let outcome = this.env(action);
+            this.calculScore(action, outcome);
+            this.robotsimulation(action, outcome);
         });
     }
 
-
-    update() {
-
+    update() 
+    {
+        if (this.robotsim.x <= ROBOT_X_LEFT) {
+            this.tweens.add({ targets: this.robotsim, x: ROBOT_X_CENTER, duration: 200, yoyo: false, ease: 'Quad.easeInOut' });
+        }
+        if (this.robotsim.x >= ROBOT_X_RIGHT) {
+            this.tweens.add({ targets: this.robotsim, x: ROBOT_X_CENTER, duration: 200, yoyo: false, ease: 'Quad.easeInOut' });
+        }
+        if (this.robotsim.y <= ROBOT_Y_TOP) {
+            this.tweens.add({ targets: this.robotsim, y: ROBOT_Y_CENTER, duration: 200, yoyo: false, ease: 'Quad.easeInOut' });
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------DRAWING TRACE SYSTEM------------------------------------------------------------
+    //----------------------------------------LEVEL SYSTEM--------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------
-    drawing(action, outcome, scene) 
-    {
+
+    env(action) {
+
+        let outcome = 0;
+
         if (action == 0) {
-                if (outcome == 0) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(936, 400, 'carre_rouge');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    }
-                    this.robotsimulation(action, outcome);
-                }
-                if (outcome == 1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(936, 412, 'carre_vert');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    }
-                    this.robotsimulation(action, outcome);
-                }
-                /*if (outcome == -1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-                }
-                */
+            if (this.envState[0] == 1) {
+                outcome = 1;
+                this.envState[0] = 0;
+                this.envState[1] = 1;
+                this.envState[2] = 0;
             }
-            if (action == 1) {
-                if (outcome == 0) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    this.robotsimulation(action, outcome);
-
-                }
-                if (outcome == 1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(1145, 412, 'cercle_vert');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    this.robotsimulation(action, outcome);
-                }
-                /*if (outcome == -1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'cercle_rouge');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-                }
-                */
+        }
+        if (action == 1) {
+            if (this.envState[1] == 1) {
+                outcome = 1;
+                this.envState[0] = 0;
+                this.envState[1] = 0;
+                this.envState[2] = 1
             }
-            if (action == 2) {
-                if (outcome == 0) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(1145, 412, 'triangle_jaune');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    this.robotsimulation(action, outcome);
-
-                }
-                if (outcome == 1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (this.activeTrace == true) {
-                        this.sprite = scene.add.sprite(1145, 412, 'triangle_vert');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    this.robotsimulation(action, outcome);
-                }
-                /*if (outcome == -1) {
-                    console.log('output : ' + outcome + '  Action :' + action);
-                    if (activeTrace == true) {
-                        sprite = scene.add.sprite(1145, 412, 'triangle_rouge');
-                        scene.tweens.add({ targets: sprite, x: 622, y: 412, duration: 200, ease: 'Power2', });
-                        valeurInterraction = scene.add.text(615, 440, "" + outcome, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
-                    };
-                    robotsimulation(scene, robotsim, action, outcome, activeimulation, Wallone, Walltwo);
-
-                }
-                */
-
+        }
+        if (action == 2) {
+            if (this.envState[2] == 1) {
+                outcome = 1;
+                this.envState[0] = 1;
+                this.envState[1] = 0;
+                this.envState[2] = 0;
             }
-
+        }
+        return outcome;
     }
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -500,47 +153,37 @@ export default class Level8 extends AbstractLevel {
     //------------------------------------------------------------------------------------------------------------------------
     robotsimulation(action, outcome) 
     {
-                if (action == 0) {
-                    if (outcome == 0 || -1) {
-                        this.tweens.add({ targets: this.robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
-                        this.robotsim.setPosition(700, 150);
-                    }
-                    this.tweens.add({ targets: this.robotsim, x: 630, duration: 150, yoyo: true, ease: 'Power2' });
-                    this.robotsim.setPosition(700, 150);
-
-                    if (outcome == 1) {
-                        this.tweens.add({ targets: this.Wallone, rotate: 180, duration: 150, yoyo: true, ease: 'Power2' })
-                        this.Walltwo.setFillStyle(0x00ff00);
-                    }
-                }
-                if (action == 1) {
-                    if (outcome == 0 || -1) {
-                        this.tweens.add({ targets: this.robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
-                        this.robotsim.setPosition(700, 150);
-                    }
-                    this.tweens.add({ targets: this.robotsim, x: 825, duration: 150, yoyo: true, ease: 'Power2' });
-                    this.robotsim.setPosition(700, 150);
-                    if (outcome == 1) {
-                        this.Walltwo.setFillStyle(0xff0000);
-                        this.buttonup.setFillStyle(0x00ff00);
-                    }
-                }
-                if (action == 2) {
-                    if (outcome == 0 || -1) {
-                        this.tweens.add({ targets: this.robotsim, y: 100, duration: 150, yoyo: true, ease: 'Power2' });
-                        this.robotsim.setPosition(700, 150);
-                    }
-                    this.tweens.add({ targets: this.robotsim, x: 710, duration: 150, yoyo: true, ease: 'Power2' });
-                    this.robotsim.setPosition(700, 150);
-                    if (outcome == 1) {
-                        //this.Wallone.setFillStyle(0x00ff00);
-                        this.Walltwo.setFillStyle(0xff0000);
-                        this.buttonup.setFillStyle(0xff0000);
-                    };
-                }
-
+        if (action == 0) {
+            this.tweens.add({ targets: this.robotsim, x: ROBOT_X_LEFT, duration: 150, yoyo: false, ease: 'Quad.easeIn' });
             
+            console.log("Rotate " + this.Wallone.rotate);
+            if (outcome == 1) {
+                //this.tweens.add({ targets: this.Wallone, angle: 180, duration: 150, yoyo: false, ease: 'Power2' })
+                this.Wallone.setFillStyle(0xff0000);
+                this.Walltwo.setFillStyle(0x00ff00);
+                this.buttonup.setFillStyle(0xff0000);
+            }
+        }
+        if (action == 1) {
+            this.tweens.add({ targets: this.robotsim, x: ROBOT_X_RIGHT, duration: 150, yoyo: true, ease: 'Quad.easeIn' });
+
+            if (outcome == 1) {
+                this.Wallone.setFillStyle(0xff0000);
+                this.Walltwo.setFillStyle(0xff0000);
+                this.buttonup.setFillStyle(0x00ff00);
+            }
+        }
+        if (action == 2) {
+            this.tweens.add({ targets: this.robotsim, y: ROBOT_Y_TOP, duration: 150, yoyo: false, ease: 'Quad.easeIn' });
+
+            if (outcome == 1) {
+                //this.tweens.add({ targets: this.buttonup, angle: 180, duration: 200, yoyo: false, ease: 'Power2' })
+                this.Wallone.setFillStyle(0x00ff00);
+                this.Walltwo.setFillStyle(0xff0000);
+                this.buttonup.setFillStyle(0xff0000);
+            } else {
+            //    this.tweens.add({ targets: this.buttonup, angle: 0, duration: 200, yoyo: false, ease: 'Power2' })
+            };
+        }       
     }
-
-
 }
