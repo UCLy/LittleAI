@@ -27,7 +27,8 @@ export default class Level6 extends AbstractLevel {
         this.envState = [1, 1];
 
         //Draw Game form/
-        this.afficheEqual = this.add.text(700, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);;
+        this.afficheEqual = this.add.text(680, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        this.afficheEqual.setVisible(false);
 
         this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
@@ -68,6 +69,7 @@ export default class Level6 extends AbstractLevel {
             this.drawing(action, outcome);
             this.Traceon();
             this.calculScore(action, outcome);
+            this.afficheEqual.setVisible(true);
             this.robotsimulation(action, outcome);
         });
 
@@ -78,6 +80,7 @@ export default class Level6 extends AbstractLevel {
             this.drawing(action, outcome);
             this.Traceon();
             this.calculScore(action, outcome);
+            this.afficheEqual.setVisible(true);
             this.robotsimulation(action, outcome);
         });
     }

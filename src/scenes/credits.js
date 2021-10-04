@@ -39,14 +39,19 @@ export default class CreditScene extends Phaser.Scene {
         credits.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 
 
-        this.add.text(555, 80, 'Valentin Favre', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(350, 100, 'Valentin Favre', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
 
+        this.add.text(350, 140, 'Théotime Clément', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(350, 160, 'Gaetan Gongiu', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(350, 180, 'Rami Johnstone', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(350, 200, 'Emmanuel Lattier', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(350, 220, 'Pierre Zelnio', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
 
-        this.add.text(555, 100, 'Olivier Georgeon', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 120, 'Michel Chourot', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 140, 'Jonathan Morgan', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 160, 'Jianyong Xue', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 180, 'Sergey Yarushev', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(750, 100, 'Olivier Georgeon', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(750, 140, 'Michel Chourot', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(750, 160, 'Jonathan Morgan', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(750, 180, 'Sergey Yarushev', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
+        this.add.text(750, 200, 'Jianyong Xue', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
 
 
 
@@ -65,13 +70,6 @@ export default class CreditScene extends Phaser.Scene {
 
         var mephi = this.add.image(1175, 465, 'mephiUR');
         mephi.setScale(0.1);
-
-        this.add.text(555, 200, 'Pierre Zelnio', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 220, 'Emmanuel Lattier', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 240, 'Gaetan Gongiu', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 260, 'Rami Johnstone', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-        this.add.text(555, 280, 'Théotime Clément', { fontFamily: 'OCR A Std, monospace', fontSize: 20 });
-
 
     }
 

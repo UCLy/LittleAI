@@ -29,6 +29,9 @@ export default class Level8 extends AbstractLevel {
             [0, 1]
         ];
 
+        this.afficheEqual = this.add.text(680, 455, "=", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        this.afficheEqual.setVisible(false);
+
         //Draw Game form/
         this.btnCarre = this.add.sprite(930, 412, 'carre').setInteractive({ useHandCursor: true });
         this.btnCircle = this.add.sprite(1040, 412, 'circle').setInteractive({ useHandCursor: true });

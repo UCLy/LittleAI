@@ -75,7 +75,7 @@ export default class Menu extends Phaser.Scene {
         little1.setScale(0.30);
         little2.setScale(0.30);
         var titrejeux = this.add.text(450, 10, 'Little AI', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif', fontSize: 100 });
-        var credits = this.add.text(0, 500, 'Credits', { fontFamily: 'OCR A Std, monospace', fontSize: 34 });
+        var credits = this.add.text(20, 20, 'Credits', { fontFamily: 'OCR A Std, monospace', fontSize: 34 });
         credits.setInteractive({ useHandCursor: true });
         credits.on('pointerdown', () => this.scene.start("CreditsScene"));
 
@@ -91,9 +91,9 @@ export default class Menu extends Phaser.Scene {
         var rectlevel6 = this.add.circle(860, 220, 30, 0xaa0088);
         var rectlevel7 = this.add.circle(990, 220, 30, 0xaa0088);
 
-        var rectlevel8 = this.add.circle(80, 320, 30, 0xaa0088);
-        var rectlevel9 = this.add.circle(200, 320, 30, 0xaa0088);
-        var rectlevel10 = this.add.circle(330, 320, 30, 0xaa0088);
+        var rectlevel8 = this.add.circle(200, 320, 30, 0xaa0088);
+        var rectlevel9 = this.add.circle(330, 320, 30, 0xaa0088);
+        var rectlevel10 = this.add.circle(460, 320, 30, 0xaa0088);
         // var rectlevel11 = this.add.circle(460, 320, 30, 0xaa0088);
         // var rectlevel12 = this.add.circle(590, 320, 30, 0xaa0088);
         // var rectlevel13 = this.add.circle(730, 320, 30, 0xaa0088);
@@ -104,17 +104,17 @@ export default class Menu extends Phaser.Scene {
 
         //pour les textes des niveaux
         //let level0 = this.add.text(75, 210, '0', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level1 = this.add.text(195, 210, '1', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level2 = this.add.text(325, 210, '2', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level3 = this.add.text(455, 210, '3', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level4 = this.add.text(585, 210, '4', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level5 = this.add.text(725, 210, '5', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level6 = this.add.text(855, 210, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level7 = this.add.text(985, 210, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level1 = this.add.text(200, 220, '1', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level2 = this.add.text(330, 220, '2', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level3 = this.add.text(460, 220, '3', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level4 = this.add.text(590, 220, '4', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level5 = this.add.text(730, 220, '5', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level6 = this.add.text(860, 220, '6', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level7 = this.add.text(990, 220, '7', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
 
-        let level8 = this.add.text(75, 315, '8', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level9 = this.add.text(195, 315, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
-        let level10 = this.add.text(313, 315, '10', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
+        let level8 = this.add.text(200, 320,  '8', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level9 = this.add.text(330, 320, '9', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
+        let level10 = this.add.text(460,320,'10', { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
         // let level11 = this.add.text(443, 315, '11', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         // let level12 = this.add.text(583, 315, '12', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });
         // let level13 = this.add.text(713, 315, '13', { fontFamily: 'OCR A Std, monospace', fontSize: 15 });

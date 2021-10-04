@@ -14,10 +14,8 @@ export default class AbstractLevel extends Phaser.Scene {
     create(){
 
         this.score = 0;
-//        this.nombreCompteur = 0;
         this.posSprites = [];
         this.posValeurInterraction = [];
-        //this.tableau_interaction = [];
         this.valeurInterraction = 0;
         this.hedonist_array = [
             [0, 1],
@@ -29,7 +27,7 @@ export default class AbstractLevel extends Phaser.Scene {
         this.backgroundimg = this.add.image(600, 300, 'bgi');
 
         // Create the navigation bar
-        this.add.text(625, 30, 'Level ' + this.level, { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
+        this.levelLabel = this.add.text(625, 30, 'Level ' + this.level, { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
         this.nextlevel = this.add.text(625 + 150, 30, '>', { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
         this.updateNextLevelLink();
         this.previouslevel = this.add.text(625 - 150, 30, '<', { fontFamily: 'OCR A Std, monospace', fontSize: 50 }).setOrigin(0.5);
@@ -47,7 +45,9 @@ export default class AbstractLevel extends Phaser.Scene {
 
         // Create the score 
         this.TexteScore = this.add.text(750, 510, "Score", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        this.TexteScore.setVisible(false);
         this.afficheScore = this.add.text(750, 455, "0", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
+        this.afficheScore.setVisible(false);
         this.textWin = this.add.text(625, 300, "", { fontFamily: 'OCR A Std, monospace', fontSize: 40 }).setOrigin(0.5);
         if (this.level < MAX_LEVEL) {
             this.textWin.setInteractive({ useHandCursor: true });
@@ -59,7 +59,7 @@ export default class AbstractLevel extends Phaser.Scene {
 
     update(){}
 
-     //------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------- SCORE SYSTEM  -----------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------
     calculScore(action, outcome) 
@@ -80,7 +80,9 @@ export default class AbstractLevel extends Phaser.Scene {
         console.log(this.score);
 
         // Display score
-        this.afficheScore.setText([this.score]);
+        //this.TexteScore.setVisible(true);
+        this.afficheScore.setVisible(true);
+        this.afficheScore.setText([this.score] + "/10");
         this.afficheScore.setFill(['white']);
 
         // Unlock level
@@ -164,7 +166,7 @@ export default class AbstractLevel extends Phaser.Scene {
             }
         }
         this.tweens.add({ targets: this.interactionSprite, x: 622, y: 412, duration: 200, ease: 'Power2' });
-        this.valeurInterraction = this.add.text(615, 440, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 });
+        this.valeurInterraction = this.add.text(622, 457, "" + valence, { fontFamily: 'OCR A Std, monospace', fontSize: 30 }).setOrigin(0.5);
     }
 
 }

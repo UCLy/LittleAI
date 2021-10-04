@@ -52,4 +52,4 @@ const configmusic = {
 
 var game = new Phaser.Game(config);
 
-localStorage.setItem('maxUnlockedLevel',10); // For debug
+//localStorage.setItem('maxUnlockedLevel',10); // For debug

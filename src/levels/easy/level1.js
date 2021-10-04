@@ -73,6 +73,14 @@ export default class Level1 extends AbstractLevel {
 
         super.create();
 
+        // Hide text "< level 1 >" until score 10 has been reached (in update())
+        if ((parseInt(localStorage.getItem('maxUnlockedLevel')) || 1) == 1) {
+            this.levelLabel.setVisible(false);
+            this.nextlevel.setVisible(false);
+            this.previouslevel.setVisible(false);
+        }
+        this.afficheScore.setPosition(625, 490);
+
         const POINTER_DOWN = "pointerdown";
         const POINTER_OVER = 'pointerover'
 
@@ -84,8 +92,8 @@ export default class Level1 extends AbstractLevel {
 
 
         //Draw Game form
-        this.btnCarre = this.add.sprite(936, 412, 'carre').setInteractive({ useHandCursor: true });
-        this.btnCircle = this.add.sprite(1145, 412, 'circle').setInteractive({ useHandCursor: true });
+        this.btnCarre = this.add.sprite(625 - 100, 412, 'carre').setInteractive({ useHandCursor: true });
+        this.btnCircle = this.add.sprite(625 + 100, 412, 'circle').setInteractive({ useHandCursor: true });
         this.add.tween({ targets: this.btnCarre, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
         this.add.tween({ targets: this.btnCircle, scaleX: 0.8, scaleY: 0.8, repeat: -1, duration: 500, yoyo: true, ease: 'Sine.easeInOut' });
 
@@ -125,11 +133,15 @@ export default class Level1 extends AbstractLevel {
     }
 
 
-    update() {}
+    update() {
 
-    //------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------LEVEL SYSTEM--------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------------
+        // Show text "< Level 1 >" When score 10 has been reached
+        if (this.score >= 10) {
+            this.levelLabel.setVisible(true);
+            this.nextlevel.setVisible(true);
+            this.previouslevel.setVisible(true);
+        }
+    }
 
     env(action) 
     {
