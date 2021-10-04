@@ -8,27 +8,29 @@
 
 Installer Node.js et `npm` avec `nvm` sur windows:
 
-##Télécharger Node.js
+### Télécharger Node.js
 
 Pour télécharger `Node.js` cliquez sur le lien ci-dessous: 
  
 [Download Node.js](https://nodejs.org/en/)  
-Choisissez la dernière version disponible (15.2.1)
 
-Une fois node.js installer, il faut ensuite installer `nvm`.
+Choisissez la version "Current" (16.2.0)
 
-##Télécharger nvm
+Lancer l'installation et choisir répertoire par défaut, options par défaut.  
 
-Cliquez sur le lien suivant pour accéder au dépôt git contenant `nvm`:  
+### Télécharger nvm
+
+Cliquez sur le lien suivant pour accéder au dépôt github contenant `nvm`:  
 
 [Download nvm](https://github.com/coreybutler/nvm-windows/releases)
 
-Cliquer sur  le fichier dans le dépôt github: nvm-setup.zip
-Ouvrer le fichier et lancer `nvm-setup.ex` et l'installation de nvm commence
+Depuis cette page, télécharger le fichier `nvm-setup.zip`.
 
-##Vérifier si l'on utilise bien la bonne version de Node.js
+Ouvrer le fichier et lancer `nvm-setup.exe` et l'installation de nvm commence. Garder les paramètres par défaut. 
 
-Une fois `nvm` installer il faut vérifiez si vous utilisez bien la dernière version de `Node.js`
+### Vérifier si l'on utilise bien la bonne version de Node.js
+
+Une fois `nvm` installé il faut vérifiez si vous utilisez bien la dernière version de `Node.js`
 
 Aller dans votre barre de recherche windows, écrivez : `cmd`
 Lancez l'invite de commande en faisant :
@@ -48,13 +50,7 @@ npm install -g yarn
 nvm use 15.2.1
 ```
 
-Puis installer Parcel:
-
-```bash
-npm install -g parcel-bundler
-```
-
-##Télécharger Git
+### Télécharger Git
 
 Installer git en cliquer sur le lien suivant:
   
@@ -68,20 +64,16 @@ Cloner ce dépôt sur votre machine local en utlisant `Git Bash`:
 git clone https://github.com/UCLy/LittleAI.git
 ```
 
-This will create a folder named `LittleAI`. You can specify a different folder name like this:
-
-```bash
-git clone https://github.com/UCLy/LittleAI.git my-folder-name
-```
+This will create a folder named `LittleAI`.
 
 Go into your new project folder and install dependencies:
 
 ```bash
-cd LittleAI # or 'my-folder-name'
-npm install
+cd LittleAI 
+npm install package.json
 ```
 
-Start development server:
+Start the development server:
 
 ```
 npm run start
