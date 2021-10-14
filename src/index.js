@@ -18,9 +18,7 @@ import Level11 from "./levels/medium/level11";
 import Level12 from "./levels/medium/level12";
 import Level13 from "./levels/medium/level13";
 
-import speedchallenge from "./levels/epic/speedchallenge";
-
-import Settings from './scenes/params';
+//import speedchallenge from "./levels/epic/speedchallenge";
 
 import Menu from "./scenes/Menu";
 
@@ -35,7 +33,7 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     // scene: [Menu, LevelsScene, CreditScene, Level0, Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
-    scene: [Level1, Menu, CreditScene, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13, Settings, speedchallenge],
+    scene: [Level1, Menu, CreditScene, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9, Level10, Level11, Level12, Level13],
 };
 
 const configmusic = {
